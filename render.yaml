@@ -1,0 +1,13 @@
+# Render Blueprint — single Web Service.
+# The FastAPI backend serves BOTH the API and the built frontend
+# (frontend/dist is committed to the repo, so no Node build is needed).
+services:
+  - type: web
+    name: research-intel-center
+    runtime: python
+    plan: free
+    region: singapore
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: cd backend && uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/health
+    autoDeploy: true

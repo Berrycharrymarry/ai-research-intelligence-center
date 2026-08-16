@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Backend runtime artifacts
+backend/vendor/
+backend/data/
+backend/logs/
+backend/.venv/
+backend/pyenv/__pycache__/
+backend/_diag*.py
+
+# Sandbox temp / caches
+.tmp/
+.npm-cache/
+.pnpm-store/
+*.log
+
+# Sandbox junk artifacts
+/tmp*/
+backend/tmp*/
+backend/makedirs_0700
+backend/mk_0700
+
+# Frontend (dist IS committed — the deployed backend serves it directly)
+frontend/node_modules/
+
+# Env
+.env
+.env.local
+
+# OS
+.DS_Store
+Thumbs.db
