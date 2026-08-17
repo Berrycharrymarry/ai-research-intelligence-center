@@ -128,6 +128,8 @@ const en = {
   "ls.papersCitesMean": "{count} papers · {cites} cites · mean {year}",
 
   "kg.loading": "Building knowledge graph…",
+  "kg.webglFail": "3D view unavailable",
+  "kg.webglFailHint": "Your browser blocked WebGL (enable hardware acceleration) or the graphics driver is unavailable. The rest of the app works normally.",
   "kg.fit": "Fit",
   "kg.zoomIn": "Zoom in",
   "kg.zoomOut": "Zoom out",
@@ -322,6 +324,8 @@ const zh = {
   "ls.papersCitesMean": "{count} 篇论文 · {cites} 次被引 · 平均 {year}",
 
   "kg.loading": "正在构建知识图谱…",
+  "kg.webglFail": "3D 视图不可用",
+  "kg.webglFailHint": "浏览器未开启 WebGL/硬件加速，或显卡驱动不可用。其余功能不受影响。",
   "kg.fit": "适应画面",
   "kg.zoomIn": "放大",
   "kg.zoomOut": "缩小",

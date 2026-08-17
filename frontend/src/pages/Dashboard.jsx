@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { ArrowDownRight, ArrowUpRight, FileSearch, FlaskConical, GitBranch, Library, Users } from "lucide-react";
 import { api } from "../api/client";
 import PaperDetailModal from "../components/PaperDetailModal";
-import { Badge, EmptyState, ErrorBar, SectionHeader, Spinner, StatCard, formatCitations } from "../components/ui";
+import { Badge, EmptyState, ErrorBar, ErrorBoundary, SectionHeader, Spinner, StatCard, formatCitations } from "../components/ui";
 import { useProject } from "../context/ProjectContext";
 import { useApi } from "../hooks/useApi";
 import { useI18n } from "../i18n";
@@ -185,7 +185,9 @@ export default function Dashboard() {
             }
           />
           <div style={{ height: 440 }}>
-            <Graph3D data={data.graph} onSelect={setGraphSel} selectedId={graphSel?.id} />
+            <ErrorBoundary>
+              <Graph3D data={data.graph} onSelect={setGraphSel} selectedId={graphSel?.id} />
+            </ErrorBoundary>
           </div>
         </div>
         <div className="space-y-5">

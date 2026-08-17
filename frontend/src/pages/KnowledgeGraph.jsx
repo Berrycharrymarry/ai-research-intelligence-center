@@ -2,7 +2,7 @@ import { useMemo, useRef, useState } from "react";
 import { Crosshair, Maximize, ZoomIn, ZoomOut } from "lucide-react";
 import { api } from "../api/client";
 import PaperDetailModal from "../components/PaperDetailModal";
-import { Badge, EmptyState, ErrorBar, Spinner, formatCitations } from "../components/ui";
+import { Badge, EmptyState, ErrorBar, ErrorBoundary, Spinner, formatCitations } from "../components/ui";
 import { useProject } from "../context/ProjectContext";
 import { useApi } from "../hooks/useApi";
 import { useI18n } from "../i18n";
@@ -72,12 +72,14 @@ export default function KnowledgeGraph() {
     <div className="flex h-full min-h-0">
       <div className="relative min-w-0 flex-1">
         {filtered ? (
-          <Graph3D
-            ref={graphRef}
-            data={filtered}
-            onSelect={setSel}
-            selectedId={sel?.id}
-          />
+          <ErrorBoundary>
+            <Graph3D
+              ref={graphRef}
+              data={filtered}
+              onSelect={setSel}
+              selectedId={sel?.id}
+            />
+          </ErrorBoundary>
         ) : (
           <Spinner />
         )}

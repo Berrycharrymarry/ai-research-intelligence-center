@@ -1,5 +1,42 @@
+import { Component } from "react";
 import { AlertTriangle, Loader2 } from "lucide-react";
 import { useI18n } from "../i18n";
+
+/**
+ * Catches render/lifecycle errors in a subtree so one faulty widget
+ * (e.g. the 3D graph) can never blank out the whole app.
+ */
+export class ErrorBoundary extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { error: null };
+  }
+
+  static getDerivedStateFromError(error) {
+    return { error };
+  }
+
+  componentDidCatch(error, info) {
+    console.error("ErrorBoundary caught:", error, info);
+  }
+
+  render() {
+    if (this.state.error) {
+      const msg =
+        this.state.error && this.state.error.message
+          ? this.state.error.message
+          : String(this.state.error);
+      if (this.props.fallback) return this.props.fallback(msg);
+      return (
+        <div className="flex flex-col items-center justify-center gap-2 rounded-md border border-warn/40 bg-panel p-6 text-center">
+          <AlertTriangle size={22} className="text-warn" />
+          <div className="text-sm font-medium text-muted">{msg}</div>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
 
 export function Spinner({ text }) {
   const { t } = useI18n();
