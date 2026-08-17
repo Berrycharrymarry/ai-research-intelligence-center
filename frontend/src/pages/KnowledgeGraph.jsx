@@ -65,6 +65,13 @@ export default function KnowledgeGraph() {
   );
 
   if (!project) return <EmptyState title={t("common.noProjectSelected")} hint={t("common.selectHint")} />;
+  const busy = project.status === "collecting" || project.status === "analyzing";
+  if (busy)
+    return (
+      <Spinner
+        text={`${project.status === "collecting" ? t("dash.collecting") : t("dash.analyzing")}…`}
+      />
+    );
   if (loading) return <Spinner text={t("kg.loading")} />;
   if (error) return <ErrorBar message={error} onRetry={reload} />;
 
