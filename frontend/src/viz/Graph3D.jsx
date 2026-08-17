@@ -196,6 +196,20 @@ const Graph3D = forwardRef(function Graph3D({ data, onSelect, selectedId }, ref)
       };
       el.addEventListener("mousemove", onMouseMove);
 
+      // keep the canvas in sync with the container size (guards against 0-size at init)
+      let resizeTimer = null;
+      const ro = new ResizeObserver(() => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+          const w = el.clientWidth;
+          const h = el.clientHeight;
+          if (w > 10 && h > 10 && fgRef.current) {
+            fgRef.current.width(w).height(h);
+          }
+        }, 80);
+      });
+      ro.observe(el);
+
       // subtle glow pulse + selection dimming, per frame
       const t0 = performance.now();
       const animate = () => {
@@ -214,6 +228,8 @@ const Graph3D = forwardRef(function Graph3D({ data, onSelect, selectedId }, ref)
 
       return () => {
         cancelAnimationFrame(rafRef.current);
+        clearTimeout(resizeTimer);
+        ro.disconnect();
         el.removeEventListener("mousemove", onMouseMove);
         spritesRef.current.clear();
         if (tooltip && tooltip.parentNode) tooltip.parentNode.removeChild(tooltip);
@@ -238,7 +254,8 @@ const Graph3D = forwardRef(function Graph3D({ data, onSelect, selectedId }, ref)
       };
       spritesRef.current.clear();
       fg.graphData(gData);
-      const id = setTimeout(() => fg.zoomToFit(400, 90), 350);
+      // fit after the force layout has had time to spread the nodes out
+      const id = setTimeout(() => fg.zoomToFit(500, 90), 2500);
       return () => clearTimeout(id);
     } catch (err) {
       console.error("Graph3D data update failed:", err);
