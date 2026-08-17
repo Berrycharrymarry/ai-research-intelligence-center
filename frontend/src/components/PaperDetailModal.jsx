@@ -40,8 +40,8 @@ export default function PaperDetailModal({ projectId, paperId, onClose, onOpenPa
             </div>
 
             <div className="mt-2 flex flex-wrap items-center gap-2">
-              <Badge tone="cyan">{data.publication_year || "n/a"}</Badge>
-              <Badge tone="teal">{data.type || "paper"}</Badge>
+              <Badge tone="cyan">{data.publication_year || t("md.na")}</Badge>
+              <Badge tone="teal">{data.type || t("nodeType.paper")}</Badge>
               {data.kind === "expand" && <Badge tone="slate">{t("md.foundational")}</Badge>}
               <Badge tone="amber">
                 {t("md.citations", { count: formatCitations(data.cited_by_count) })}

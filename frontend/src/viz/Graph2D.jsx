@@ -1,15 +1,9 @@
 import { forwardRef, useEffect, useImperativeHandle, useRef } from "react";
 import cytoscape from "cytoscape";
 import fcose from "cytoscape-fcose";
+import { NODE_COLORS } from "./graphMeta";
 
 cytoscape.use(fcose);
-
-const NODE_COLORS = {
-  paper: "#2dd4bf",
-  author: "#f59e0b",
-  topic: "#22d3ee",
-  technology: "#a78bfa",
-};
 
 const EDGE_COLORS = {
   cites: "#f87171",

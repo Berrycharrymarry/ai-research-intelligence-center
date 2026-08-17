@@ -4,13 +4,9 @@ import ForceGraph3D from "3d-force-graph";
 import * as THREE from "three";
 import { useI18n } from "../i18n";
 import Graph2D from "./Graph2D";
+import { NODE_COLORS, nodeLabel } from "./graphMeta";
 
-export const NODE_COLORS = {
-  paper: "#2dd4bf",
-  author: "#f59e0b",
-  topic: "#22d3ee",
-  technology: "#a78bfa",
-};
+export { NODE_COLORS, nodeLabel };
 
 const EDGE_COLORS = {
   cites: "rgba(248, 113, 113, 0.55)",
@@ -20,29 +16,17 @@ const EDGE_COLORS = {
   uses: "rgba(167, 139, 250, 0.38)",
 };
 
-const TYPE_LABEL_KEYS = {
-  paper: "nodeType.paper",
-  author: "nodeType.author",
-  topic: "nodeType.topic",
-  technology: "nodeType.technology",
-};
-
-export function nodeLabel(t, type) {
-  const key = TYPE_LABEL_KEYS[type];
-  if (!key) return type;
-  const label = t(key);
-  return label === key ? type : label;
-}
-
-function supportsWebGL() {
+// Returns the WebGL tier available, or null when unavailable.
+function webglTier() {
   try {
+    if (!window.WebGLRenderingContext) return null;
     const canvas = document.createElement("canvas");
-    return !!(
-      window.WebGLRenderingContext &&
-      (canvas.getContext("webgl2") || canvas.getContext("webgl") || canvas.getContext("experimental-webgl"))
-    );
+    const attrs = { failIfMajorPerformanceCaveat: false };
+    if (canvas.getContext("webgl2", attrs)) return "webgl2";
+    if (canvas.getContext("webgl", attrs) || canvas.getContext("experimental-webgl", attrs)) return "webgl1";
+    return null;
   } catch {
-    return false;
+    return null;
   }
 }
 
@@ -90,6 +74,7 @@ const Graph3D = forwardRef(function Graph3D({ data, onSelect, selectedId }, ref)
   const tRef = useRef(null);
   const rafRef = useRef(0);
   const [failed, setFailed] = useState(null);
+  const [retryNonce, setRetryNonce] = useState(0);
   const { t } = useI18n();
 
   onSelectRef.current = onSelect;
@@ -122,8 +107,9 @@ const Graph3D = forwardRef(function Graph3D({ data, onSelect, selectedId }, ref)
     const el = containerRef.current;
     if (!el) return undefined;
 
-    if (!supportsWebGL()) {
-      setFailed("WebGL unavailable");
+    const tier = webglTier();
+    if (!tier) {
+      setFailed("no-webgl");
       return undefined;
     }
 
@@ -244,7 +230,7 @@ const Graph3D = forwardRef(function Graph3D({ data, onSelect, selectedId }, ref)
       setFailed(err && err.message ? String(err.message) : String(err));
       return undefined;
     }
-  }, []);
+  }, [retryNonce]);
 
   // data updates
   useEffect(() => {
@@ -273,12 +259,22 @@ const Graph3D = forwardRef(function Graph3D({ data, onSelect, selectedId }, ref)
     return (
       <div className="relative h-full w-full">
         <Graph2D ref={graph2dRef} data={data} onSelect={onSelect} selectedId={selectedId} />
-        <div className="absolute left-3 top-3 z-10 max-w-[320px] rounded-md border border-warn/40 bg-panel/95 px-3 py-2 shadow-lg">
+        <div className="absolute left-3 top-3 z-10 max-w-[340px] rounded-md border border-warn/40 bg-panel/95 px-3 py-2 shadow-lg">
           <div className="flex items-center gap-1.5 text-[11px] font-medium text-warn">
             <AlertTriangle size={12} />
             {t("kg.fallback2d")}
+            <span className="font-mono text-[9px] text-faint">[{failed}]</span>
           </div>
           <div className="mt-0.5 text-[10px] leading-relaxed text-faint">{t("kg.fallback2dHint")}</div>
+          <button
+            onClick={() => {
+              setFailed(null);
+              setRetryNonce((n) => n + 1);
+            }}
+            className="mt-1.5 rounded border border-warn/50 px-2 py-0.5 text-[10px] text-warn hover:bg-warn/10"
+          >
+            {t("kg.retry3d")}
+          </button>
         </div>
       </div>
     );

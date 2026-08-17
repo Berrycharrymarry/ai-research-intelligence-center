@@ -1,4 +1,8 @@
-"""Heuristic research-gap mining. Deterministic, grounded in real data."""
+"""Heuristic research-gap mining. Deterministic, grounded in real data.
+
+Prose is generated in both English and Chinese so the frontend language
+toggle can switch the full gap cards.
+"""
 from __future__ import annotations
 
 import json
@@ -38,6 +42,11 @@ def _add_gap(
     evidence: list[int],
     confidence: float,
     signal: str,
+    title_zh: str | None = None,
+    problem_zh: str | None = None,
+    why_worth_zh: str | None = None,
+    existing_methods_zh: list[str] | None = None,
+    proposed_ideas_zh: list[str] | None = None,
 ) -> None:
     db.add(
         ResearchGap(
@@ -50,6 +59,11 @@ def _add_gap(
             evidence_paper_ids=json.dumps(evidence),
             confidence=round(confidence, 3),
             signal=signal,
+            title_zh=title_zh,
+            problem_zh=problem_zh,
+            why_worth_zh=why_worth_zh,
+            existing_methods_zh=json.dumps(existing_methods_zh, ensure_ascii=False) if existing_methods_zh is not None else None,
+            proposed_ideas_zh=json.dumps(proposed_ideas_zh, ensure_ascii=False) if proposed_ideas_zh is not None else None,
         )
     )
 
@@ -124,6 +138,21 @@ def run_gaps(db: Session, project_id: int) -> list[dict]:
             evidence=[p.id],
             confidence=0.7,
             signal="future_work",
+            title_zh=f"论文指出的开放方向：{p.title[:90]}",
+            problem_zh=(
+                f'论文《{p.title}》指出："{sent}" 这一明确的缺口/局限，在语料库中'
+                "尚未被系统性地解决。"
+            ),
+            why_worth_zh=(
+                "作者本人指出的未来工作方向是高价值目标：具体、基于真实实验、"
+                "并且经过领域专家的验证。"
+            ),
+            existing_methods_zh=existing[:4] or ["语料库中未发现直接可比的方案。"],
+            proposed_ideas_zh=[
+                "设计一个直接针对该局限的方法，并在原论文的实验设定下进行基准对比。",
+                "调研引用了这篇论文的近期工作，检查该缺口是否已被部分填补。",
+                "把该局限改写成可度量的研究问题，并实现一个最小可行方案。",
+            ],
         )
         fw_count += 1
         if fw_count >= 3:
@@ -168,6 +197,21 @@ def run_gaps(db: Session, project_id: int) -> list[dict]:
                 evidence=[p.id for p in rps],
                 confidence=0.55,
                 signal="undercited_recent",
+                title_zh=f"新兴但验证不足的方向：{name}",
+                problem_zh=(
+                    f'"{name}" 方向的 {count} 篇近期论文引用数仍低于语料中位数'
+                    f"（{median_citation}），说明该方向尚处萌芽阶段、尚未被独立验证。"
+                ),
+                why_worth_zh=(
+                    "活跃领域中早期、低被引的工作往往意味着一个窗口期："
+                    "在子领域定型之前，扎实的贡献可以定义它。"
+                ),
+                existing_methods_zh=[f"《{p.title}》" for p in rps],
+                proposed_ideas_zh=[
+                    "在多个环境中复现并压力测试这些早期方法，以建立鲁棒性。",
+                    "找出这些工作共有的假设并放宽它，以扩大适用范围。",
+                    "发布统一的基准测试，为该子方向规范评估方式。",
+                ],
             )
 
     # ---- signal 3: topic_intersection ----
@@ -199,6 +243,19 @@ def run_gaps(db: Session, project_id: int) -> list[dict]:
                     evidence=list(overlap)[:3],
                     confidence=0.5,
                     signal="topic_intersection",
+                    title_zh=f"未被探索的交叉方向：{a.name} × {b.name}",
+                    problem_zh=(
+                        f'"{a.name}" 与 "{b.name}" 各自活跃，但语料中几乎没有论文'
+                        f"同时涉及两者（重叠：{len(overlap)} 篇）。"
+                    ),
+                    why_worth_zh=(
+                        "两条成熟路线之间稀少的交叉点，往往隐藏着两边社区都未尝试过的可组合思路。"
+                    ),
+                    existing_methods_zh=_topic_top_paper_titles(db, [a.name, b.name]),
+                    proposed_ideas_zh=[
+                        f"将 {a.name} 的技术与 {b.name} 结合，并在统一的基准上评估。",
+                        "研究两个社区为何没有交叉（评估方式、数据或假设的差异）。",
+                    ],
                 )
                 break
         else:
@@ -230,6 +287,20 @@ def run_gaps(db: Session, project_id: int) -> list[dict]:
                 evidence=[top.id],
                 confidence=0.6,
                 signal="single_dominant",
+                title_zh=f"由单一方法主导的薄弱领域：{t.name}",
+                problem_zh=(
+                    f'在 "{t.name}" 中，被引最高的论文（《{top.title}》）占据了该方向'
+                    f"{round(s['top_share'] * 100)}% 的引用，说明该领域方法单一、"
+                    "由一种主导方案垄断。"
+                ),
+                why_worth_zh=(
+                    "由单一方法主导的领域是孕育替代方案的沃土：主导方法的假设很少被重新审视。"
+                ),
+                existing_methods_zh=[f"《{top.title}》（{top.cited_by_count} 次被引）"],
+                proposed_ideas_zh=[
+                    "系统性地列出主导方法的假设，并针对最薄弱的一条展开研究。",
+                    "构建一个有竞争力但思路不同的基线，暴露其失效模式。",
+                ],
             )
             break
 
@@ -257,6 +328,20 @@ def run_gaps(db: Session, project_id: int) -> list[dict]:
                 evidence=[p.id for p in sorted(s["papers"], key=lambda p: -p.cited_by_count)[:3]],
                 confidence=0.45,
                 signal="mature_decline",
+                title_zh=f"值得重新审视的成熟领域：{t.name}",
+                problem_zh=(
+                    f'"{t.name}" 累计被引 {s["total_citations"]} 次，但其平均发表年份'
+                    f"（{s['mean_year']}）早于当前前沿（{latest_year}），说明近期的关注已经转移。"
+                ),
+                why_worth_zh=(
+                    "成熟方法已被充分理解，用现代算力、数据与基线重新评估成本低——"
+                    "是一条通往扎实贡献的可靠路径。"
+                ),
+                existing_methods_zh=_topic_top_paper_titles(db, [t.name]),
+                proposed_ideas_zh=[
+                    f"用现代评估协议重新审视 {t.name}，并报告它仍然成立的场景。",
+                    "把这项成熟技术应用到前沿问题上，作为一个强而简单的基线。",
+                ],
             )
             break
 
@@ -318,6 +403,11 @@ def serialize_gaps(db: Session, project_id: int) -> list[dict]:
                 "confidence": g.confidence,
                 "signal": g.signal,
                 "created_at": g.created_at.isoformat() if g.created_at else None,
+                "title_zh": g.title_zh,
+                "problem_zh": g.problem_zh,
+                "why_worth_zh": g.why_worth_zh,
+                "existing_methods_zh": json.loads(g.existing_methods_zh or "[]") if g.existing_methods_zh else None,
+                "proposed_ideas_zh": json.loads(g.proposed_ideas_zh or "[]") if g.proposed_ideas_zh else None,
             }
         )
     return out

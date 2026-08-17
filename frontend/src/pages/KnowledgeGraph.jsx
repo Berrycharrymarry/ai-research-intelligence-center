@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from "react";
+import { lazy, Suspense, useMemo, useRef, useState } from "react";
 import { Crosshair, Maximize, ZoomIn, ZoomOut } from "lucide-react";
 import { api } from "../api/client";
 import PaperDetailModal from "../components/PaperDetailModal";
@@ -6,7 +6,10 @@ import { Badge, EmptyState, ErrorBar, ErrorBoundary, Spinner, formatCitations } 
 import { useProject } from "../context/ProjectContext";
 import { useApi } from "../hooks/useApi";
 import { useI18n } from "../i18n";
-import Graph3D, { NODE_COLORS, nodeLabel } from "../viz/Graph3D";
+import { NODE_COLORS, nodeLabel, tOr } from "../viz/graphMeta";
+
+// The 3D engine (three.js) is heavy — load it only when this page is opened.
+const Graph3D = lazy(() => import("../viz/Graph3D"));
 
 const NODE_TYPES = ["paper", "author", "topic", "technology"];
 
@@ -80,12 +83,14 @@ export default function KnowledgeGraph() {
       <div className="relative min-w-0 flex-1">
         {filtered ? (
           <ErrorBoundary>
-            <Graph3D
-              ref={graphRef}
-              data={filtered}
-              onSelect={setSel}
-              selectedId={sel?.id}
-            />
+            <Suspense fallback={<Spinner />}>
+              <Graph3D
+                ref={graphRef}
+                data={filtered}
+                onSelect={setSel}
+                selectedId={sel?.id}
+              />
+            </Suspense>
           </ErrorBoundary>
         ) : (
           <Spinner />
@@ -208,7 +213,9 @@ export default function KnowledgeGraph() {
 
             {(sel.type === "topic" || sel.type === "technology") && (
               <div className="mt-3 space-y-2 text-xs text-muted">
-                <Badge tone={sel.type === "topic" ? "teal" : "slate"}>{sel.kind || sel.type}</Badge>
+                <Badge tone={sel.type === "topic" ? "teal" : "slate"}>
+                  {tOr(t, `kind.${sel.kind}`, sel.kind) || sel.type}
+                </Badge>
                 <div className="tnum font-mono text-[11px]">{t("kg.nPapers", { count: sel.papers })}</div>
               </div>
             )}

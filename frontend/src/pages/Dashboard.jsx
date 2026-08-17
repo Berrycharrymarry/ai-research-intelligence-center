@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { lazy, Suspense, useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowDownRight, ArrowUpRight, FileSearch, FlaskConical, GitBranch, Library, Users } from "lucide-react";
 import { api } from "../api/client";
@@ -8,7 +8,9 @@ import { useProject } from "../context/ProjectContext";
 import { useApi } from "../hooks/useApi";
 import { useI18n } from "../i18n";
 import Chart, { AXIS_LABEL, AXIS_LINE, SPLIT_LINE, TOOLTIP, areaGradient } from "../viz/Chart";
-import Graph3D from "../viz/Graph3D";
+
+// The 3D engine (three.js) is heavy — load it only when the dashboard is shown.
+const Graph3D = lazy(() => import("../viz/Graph3D"));
 
 function activityOption(activity) {
   const years = (activity || []).map((s) => s.year);
@@ -35,7 +37,7 @@ function activityOption(activity) {
 
 export default function Dashboard() {
   const { project, loading: projectLoading } = useProject();
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   const [paperId, setPaperId] = useState(null);
   const [graphSel, setGraphSel] = useState(null);
 
@@ -186,7 +188,9 @@ export default function Dashboard() {
           />
           <div style={{ height: 440 }}>
             <ErrorBoundary>
-              <Graph3D data={data.graph} onSelect={setGraphSel} selectedId={graphSel?.id} />
+              <Suspense fallback={<Spinner />}>
+                <Graph3D data={data.graph} onSelect={setGraphSel} selectedId={graphSel?.id} />
+              </Suspense>
             </ErrorBoundary>
           </div>
         </div>
@@ -225,11 +229,15 @@ export default function Dashboard() {
             <div className="space-y-2">
               {(data.gaps || []).slice(0, 3).map((g) => (
                 <div key={g.id} className="rounded-md border border-line bg-panel2 px-3 py-2">
-                  <div className="text-xs font-medium leading-snug text-ink">{g.title}</div>
+                  <div className="text-xs font-medium leading-snug text-ink">
+                    {lang === "zh" && g.title_zh ? g.title_zh : g.title}
+                  </div>
                   <div className="mt-1.5 flex items-center gap-2">
-                    <Badge tone={g.signal === "future_work" ? "teal" : "amber"}>{g.signal}</Badge>
+                    <Badge tone={g.signal === "future_work" ? "teal" : "amber"}>
+                      {t(`signals.${g.signal}`)}
+                    </Badge>
                     <span className="font-mono text-[10px] text-faint">
-                      conf {Math.round(g.confidence * 100)}%
+                      {t("dash.conf", { n: Math.round(g.confidence * 100) })}
                     </span>
                   </div>
                 </div>

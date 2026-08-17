@@ -137,4 +137,10 @@ class ResearchGap(Base):
     evidence_paper_ids = Column(Text, nullable=True)  # JSON list of paper ids
     confidence = Column(Float, nullable=False, default=0.5)
     signal = Column(String, nullable=True)
+    # Chinese translations of the generated prose (None until re-analyzed)
+    title_zh = Column(String, nullable=True)
+    problem_zh = Column(Text, nullable=True)
+    why_worth_zh = Column(Text, nullable=True)
+    existing_methods_zh = Column(Text, nullable=True)  # JSON list
+    proposed_ideas_zh = Column(Text, nullable=True)  # JSON list
     created_at = Column(DateTime, nullable=False, default=utcnow)

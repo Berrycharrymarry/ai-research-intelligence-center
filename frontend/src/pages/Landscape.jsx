@@ -7,6 +7,7 @@ import { useProject } from "../context/ProjectContext";
 import { useApi } from "../hooks/useApi";
 import { useI18n } from "../i18n";
 import Chart, { AXIS_LABEL, AXIS_LINE, SPLIT_LINE, TOOLTIP } from "../viz/Chart";
+import { tOr } from "../viz/graphMeta";
 
 const PALETTE = ["#2dd4bf", "#22d3ee", "#a78bfa", "#f59e0b", "#60a5fa", "#f472b6", "#34d399", "#fbbf24", "#818cf8", "#4ade80", "#f87171", "#94a3b8"];
 
@@ -96,7 +97,9 @@ export default function Landscape() {
                       {tp.name}
                     </button>
                     <div className="mt-1 flex items-center gap-2">
-                      <Badge tone={tp.kind === "concept" ? "slate" : "teal"}>{tp.kind}</Badge>
+                      <Badge tone={tp.kind === "concept" ? "slate" : "teal"}>
+                        {tOr(t, `kind.${tp.kind}`, tp.kind)}
+                      </Badge>
                       <span className="tnum font-mono text-[10px] text-faint">
                         {t("ls.papersCitesMean", {
                           count: tp.paper_count,

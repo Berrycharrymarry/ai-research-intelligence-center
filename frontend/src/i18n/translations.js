@@ -67,6 +67,10 @@ const en = {
   "dash.gaps": "Research Gaps",
   "dash.all": "All →",
   "dash.noGaps": "No gaps detected yet.",
+  "dash.conf": "conf {n}%",
+  "kind.concept": "Concept",
+  "kind.derived": "Derived",
+  "kind.keyword": "Keyword",
 
   "setup.title": "Research Projects",
   "setup.subtitle": "Each project is an independent corpus collected from OpenAlex and analyzed locally.",
@@ -132,6 +136,7 @@ const en = {
   "kg.webglFailHint": "Your browser blocked WebGL (enable hardware acceleration) or the graphics driver is unavailable. The rest of the app works normally.",
   "kg.fallback2d": "2D mode",
   "kg.fallback2dHint": "WebGL is unavailable in this browser, so the 2D graph is shown instead. Enable hardware acceleration in your browser settings to unlock the 3D view.",
+  "kg.retry3d": "Retry 3D",
   "kg.fit": "Fit",
   "kg.zoomIn": "Zoom in",
   "kg.zoomOut": "Zoom out",
@@ -192,6 +197,7 @@ const en = {
   "signals.mature_decline": "MATURE AREA",
 
   "md.close": "Close",
+  "md.na": "n/a",
   "md.foundational": "Foundational · cited by corpus",
   "md.citations": "{count} citations",
   "md.source": "Source",
@@ -265,6 +271,10 @@ const zh = {
   "dash.gaps": "研究缺口",
   "dash.all": "全部 →",
   "dash.noGaps": "暂未发现研究缺口。",
+  "dash.conf": "置信度 {n}%",
+  "kind.concept": "概念",
+  "kind.derived": "派生",
+  "kind.keyword": "关键词",
 
   "setup.title": "研究项目",
   "setup.subtitle": "每个项目都是独立从 OpenAlex 采集并在本地分析的语料库。",
@@ -330,6 +340,7 @@ const zh = {
   "kg.webglFailHint": "浏览器未开启 WebGL/硬件加速，或显卡驱动不可用。其余功能不受影响。",
   "kg.fallback2d": "2D 模式",
   "kg.fallback2dHint": "此浏览器未开启 WebGL/硬件加速，已自动使用 2D 图谱。在浏览器设置中开启硬件加速后可体验 3D 效果。",
+  "kg.retry3d": "重试 3D",
   "kg.fit": "适应画面",
   "kg.zoomIn": "放大",
   "kg.zoomOut": "缩小",
@@ -390,6 +401,7 @@ const zh = {
   "signals.mature_decline": "成熟领域",
 
   "md.close": "关闭",
+  "md.na": "暂无",
   "md.foundational": "奠基性 · 被语料引用",
   "md.citations": "{count} 次被引",
   "md.source": "来源",

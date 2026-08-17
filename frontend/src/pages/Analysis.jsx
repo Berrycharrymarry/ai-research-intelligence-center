@@ -38,7 +38,7 @@ function trendOption(series) {
 
 export default function Analysis() {
   const { project } = useProject();
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   const [paperId, setPaperId] = useState(null);
   const { data, loading, error, reload } = useApi(
     () => (project ? api.get(`/projects/${project.id}/analysis`) : Promise.resolve(null)),
@@ -71,7 +71,9 @@ export default function Analysis() {
 
       <div className="rounded-md border border-line bg-panel p-5">
         <SectionHeader title={t("an.overview")} />
-        <p className="max-w-4xl text-sm leading-relaxed text-ink">{overview.summary}</p>
+        <p className="max-w-4xl text-sm leading-relaxed text-ink">
+          {lang === "zh" && overview.summary_zh ? overview.summary_zh : overview.summary}
+        </p>
         <div className="mt-4 grid grid-cols-3 gap-4">
           <div>
             <div className="microlabel mb-2">{t("an.keyDirections")}</div>
@@ -162,7 +164,9 @@ export default function Analysis() {
                   {ph.years ? `${ph.years[0]}–${ph.years[1]}` : ""}
                 </span>
               </div>
-              <p className="mt-2 text-xs leading-relaxed text-muted">{ph.description}</p>
+              <p className="mt-2 text-xs leading-relaxed text-muted">
+                {lang === "zh" && ph.description_zh ? ph.description_zh : ph.description}
+              </p>
               <div className="mt-3 flex flex-wrap gap-1.5">
                 {(ph.topics || []).map((tp) => (
                   <Badge key={tp}>{tp}</Badge>

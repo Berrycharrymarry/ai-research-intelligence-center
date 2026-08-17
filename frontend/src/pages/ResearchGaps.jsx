@@ -16,9 +16,15 @@ const SIGNAL_TONE = {
 };
 
 function GapCard({ gap, projectId, onOpenPaper }) {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   const [open, setOpen] = useState(false);
   const tone = SIGNAL_TONE[gap.signal] || "slate";
+  const zh = lang === "zh";
+  const title = zh && gap.title_zh ? gap.title_zh : gap.title;
+  const problem = zh && gap.problem_zh ? gap.problem_zh : gap.problem;
+  const whyWorth = zh && gap.why_worth_zh ? gap.why_worth_zh : gap.why_worth;
+  const existing = zh && gap.existing_methods_zh ? gap.existing_methods_zh : gap.existing_methods;
+  const ideas = zh && gap.proposed_ideas_zh ? gap.proposed_ideas_zh : gap.proposed_ideas;
   return (
     <div className="rounded-md border border-line bg-panel">
       <button
@@ -32,8 +38,8 @@ function GapCard({ gap, projectId, onOpenPaper }) {
               {t("gp.confidence", { n: Math.round(gap.confidence * 100) })}
             </span>
           </div>
-          <h3 className="mt-2 text-sm font-semibold leading-snug text-ink">{gap.title}</h3>
-          <p className="mt-1.5 line-clamp-2 text-xs leading-relaxed text-muted">{gap.problem}</p>
+          <h3 className="mt-2 text-sm font-semibold leading-snug text-ink">{title}</h3>
+          <p className="mt-1.5 line-clamp-2 text-xs leading-relaxed text-muted">{problem}</p>
         </div>
         {open ? (
           <ChevronUp size={16} className="mt-1 shrink-0 text-faint" />
@@ -45,13 +51,13 @@ function GapCard({ gap, projectId, onOpenPaper }) {
         <div className="space-y-4 border-t border-line p-4">
           <div>
             <div className="microlabel mb-1.5">{t("gp.why")}</div>
-            <p className="text-xs leading-relaxed text-muted">{gap.why_worth}</p>
+            <p className="text-xs leading-relaxed text-muted">{whyWorth}</p>
           </div>
           <div className="grid grid-cols-2 gap-4">
             <div>
               <div className="microlabel mb-1.5">{t("gp.existing")}</div>
               <ul className="space-y-1">
-                {(gap.existing_methods || []).map((m, i) => (
+                {(existing || []).map((m, i) => (
                   <li key={i} className="border-l-2 border-line2 pl-2 text-[11px] leading-snug text-muted">
                     {m}
                   </li>
@@ -63,7 +69,7 @@ function GapCard({ gap, projectId, onOpenPaper }) {
                 <Lightbulb size={11} /> {t("gp.suggested")}
               </div>
               <ul className="space-y-1.5">
-                {(gap.proposed_ideas || []).map((idea, i) => (
+                {(ideas || []).map((idea, i) => (
                   <li key={i} className="border-l-2 border-accent/40 pl-2 text-[11px] leading-snug text-ink">
                     {idea}
                   </li>

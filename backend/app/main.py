@@ -6,6 +6,7 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.middleware.gzip import GZipMiddleware
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
@@ -87,6 +88,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Compress JSON payloads (analysis/graph/overview responses are large).
+app.add_middleware(GZipMiddleware, minimum_size=1000)
+
 app.include_router(health.router)
 app.include_router(projects.router)
 app.include_router(papers.router)
@@ -107,10 +111,19 @@ def root():
 
 
 # Serve the built frontend (single-origin deployment: no separate dev server needed).
+class CachedStaticFiles(StaticFiles):
+    """StaticFiles that marks hashed build assets as immutable for aggressive caching."""
+
+    def file_response(self, *args, **kwargs):
+        resp = super().file_response(*args, **kwargs)
+        resp.headers["Cache-Control"] = "public, max-age=31536000, immutable"
+        return resp
+
+
 if os.path.isdir(FRONTEND_DIST):
     app.mount(
         "/assets",
-        StaticFiles(directory=os.path.join(FRONTEND_DIST, "assets")),
+        CachedStaticFiles(directory=os.path.join(FRONTEND_DIST, "assets")),
         name="assets",
     )
 

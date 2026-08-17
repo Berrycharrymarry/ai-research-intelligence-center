@@ -149,8 +149,26 @@ def run_analysis(db: Session, project_id: int) -> dict:
         )
     if top_institutions:
         summary_parts.append("Leading institutions include " + ", ".join(top_institutions[:4]) + ".")
+
+    # Chinese twin of the overview summary (topic/institution names are data and stay as-is).
+    zh_parts = [
+        f"该语料库包含 {len(papers)} 篇论文"
+        + (f"，发表于 {years_span[0]} 至 {years_span[1]} 年" if years_span else "")
+        + "。",
+    ]
+    if top_topic_names:
+        zh_parts.append("主要研究方向为 " + "、".join(top_topic_names) + "。")
+    if top_papers:
+        most_cited = top_papers[0]
+        zh_parts.append(
+            f"被引最高的论文是《{most_cited.title}》（{most_cited.cited_by_count} 次被引）。"
+        )
+    if top_institutions:
+        zh_parts.append("主要研究机构包括 " + "、".join(top_institutions[:4]) + "。")
+
     overview = {
         "summary": " ".join(summary_parts),
+        "summary_zh": " ".join(zh_parts),
         "stats": {
             "papers": len(papers),
             "years_span": years_span,
@@ -227,6 +245,11 @@ def _roadmap(db: Session, papers: list[Paper], project_id: int) -> list[dict]:
         "growth": "Rapid growth and method consolidation",
         "frontier": "Current frontier and recent directions",
     }
+    labels_zh = {
+        "foundational": "奠定领域基础的奠基性工作",
+        "growth": "快速增长与方法收敛",
+        "frontier": "当前前沿与近期方向",
+    }
     phases = []
     for phase in ["foundational", "growth", "frontier"]:
         ps = buckets[phase]
@@ -245,6 +268,7 @@ def _roadmap(db: Session, papers: list[Paper], project_id: int) -> list[dict]:
                 "phase": phase,
                 "years": [years[0], years[-1]] if years else None,
                 "description": labels[phase],
+                "description_zh": labels_zh[phase],
                 "topics": [n for n, _ in topic_counter.most_common(6)],
                 "papers": [paper_dict(db, p) for p in sorted(ps, key=lambda p: -p.cited_by_count)[:6]],
             }
