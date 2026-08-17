@@ -3,6 +3,7 @@ import { AlertTriangle } from "lucide-react";
 import ForceGraph3D from "3d-force-graph";
 import * as THREE from "three";
 import { useI18n } from "../i18n";
+import Graph2D from "./Graph2D";
 
 export const NODE_COLORS = {
   paper: "#2dd4bf",
@@ -82,6 +83,7 @@ function baseScale(size) {
 const Graph3D = forwardRef(function Graph3D({ data, onSelect, selectedId }, ref) {
   const containerRef = useRef(null);
   const fgRef = useRef(null);
+  const graph2dRef = useRef(null);
   const spritesRef = useRef(new Map());
   const onSelectRef = useRef(onSelect);
   const selectedRef = useRef(selectedId);
@@ -100,9 +102,10 @@ const Graph3D = forwardRef(function Graph3D({ data, onSelect, selectedId }, ref)
   useImperativeHandle(
     ref,
     () => ({
-      fit: () => fgRef.current?.zoomToFit(400, 80),
-      zoomIn: () => stepZoom(0.72),
-      zoomOut: () => stepZoom(1.4),
+      fit: () =>
+        fgRef.current ? fgRef.current.zoomToFit(400, 80) : graph2dRef.current?.fit(),
+      zoomIn: () => (fgRef.current ? stepZoom(0.72) : graph2dRef.current?.zoomIn()),
+      zoomOut: () => (fgRef.current ? stepZoom(1.4) : graph2dRef.current?.zoomOut()),
     }),
     []
   );
@@ -265,12 +268,18 @@ const Graph3D = forwardRef(function Graph3D({ data, onSelect, selectedId }, ref)
   }, [data]);
 
   if (failed) {
+    // 3D unavailable (no WebGL / init error) — degrade to the 2D graph so the
+    // knowledge graph keeps working instead of showing an empty panel.
     return (
-      <div className="flex h-full w-full flex-col items-center justify-center gap-2 rounded-md border border-warn/40 bg-panel p-6 text-center">
-        <AlertTriangle size={22} className="text-warn" />
-        <div className="text-sm font-medium text-muted">{t("kg.webglFail")}</div>
-        <div className="max-w-md text-xs leading-relaxed text-faint">{t("kg.webglFailHint")}</div>
-        <div className="mt-1 max-w-md break-all font-mono text-[10px] text-faint">[{failed}]</div>
+      <div className="relative h-full w-full">
+        <Graph2D ref={graph2dRef} data={data} onSelect={onSelect} selectedId={selectedId} />
+        <div className="absolute left-3 top-3 z-10 max-w-[320px] rounded-md border border-warn/40 bg-panel/95 px-3 py-2 shadow-lg">
+          <div className="flex items-center gap-1.5 text-[11px] font-medium text-warn">
+            <AlertTriangle size={12} />
+            {t("kg.fallback2d")}
+          </div>
+          <div className="mt-0.5 text-[10px] leading-relaxed text-faint">{t("kg.fallback2dHint")}</div>
+        </div>
       </div>
     );
   }
