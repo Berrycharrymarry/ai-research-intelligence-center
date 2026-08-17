@@ -6,7 +6,7 @@ import { Badge, EmptyState, ErrorBar, Spinner, formatCitations } from "../compon
 import { useProject } from "../context/ProjectContext";
 import { useApi } from "../hooks/useApi";
 import { useI18n } from "../i18n";
-import GraphViz, { NODE_COLORS, nodeLabel } from "../viz/GraphViz";
+import Graph3D, { NODE_COLORS, nodeLabel } from "../viz/Graph3D";
 
 const NODE_TYPES = ["paper", "author", "topic", "technology"];
 
@@ -21,7 +21,7 @@ const REL_KEYS = {
 export default function KnowledgeGraph() {
   const { project } = useProject();
   const { t } = useI18n();
-  const cyRef = useRef(null);
+  const graphRef = useRef(null);
   const [sel, setSel] = useState(null);
   const [paperId, setPaperId] = useState(null);
   const [visible, setVisible] = useState(() => new Set(NODE_TYPES));
@@ -72,20 +72,20 @@ export default function KnowledgeGraph() {
     <div className="flex h-full min-h-0">
       <div className="relative min-w-0 flex-1">
         {filtered ? (
-          <GraphViz
+          <Graph3D
+            ref={graphRef}
             data={filtered}
             onSelect={setSel}
             selectedId={sel?.id}
-            onReady={(cy) => (cyRef.current = cy)}
           />
         ) : (
           <Spinner />
         )}
         <div className="absolute left-3 top-3 flex flex-col gap-1.5">
           {[
-            { label: t("kg.fit"), icon: Maximize, fn: () => cyRef.current?.fit(undefined, 40) },
-            { label: t("kg.zoomIn"), icon: ZoomIn, fn: () => cyRef.current?.zoom(cyRef.current.zoom() * 1.3) },
-            { label: t("kg.zoomOut"), icon: ZoomOut, fn: () => cyRef.current?.zoom(cyRef.current.zoom() / 1.3) },
+            { label: t("kg.fit"), icon: Maximize, fn: () => graphRef.current?.fit() },
+            { label: t("kg.zoomIn"), icon: ZoomIn, fn: () => graphRef.current?.zoomIn() },
+            { label: t("kg.zoomOut"), icon: ZoomOut, fn: () => graphRef.current?.zoomOut() },
           ].map((c) => (
             <button
               key={c.label}

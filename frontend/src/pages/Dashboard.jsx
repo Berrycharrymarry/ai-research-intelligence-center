@@ -8,7 +8,7 @@ import { useProject } from "../context/ProjectContext";
 import { useApi } from "../hooks/useApi";
 import { useI18n } from "../i18n";
 import Chart, { AXIS_LABEL, AXIS_LINE, SPLIT_LINE, TOOLTIP, areaGradient } from "../viz/Chart";
-import GraphViz from "../viz/GraphViz";
+import Graph3D from "../viz/Graph3D";
 
 function activityOption(activity) {
   const years = (activity || []).map((s) => s.year);
@@ -185,7 +185,7 @@ export default function Dashboard() {
             }
           />
           <div style={{ height: 440 }}>
-            <GraphViz data={data.graph} onSelect={setGraphSel} selectedId={graphSel?.id} />
+            <Graph3D data={data.graph} onSelect={setGraphSel} selectedId={graphSel?.id} />
           </div>
         </div>
         <div className="space-y-5">
