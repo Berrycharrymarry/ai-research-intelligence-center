@@ -131,7 +131,9 @@ if os.path.isdir(FRONTEND_DIST):
     def spa_fallback(full_path: str):
         if full_path.startswith("api/"):
             raise HTTPException(status_code=404, detail="Not found")
-        candidate = os.path.join(FRONTEND_DIST, full_path)
-        if full_path and os.path.isfile(candidate):
+        # Resolve strictly inside the dist directory (prevents path traversal).
+        dist_root = os.path.realpath(FRONTEND_DIST)
+        candidate = os.path.realpath(os.path.join(dist_root, full_path))
+        if full_path and candidate.startswith(dist_root + os.sep) and os.path.isfile(candidate):
             return FileResponse(candidate)
         return FileResponse(os.path.join(FRONTEND_DIST, "index.html"))

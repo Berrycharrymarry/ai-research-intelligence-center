@@ -1,5 +1,6 @@
 """Project CRUD + collection trigger."""
 import re
+import time
 
 from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException
 from pydantic import BaseModel, Field
@@ -71,6 +72,9 @@ def get_project(project_id: int, db: Session = Depends(get_db)):
     return result
 
 
+_last_collect: dict[int, float] = {}
+
+
 @router.post("/api/projects/{project_id}/collect", status_code=202)
 def collect_project(
     project_id: int, background: BackgroundTasks, db: Session = Depends(get_db)
@@ -80,6 +84,11 @@ def collect_project(
         raise HTTPException(404, "Project not found.")
     if project.status in ("collecting", "analyzing"):
         raise HTTPException(409, "Collection is already in progress.")
+    # Cooldown: prevents repeated collection abuse on public deployments.
+    now = time.monotonic()
+    if now - _last_collect.get(project_id, 0) < 120:
+        raise HTTPException(429, "Please wait at least 2 minutes between collection runs.")
+    _last_collect[project_id] = now
     project.status = "collecting"
     project.error = None
     db.commit()
