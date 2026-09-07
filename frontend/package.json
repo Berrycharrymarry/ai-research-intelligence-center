@@ -27,7 +27,7 @@
     },
     "overrides": {
         "three": "$three",
-        "three-render-objects": "1.28.4",
+        "three-render-objects": "1.29.0",
         "three-forcegraph": "1.43.4"
     }
 }

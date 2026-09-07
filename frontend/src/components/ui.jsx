@@ -118,7 +118,7 @@ export function Badge({ children, tone = "slate" }) {
 }
 
 const STATUS_STYLE = {
-  ready: { color: "bg-emerald-400", cls: "text-emerald-300 border-emerald-500/40 bg-emerald-500/10" },
+  ready: { color: "bg-emerald-600", cls: "text-emerald-700 border-emerald-500/40 bg-emerald-500/10" },
   collecting: { color: "bg-warn", cls: "text-warn border-warn/40 bg-warn/10" },
   analyzing: { color: "bg-warn", cls: "text-warn border-warn/40 bg-warn/10" },
   created: { color: "bg-faint", cls: "text-muted border-line2 bg-panel2" },

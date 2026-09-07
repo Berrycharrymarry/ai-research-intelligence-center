@@ -1,9 +1,9 @@
 /** Lightweight shared graph metadata — imported everywhere without pulling in 3D/2D engines. */
 export const NODE_COLORS = {
-  paper: "#2dd4bf",
-  author: "#f59e0b",
-  topic: "#22d3ee",
-  technology: "#a78bfa",
+  paper: "#5b8d88",
+  author: "#b28b55",
+  topic: "#6289aa",
+  technology: "#9485ae",
 };
 
 const TYPE_LABEL_KEYS = {

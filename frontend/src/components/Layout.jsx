@@ -34,10 +34,10 @@ export default function Layout() {
   const busy = project && (project.status === "collecting" || project.status === "analyzing");
 
   return (
-    <div className="flex h-screen overflow-hidden">
-      <aside className="flex w-56 shrink-0 flex-col border-r border-line bg-panel">
-        <div className="flex items-center gap-2.5 border-b border-line px-4 py-4">
-          <div className="flex h-8 w-8 items-center justify-center rounded-md border border-accent/40 bg-accent/10">
+    <div className="app-shell flex h-screen overflow-hidden">
+      <aside className="app-sidebar flex w-56 shrink-0 flex-col border-r border-line bg-panel">
+        <div className="app-brand flex items-center gap-2.5 border-b border-line px-4 py-4">
+          <div className="app-brand-mark flex h-8 w-8 items-center justify-center rounded-md border border-accent/40 bg-accent/10">
             <Radar size={17} className="text-accent" />
           </div>
           <div>
@@ -45,7 +45,7 @@ export default function Layout() {
             <div className="text-[10px] uppercase tracking-[0.18em] text-faint">{t("layout.tagline")}</div>
           </div>
         </div>
-        <nav className="flex-1 overflow-y-auto py-3">
+        <nav className="app-nav flex-1 overflow-y-auto py-3">
           {NAV.map((n) => (
             <NavLink
               key={n.to}
@@ -74,8 +74,8 @@ export default function Layout() {
         </div>
       </aside>
 
-      <div className="flex min-w-0 flex-1 flex-col">
-        <header className="flex h-14 shrink-0 items-center gap-4 border-b border-line bg-panel px-5">
+      <div className="flex min-h-0 min-w-0 flex-1 flex-col">
+        <header className="app-header flex h-14 shrink-0 items-center gap-4 border-b border-line bg-panel px-5">
           <div className="microlabel w-44">{current.label || t("nav.dashboard")}</div>
           <div className="flex-1" />
           <div className="flex items-center rounded-md border border-line p-0.5">
@@ -104,13 +104,13 @@ export default function Layout() {
             <button
               disabled={busy}
               onClick={() => collect(project.id)}
-              className="rounded-md border border-accent/40 bg-accent/10 px-3 py-1.5 text-xs font-medium text-accent hover:bg-accent/20 disabled:cursor-not-allowed disabled:opacity-40"
+              className="app-collect rounded-md border border-accent/40 bg-accent/10 px-3 py-1.5 text-xs font-medium text-accent hover:bg-accent/20 disabled:cursor-not-allowed disabled:opacity-40"
             >
               {busy ? t("layout.collecting") : t("layout.collectData")}
             </button>
           )}
         </header>
-        <main className="grid-bg min-h-0 flex-1 overflow-y-auto">
+        <main className="app-main grid-bg min-h-0 flex-1 overflow-y-auto">
           <Outlet />
         </main>
       </div>

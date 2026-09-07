@@ -6,11 +6,11 @@ import { NODE_COLORS } from "./graphMeta";
 cytoscape.use(fcose);
 
 const EDGE_COLORS = {
-  cites: "#f87171",
+  cites: "#b77777",
   related_to: "#64748b",
-  authored_by: "#2c3650",
-  belongs_to: "#22d3ee",
-  uses: "#a78bfa",
+  authored_by: "#d7dde5",
+  belongs_to: "#6289aa",
+  uses: "#9485ae",
 };
 
 function elements(data) {
@@ -54,7 +54,7 @@ const Graph2D = forwardRef(function Graph2D({ data, onSelect, selectedId, onRead
           style: {
             "background-color": (ele) => NODE_COLORS[ele.data("type")] || "#64748b",
             label: "data(label)",
-            color: "#cbd5e1",
+            color: "#344054",
             "font-size": 8.5,
             "font-family": "JetBrains Mono, ui-monospace, monospace",
             "text-valign": "bottom",
@@ -65,7 +65,7 @@ const Graph2D = forwardRef(function Graph2D({ data, onSelect, selectedId, onRead
             width: (ele) => Math.min(30, 7 + (ele.data("size") || 8) * 0.8),
             height: (ele) => Math.min(30, 7 + (ele.data("size") || 8) * 0.8),
             "border-width": 1,
-            "border-color": "#0a0d14",
+            "border-color": "#ffffff",
             "overlay-opacity": 0,
           },
         },
@@ -80,10 +80,10 @@ const Graph2D = forwardRef(function Graph2D({ data, onSelect, selectedId, onRead
         {
           selector: "edge",
           style: {
-            "line-color": (ele) => EDGE_COLORS[ele.data("relation")] || "#2c3650",
+            "line-color": (ele) => EDGE_COLORS[ele.data("relation")] || "#d7dde5",
             width: 0.7,
             "target-arrow-shape": "triangle",
-            "target-arrow-color": (ele) => EDGE_COLORS[ele.data("relation")] || "#2c3650",
+            "target-arrow-color": (ele) => EDGE_COLORS[ele.data("relation")] || "#d7dde5",
             "arrow-scale": 0.55,
             "curve-style": "bezier",
             opacity: 0.45,

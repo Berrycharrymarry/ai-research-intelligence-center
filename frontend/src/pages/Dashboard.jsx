@@ -27,9 +27,9 @@ function activityOption(activity) {
         smooth: 0.35,
         symbol: "circle",
         symbolSize: 5,
-        lineStyle: { color: "#2dd4bf", width: 2 },
-        itemStyle: { color: "#2dd4bf" },
-        areaStyle: { color: areaGradient("45,212,191") },
+        lineStyle: { color: "#5b8d88", width: 2 },
+        itemStyle: { color: "#5b8d88" },
+        areaStyle: { color: areaGradient("91,141,136") },
       },
     ],
   };

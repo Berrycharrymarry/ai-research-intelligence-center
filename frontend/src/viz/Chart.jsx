@@ -2,20 +2,20 @@ import { useEffect, useRef } from "react";
 import * as echarts from "echarts";
 
 export const TOOLTIP = {
-  backgroundColor: "#161c28",
-  borderColor: "#2c3650",
-  textStyle: { color: "#cbd5e1", fontSize: 11 },
+  backgroundColor: "#ffffff",
+  borderColor: "#d7dde5",
+  textStyle: { color: "#344054", fontSize: 11 },
 };
 
 export const AXIS_LABEL = {
-  color: "#94a3b8",
+  color: "#718093",
   fontSize: 10,
   fontFamily: "JetBrains Mono, ui-monospace, monospace",
 };
 
-export const AXIS_LINE = { lineStyle: { color: "#2c3650" } };
+export const AXIS_LINE = { lineStyle: { color: "#d7dde5" } };
 
-export const SPLIT_LINE = { lineStyle: { color: "rgba(44,54,80,0.35)" } };
+export const SPLIT_LINE = { lineStyle: { color: "rgba(170,183,196,0.22)" } };
 
 export function areaGradient(color, from = 0.3, to = 0) {
   return {
@@ -40,9 +40,10 @@ export default function Chart({ option, height = 260, className = "" }) {
     const chart = echarts.init(ref.current);
     chartRef.current = chart;
     const onResize = () => chart.resize();
-    window.addEventListener("resize", onResize);
+    const observer = new ResizeObserver(onResize);
+    observer.observe(ref.current);
     return () => {
-      window.removeEventListener("resize", onResize);
+      observer.disconnect();
       chart.dispose();
       chartRef.current = null;
     };

@@ -7,7 +7,7 @@ import { useApi } from "../hooks/useApi";
 import { useI18n } from "../i18n";
 import Chart, { AXIS_LABEL, AXIS_LINE, SPLIT_LINE, TOOLTIP, areaGradient } from "../viz/Chart";
 
-const PALETTE = ["#2dd4bf", "#22d3ee", "#a78bfa", "#f59e0b", "#60a5fa", "#f472b6", "#34d399", "#fbbf24", "#818cf8", "#4ade80"];
+const PALETTE = ["#5b8d88", "#6289aa", "#9485ae", "#b28b55", "#6386aa", "#b17e97", "#639b87", "#b4a16a", "#848fb1", "#7c9b73"];
 
 function mainOption(series, seriesName) {
   const years = series.map((s) => s.year);
@@ -25,9 +25,9 @@ function mainOption(series, seriesName) {
         smooth: 0.3,
         symbol: "circle",
         symbolSize: 5,
-        lineStyle: { color: "#2dd4bf", width: 2 },
-        itemStyle: { color: "#2dd4bf" },
-        areaStyle: { color: areaGradient("45,212,191") },
+        lineStyle: { color: "#5b8d88", width: 2 },
+        itemStyle: { color: "#5b8d88" },
+        areaStyle: { color: areaGradient("91,141,136") },
       },
     ],
   };
@@ -41,7 +41,7 @@ function topicStackOption(byTopic, years) {
   });
   return {
     tooltip: { ...TOOLTIP, trigger: "axis" },
-    legend: { textStyle: { color: "#94a3b8", fontSize: 10 }, top: 0, icon: "roundRect" },
+    legend: { textStyle: { color: "#718093", fontSize: 10 }, top: 0, icon: "roundRect" },
     grid: { left: 40, right: 16, top: 34, bottom: 24 },
     xAxis: { type: "category", data: years, axisLine: AXIS_LINE, axisLabel: AXIS_LABEL },
     yAxis: { type: "value", minInterval: 1, splitLine: SPLIT_LINE, axisLabel: AXIS_LABEL },
