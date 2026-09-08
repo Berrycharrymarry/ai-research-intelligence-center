@@ -13,11 +13,11 @@ export default function PaperDetailModal({ projectId, paperId, onClose, onOpenPa
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-start justify-center bg-black/70 p-6 pt-[7vh]"
+      className="fixed inset-0 z-50 flex items-start justify-center bg-[#252a30]/35 p-5 pt-[7vh] backdrop-blur-[2px] sm:p-6"
       onClick={onClose}
     >
       <div
-        className="max-h-[84vh] w-full max-w-3xl overflow-y-auto rounded-md border border-line2 bg-panel shadow-2xl"
+        className="max-h-[84vh] w-full max-w-3xl overflow-y-auto rounded-2xl border border-line2 bg-panel shadow-[0_12px_40px_rgba(25,35,45,.16)]"
         onClick={(e) => e.stopPropagation()}
       >
         {loading && <Spinner />}
@@ -43,49 +43,25 @@ export default function PaperDetailModal({ projectId, paperId, onClose, onOpenPa
               <Badge tone="cyan">{data.publication_year || t("md.na")}</Badge>
               <Badge tone="teal">{data.type || t("nodeType.paper")}</Badge>
               {data.kind === "expand" && <Badge tone="slate">{t("md.foundational")}</Badge>}
-              <Badge tone="amber">
-                {t("md.citations", { count: formatCitations(data.cited_by_count) })}
-              </Badge>
-              {data.topics?.map((tp) => (
-                <Badge key={tp.id}>{tp.name}</Badge>
-              ))}
+              <Badge tone="amber">{t("md.citations", { count: formatCitations(data.cited_by_count) })}</Badge>
+              {data.topics?.map((tp) => <Badge key={tp.id}>{tp.name}</Badge>)}
             </div>
 
-            <div className="mt-3 font-mono text-xs text-muted">
-              {data.authors?.map((a) => a.name).join(" · ")}
-            </div>
+            <div className="mt-3 font-mono text-xs text-muted">{data.authors?.map((a) => a.name).join(" · ")}</div>
 
             <div className="mt-4 flex flex-wrap gap-2">
               {data.url && (
-                <a
-                  href={data.url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-1.5 rounded-md border border-line px-2.5 py-1.5 text-xs text-accent2 hover:border-accent2/50"
-                >
+                <a href={data.url} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 rounded-md border border-line px-2.5 py-1.5 text-xs text-accent2 hover:border-accent2/50">
                   <ExternalLink size={12} /> {t("md.source")}
                 </a>
               )}
               {data.pdf_url && (
-                <a
-                  href={data.pdf_url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-1.5 rounded-md border border-line px-2.5 py-1.5 text-xs text-accent2 hover:border-accent2/50"
-                >
+                <a href={data.pdf_url} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 rounded-md border border-line px-2.5 py-1.5 text-xs text-accent2 hover:border-accent2/50">
                   <FileText size={12} /> PDF
                 </a>
               )}
-              {data.doi && (
-                <span className="inline-flex items-center rounded-md border border-line px-2.5 py-1.5 font-mono text-[11px] text-faint">
-                  {data.doi}
-                </span>
-              )}
-              {data.arxiv_id && (
-                <span className="inline-flex items-center rounded-md border border-line px-2.5 py-1.5 font-mono text-[11px] text-faint">
-                  arXiv:{data.arxiv_id}
-                </span>
-              )}
+              {data.doi && <span className="inline-flex items-center rounded-md border border-line px-2.5 py-1.5 font-mono text-[11px] text-faint">{data.doi}</span>}
+              {data.arxiv_id && <span className="inline-flex items-center rounded-md border border-line px-2.5 py-1.5 font-mono text-[11px] text-faint">arXiv:{data.arxiv_id}</span>}
             </div>
 
             {data.ai_summary && (
@@ -107,15 +83,9 @@ export default function PaperDetailModal({ projectId, paperId, onClose, onOpenPa
                 <div className="microlabel mb-2">{t("md.related")}</div>
                 <div className="space-y-1.5">
                   {data.related.map((r) => (
-                    <button
-                      key={r.id}
-                      onClick={() => onOpenPaper?.(r.id)}
-                      className="block w-full rounded-md border border-line px-3 py-2 text-left text-xs text-muted hover:border-accent/40 hover:text-ink"
-                    >
+                    <button key={r.id} onClick={() => onOpenPaper?.(r.id)} className="block w-full rounded-md border border-line px-3 py-2 text-left text-xs text-muted hover:border-accent/40 hover:text-ink">
                       <span className="text-ink">{r.title}</span>
-                      <span className="ml-2 font-mono text-faint">
-                        {r.publication_year} · {t("md.cites", { count: formatCitations(r.cited_by_count) })}
-                      </span>
+                      <span className="ml-2 font-mono text-faint">{r.publication_year} · {t("md.cites", { count: formatCitations(r.cited_by_count) })}</span>
                     </button>
                   ))}
                 </div>
