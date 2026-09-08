@@ -9,6 +9,7 @@ import { useApi } from "../hooks/useApi";
 import { useI18n } from "../i18n";
 import { NODE_COLORS } from "../viz/graphMeta";
 import { buildLandscapeGraph, topicNodeId } from "../viz/landscapeData";
+import CollectionProgress from "../components/CollectionProgress";
 
 const Graph3D = lazy(() => import("../viz/Graph3D"));
 
@@ -32,7 +33,7 @@ export default function Landscape() {
         api.get(`/projects/${project.id}/graph?papers_limit=${limit}`),
       ]);
       return { topics, graph, projectId: project.id };
-    }, [project?.id, project?.status, limit]
+    }, [project?.id, project?.status, project?.paper_count, limit]
   );
   const summaries = data?.projectId === project?.id ? data?.topics || [] : [];
   const visible = useMemo(() => summaries.filter((topic) =>
@@ -50,9 +51,9 @@ export default function Landscape() {
   }
 
   if (!project) return <EmptyState title={t("common.noProjectSelected")} hint={t("common.selectHint")} />;
-  if (loading) return <Spinner text={t("ls.loading")} />;
+  if (loading && !data) return <Spinner text={t("ls.loading")} />;
   if (error) return <ErrorBar message={error} onRetry={reload} />;
-  if (!summaries.length) return <EmptyState title={t("ls.noDirections")} hint={t("common.collectFirst")} />;
+  if (!summaries.length) return ["collecting", "analyzing", "error"].includes(project.status) || data?.projectId === project.id && data?.topics?.length === 0 && project.collection_progress?.warning ? <CollectionProgress /> : <EmptyState title={t("ls.noDirections")} hint={t("common.collectFirst")} />;
 
   return (
     <div className="landscape-page">

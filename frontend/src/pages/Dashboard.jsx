@@ -8,6 +8,7 @@ import { useProject } from "../context/ProjectContext";
 import { useApi } from "../hooks/useApi";
 import { useI18n } from "../i18n";
 import Chart, { AXIS_LABEL, AXIS_LINE, SPLIT_LINE, TOOLTIP, areaGradient } from "../viz/Chart";
+import CollectionProgress from "../components/CollectionProgress";
 
 // The 3D engine (three.js) is heavy — load it only when the dashboard is shown.
 const Graph3D = lazy(() => import("../viz/Graph3D"));
@@ -43,7 +44,7 @@ export default function Dashboard() {
 
   const { data, loading, error, reload } = useApi(
     () => (project ? api.get(`/projects/${project.id}/overview`) : Promise.resolve(null)),
-    [project ? project.id : null, project ? project.status : null]
+    [project?.id, project?.status, project?.paper_count]
   );
 
   if (projectLoading) return <Spinner text={t("dash.loadingProjects")} />;
@@ -57,7 +58,7 @@ export default function Dashboard() {
     );
 
   const busy = project.status === "collecting" || project.status === "analyzing";
-  if (busy) return <Spinner text={`${project.status === "collecting" ? t("dash.collecting") : t("dash.analyzing")}…`} />;
+  if (busy && !data) return <CollectionProgress />;
   if (error) return <ErrorBar message={error} onRetry={reload} />;
   if (loading || !data) return <Spinner text={t("dash.assembling")} />;
 
@@ -65,6 +66,7 @@ export default function Dashboard() {
 
   return (
     <div className="mx-auto max-w-[1720px] space-y-5 p-5">
+      <CollectionProgress />
       <div className="flex items-end justify-between">
         <div>
           <h1 className="text-lg font-semibold tracking-wide">{project.name}</h1>

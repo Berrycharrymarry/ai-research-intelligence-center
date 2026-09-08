@@ -1,0 +1,1 @@
+const r={paper:"#5b8d88",author:"#b28b55",topic:"#6289aa",technology:"#9485ae"},a={paper:"nodeType.paper",author:"nodeType.author",topic:"nodeType.topic",technology:"nodeType.technology"};function c(t,o){const n=a[o];if(!n)return o;const e=t(n);return e===n?o:e}function p(t,o,n){const e=t(o);return e===o?n:e}export{r as N,c as n,p as t};

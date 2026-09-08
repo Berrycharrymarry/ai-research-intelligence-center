@@ -1,4 +1,4 @@
-import { lazy, Suspense, useMemo, useRef, useState } from "react";
+import { lazy, Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { Crosshair, Maximize, ZoomIn, ZoomOut } from "lucide-react";
 import { api } from "../api/client";
 import PaperDetailModal from "../components/PaperDetailModal";
@@ -7,6 +7,7 @@ import { useProject } from "../context/ProjectContext";
 import { useApi } from "../hooks/useApi";
 import { useI18n } from "../i18n";
 import { NODE_COLORS, nodeLabel, tOr } from "../viz/graphMeta";
+import CollectionProgress from "../components/CollectionProgress";
 
 // The 3D engine (three.js) is heavy — load it only when this page is opened.
 const Graph3D = lazy(() => import("../viz/Graph3D"));
@@ -35,7 +36,7 @@ export default function KnowledgeGraph() {
       project
         ? api.get(`/projects/${project.id}/graph?papers_limit=${papersLimit}`)
         : Promise.resolve(null),
-    [project ? project.id : null, papersLimit]
+    [project?.id, project?.paper_count, project?.status, papersLimit]
   );
 
   const visibleTypes = useMemo(() => new Set(visible), [visible]);
@@ -60,27 +61,24 @@ export default function KnowledgeGraph() {
 
   const paperDetail = useApi(
     () => (sel && sel.type === "paper" ? api.get(`/projects/${project.id}/papers/${sel.id.split(":")[1]}`) : Promise.resolve(null)),
-    [sel?.id]
+    [project?.id, sel?.id]
   );
   const authorDetail = useApi(
     () => (sel && sel.type === "author" ? api.get(`/projects/${project.id}/authors/${sel.id.split(":")[1]}`) : Promise.resolve(null)),
-    [sel?.id]
+    [project?.id, sel?.id]
   );
+
+  useEffect(() => { setSel(null); setPaperId(null); }, [project?.id]);
 
   if (!project) return <EmptyState title={t("common.noProjectSelected")} hint={t("common.selectHint")} />;
   const busy = project.status === "collecting" || project.status === "analyzing";
-  if (busy)
-    return (
-      <Spinner
-        text={`${project.status === "collecting" ? t("dash.collecting") : t("dash.analyzing")}…`}
-      />
-    );
+  if ((busy || project.status === "error") && !data?.nodes?.length) return <CollectionProgress />;
   if (loading) return <Spinner text={t("kg.loading")} />;
   if (error) return <ErrorBar message={error} onRetry={reload} />;
 
   return (
-    <div className="flex h-full min-h-0">
-      <div className="relative min-w-0 flex-1">
+    <div className="graph-workspace flex min-h-0">
+      <div className="graph-area relative min-w-0 flex-1">
         {filtered ? (
           <ErrorBoundary>
             <Suspense fallback={<Spinner />}>

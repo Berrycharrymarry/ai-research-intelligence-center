@@ -1,15 +1,17 @@
+import { lazy } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout";
 import { ProjectProvider } from "./context/ProjectContext";
 import { I18nProvider } from "./i18n";
-import Analysis from "./pages/Analysis";
-import Dashboard from "./pages/Dashboard";
-import KnowledgeGraph from "./pages/KnowledgeGraph";
-import Landscape from "./pages/Landscape";
-import PaperExplorer from "./pages/PaperExplorer";
-import ResearchGaps from "./pages/ResearchGaps";
-import Setup from "./pages/Setup";
-import Timeline from "./pages/Timeline";
+const Analysis = lazy(() => import("./pages/Analysis"));
+const Dashboard = lazy(() => import("./pages/Dashboard"));
+const Discovery = lazy(() => import("./pages/Discovery"));
+const KnowledgeGraph = lazy(() => import("./pages/KnowledgeGraph"));
+const Landscape = lazy(() => import("./pages/Landscape"));
+const PaperExplorer = lazy(() => import("./pages/PaperExplorer"));
+const ResearchGaps = lazy(() => import("./pages/ResearchGaps"));
+const Setup = lazy(() => import("./pages/Setup"));
+const Timeline = lazy(() => import("./pages/Timeline"));
 
 export default function App() {
   return (
@@ -18,7 +20,8 @@ export default function App() {
         <BrowserRouter>
           <Routes>
             <Route element={<Layout />}>
-              <Route path="/" element={<Dashboard />} />
+              <Route path="/" element={<Discovery />} />
+              <Route path="/overview" element={<Dashboard />} />
               <Route path="/explorer" element={<PaperExplorer />} />
               <Route path="/timeline" element={<Timeline />} />
               <Route path="/graph" element={<KnowledgeGraph />} />

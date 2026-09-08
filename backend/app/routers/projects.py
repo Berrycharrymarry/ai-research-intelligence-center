@@ -11,6 +11,8 @@ from ..models import Paper, Project, Topic
 from ..serializers import paper_dict, project_dict
 from ..services.analysis import topic_summaries
 from ..services.ingestion import collect as run_collect
+from ..services import progress
+from ..config import settings
 
 router = APIRouter(tags=["projects"])
 
@@ -92,6 +94,7 @@ def collect_project(
     project.status = "collecting"
     project.error = None
     db.commit()
+    progress.begin(project_id, project.paper_count, settings.max_papers)
     background.add_task(run_collect, project_id)
     return {"status": "collecting"}
 
@@ -106,4 +109,5 @@ def delete_project(project_id: int, db: Session = Depends(get_db)):
     db.query(Topic).filter(Topic.project_id == project_id).delete()
     db.delete(project)
     db.commit()
+    progress.forget(project_id)
     return None

@@ -13,8 +13,8 @@ export default function PaperExplorer() {
   const { project } = useProject();
   const { t } = useI18n();
   const [searchParams] = useSearchParams();
-  const [q, setQ] = useState("");
-  const [debouncedQ, setDebouncedQ] = useState("");
+  const [q, setQ] = useState(searchParams.get("q") || "");
+  const [debouncedQ, setDebouncedQ] = useState(searchParams.get("q") || "");
   const [topic, setTopic] = useState(searchParams.get("topic") || "");
   const [sort, setSort] = useState("date");
   const [order, setOrder] = useState("desc");
@@ -35,10 +35,9 @@ export default function PaperExplorer() {
   // sync topic filter when navigating from Landscape links
   useEffect(() => {
     const tp = searchParams.get("topic");
-    if (tp) {
-      setTopic(tp);
-      setPage(1);
-    }
+    setTopic(tp || "");
+    setQ(searchParams.get("q") || "");
+    setPage(1);
   }, [searchParams]);
 
   const { data, loading, error, reload } = useApi(
@@ -58,7 +57,7 @@ export default function PaperExplorer() {
             })}`
           )
         : Promise.resolve(null),
-    [project ? project.id : null, debouncedQ, topic, sort, order, yearFrom, yearTo, minCites, page]
+    [project?.id, project?.paper_count, project?.status, debouncedQ, topic, sort, order, yearFrom, yearTo, minCites, page]
   );
 
   if (!project)

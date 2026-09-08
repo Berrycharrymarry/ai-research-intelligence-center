@@ -1,9 +1,13 @@
-"""OpenAlex REST client (no API key)."""
+"""OpenAlex client with pooled connections, bounded retries and 100-work batches."""
 from __future__ import annotations
 
 import logging
 import re
 import time
+from contextlib import nullcontext
+from datetime import datetime, timezone
+from email.utils import parsedate_to_datetime
+from threading import Lock
 
 import httpx
 
@@ -12,66 +16,148 @@ from ..config import settings
 logger = logging.getLogger(__name__)
 
 USER_AGENT = "AI-Research-Intelligence-Center/1.0 (mailto:research-intel@example.com)"
+WORK_FIELDS = ("id,doi,title,abstract_inverted_index,publication_date,publication_year,"
+               "cited_by_count,primary_location,locations,ids,type,authorships,concepts,referenced_works")
+_rate_lock = Lock()
+_next_request = 0.0
+
+
+class OpenAlexUnavailable(RuntimeError):
+    """An upstream failure, without URLs or API credentials in the public message."""
+
+
+def _auth_params() -> dict:
+    params = {"mailto": settings.openalex_mailto}
+    if settings.openalex_api_key:
+        params["api_key"] = settings.openalex_api_key
+    return params
+
+
+def _throttle() -> None:
+    global _next_request
+    with _rate_lock:
+        wait = max(0.0, _next_request - time.monotonic())
+        if wait > 20:
+            raise OpenAlexUnavailable("OpenAlex is cooling down. Saved papers remain available.")
+        if wait:
+            time.sleep(wait)
+        _next_request = time.monotonic() + max(0.0, settings.request_interval)
+
+
+def _cooldown(seconds: float) -> None:
+    global _next_request
+    with _rate_lock:
+        _next_request = max(_next_request, time.monotonic() + seconds)
+
+
+def _retry_seconds(value: str | None, default: float) -> float:
+    if not value:
+        return default
+    try:
+        return max(0.0, float(value))
+    except ValueError:
+        try:
+            dt = parsedate_to_datetime(value)
+            if dt.tzinfo is None:
+                dt = dt.replace(tzinfo=timezone.utc)
+            return max(0.0, (dt - datetime.now(timezone.utc)).total_seconds())
+        except (ValueError, TypeError, OverflowError):
+            return default
 
 
 def _client() -> httpx.Client:
     return httpx.Client(timeout=30.0, headers={"User-Agent": USER_AGENT})
 
 
-def _get_with_retry(client: httpx.Client, url: str, params: dict, max_retries: int = 3) -> dict:
+def _get_with_retry(client: httpx.Client, url: str, params: dict, max_retries: int = 3,
+                    on_retry=None) -> dict:
     delay = 1.0
     for attempt in range(max_retries):
         try:
+            _throttle()
             r = client.get(url, params=params)
-        except httpx.HTTPError as e:
-            logger.warning("OpenAlex request error (attempt %d/%d): %s", attempt + 1, max_retries, e)
-            time.sleep(delay)
+        except httpx.HTTPError:
+            logger.warning("OpenAlex connection error (attempt %d/%d)", attempt + 1, max_retries)
+            if attempt + 1 < max_retries:
+                if on_retry:
+                    on_retry(delay)
+                _cooldown(delay)
             delay = min(delay * 2, 20.0)
             continue
         if r.status_code == 200:
             return r.json()
         if r.status_code in (429, 500, 502, 503, 504):
-            retry_after = r.headers.get("Retry-After")
-            try:
-                # Cap the sleep: some providers send multi-hour Retry-After values.
-                wait = min(float(retry_after), 20.0) if retry_after else delay
-            except ValueError:
-                wait = delay
-            logger.warning("OpenAlex HTTP %s on %s; sleeping %.1fs", r.status_code, url, wait)
-            time.sleep(wait)
+            wait = _retry_seconds(r.headers.get("Retry-After"), delay)
+            logger.warning("OpenAlex HTTP %s; retry delay %.1fs", r.status_code, wait)
+            if on_retry:
+                on_retry(wait)
+            # Respect a long provider cooldown without blocking a collection for hours.
+            _cooldown(wait)
+            if wait > 20:
+                raise OpenAlexUnavailable("OpenAlex is temporarily rate limited. Saved papers remain available.")
             delay = min(delay * 2, 20.0)
             continue
         # e.g. 404: no point retrying — propagate immediately
         r.raise_for_status()
-    raise RuntimeError(f"OpenAlex request failed after {max_retries} attempts: {url}")
+    raise OpenAlexUnavailable("OpenAlex could not respond after retries.")
 
 
-def search_works(query: str, max_results: int, per_page: int = 100) -> list[dict]:
-    """Fetch up to max_results works matching a full-text query."""
-    works: list[dict] = []
+def iter_search_works(query: str, max_results: int, per_page: int = 100,
+                      client: httpx.Client | None = None, on_retry=None):
+    """Yield each page immediately so callers can commit usable partial results."""
+    fetched = 0
     cursor = "*"
-    client = _client()
-    try:
-        while len(works) < max_results:
+    with nullcontext(client) if client is not None else _client() as session:
+        while fetched < max_results:
             params = {
                 "search": query,
-                "per-page": min(per_page, max_results - len(works)),
+                "per-page": min(100, max(1, per_page), max_results - fetched),
                 "sort": "relevance_score:desc",
                 "cursor": cursor,
-                "mailto": settings.openalex_mailto,
+                "select": WORK_FIELDS,
+                **_auth_params(),
             }
-            data = _get_with_retry(client, f"{settings.openalex_base_url}/works", params)
+            data = _get_with_retry(session, f"{settings.openalex_base_url}/works", params,
+                                   on_retry=on_retry)
             results = data.get("results") or []
             if not results:
                 break
-            works.extend(results)
-            cursor = (data.get("meta") or {}).get("next_cursor")
-            if not cursor:
+            yield results
+            fetched += len(results)
+            next_cursor = (data.get("meta") or {}).get("next_cursor")
+            if not next_cursor or next_cursor == cursor:
                 break
-            time.sleep(settings.request_interval)
-        return works
-    finally:
-        client.close()
+            cursor = next_cursor
+
+
+def search_works(query: str, max_results: int, per_page: int = 100) -> list[dict]:
+    return [work for page in iter_search_works(query, max_results, per_page) for work in page]
+
+
+def fetch_many(values: list[str], by: str = "openalex", client: httpx.Client | None = None,
+               on_retry=None) -> list[dict]:
+    """Resolve known OpenAlex IDs or DOIs using OR filters, at most 100 per request."""
+    if by not in ("openalex", "doi"):
+        raise ValueError("Batch lookups support OpenAlex IDs or DOIs.")
+    normalized = []
+    for value in values:
+        if by == "doi":
+            value = re.sub(r"^https?://(dx\.)?doi\.org/", "", value.strip(), flags=re.I)
+            value = re.sub(r"^doi:\s*", "", value, flags=re.I).lower()
+        else:
+            value = value.rstrip("/").split("/")[-1]
+        if value and value not in normalized:
+            normalized.append(value)
+    works = []
+    with nullcontext(client) if client is not None else _client() as session:
+        for offset in range(0, len(normalized), 100):
+            chunk = normalized[offset:offset + 100]
+            params = {"filter": f"{by}:" + "|".join(chunk), "per-page": 100,
+                      "select": WORK_FIELDS, **_auth_params()}
+            data = _get_with_retry(session, f"{settings.openalex_base_url}/works", params,
+                                   on_retry=on_retry)
+            works.extend(parse_work(work) for work in data.get("results") or [])
+    return works
 
 
 def fetch_by_id(work_id: str) -> dict | None:
@@ -83,7 +169,7 @@ def fetch_by_id(work_id: str) -> dict | None:
             data = _get_with_retry(
                 client,
                 f"{settings.openalex_base_url}/works/{wid}",
-                {"mailto": settings.openalex_mailto},
+                _auth_params(),
                 max_retries=2,
             )
         except httpx.HTTPStatusError as e:
@@ -104,7 +190,7 @@ def fetch_by_doi(doi: str) -> dict | None:
             data = _get_with_retry(
                 client,
                 f"{settings.openalex_base_url}/works/doi:{bare}",
-                {"mailto": settings.openalex_mailto},
+                _auth_params(),
                 max_retries=2,
             )
         except httpx.HTTPStatusError as e:

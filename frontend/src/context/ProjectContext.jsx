@@ -8,26 +8,29 @@ export function ProjectProvider({ children }) {
   const [project, setProject] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const pollRef = useRef(null);
+  const requestVersion = useRef(0);
 
   const loadProjects = useCallback(async () => {
+    const version = ++requestVersion.current;
     try {
       const list = await api.get("/projects");
+      if (version !== requestVersion.current) return;
       setProjects(list);
       const stored = Number(localStorage.getItem("research.projectId"));
       const target = list.find((p) => p.id === stored) || list[0] || null;
       if (target) {
         localStorage.setItem("research.projectId", String(target.id));
         const detail = await api.get(`/projects/${target.id}`);
+        if (version !== requestVersion.current) return;
         setProject(detail);
       } else {
         setProject(null);
       }
       setError(null);
     } catch (e) {
-      setError(e.message || String(e));
+      if (version === requestVersion.current) setError(e.message || String(e));
     } finally {
-      setLoading(false);
+      if (version === requestVersion.current) setLoading(false);
     }
   }, []);
 
@@ -59,27 +62,26 @@ export function ProjectProvider({ children }) {
   useEffect(() => {
     if (!activeId) return undefined;
     if (activeStatus !== "collecting" && activeStatus !== "analyzing") return undefined;
-    if (pollRef.current) return undefined;
-    pollRef.current = setInterval(async () => {
+    let canceled = false;
+    let timer;
+    const poll = async () => {
       try {
         const detail = await api.get(`/projects/${activeId}`);
-        setProject(detail);
-        if (detail.status === "ready" || detail.status === "error") {
-          clearInterval(pollRef.current);
-          pollRef.current = null;
-          loadProjects();
-        }
+        if (canceled) return;
+        setProject((current) => current?.id === activeId ? detail : current);
+        setProjects((list) => list.map((item) => item.id === activeId ? { ...item, ...detail } : item));
+        if (!["collecting", "analyzing"].includes(detail.status)) return;
       } catch {
-        /* transient — keep polling */
+        /* Retry transient failures without accumulating overlapping requests. */
       }
-    }, 1500);
-    return () => {
-      if (pollRef.current) {
-        clearInterval(pollRef.current);
-        pollRef.current = null;
-      }
+      if (!canceled) timer = setTimeout(poll, 2000);
     };
-  }, [activeId, activeStatus, loadProjects]);
+    timer = setTimeout(poll, 1200);
+    return () => {
+      canceled = true;
+      clearTimeout(timer);
+    };
+  }, [activeId, activeStatus]);
 
   const collect = useCallback(
     async (id) => {

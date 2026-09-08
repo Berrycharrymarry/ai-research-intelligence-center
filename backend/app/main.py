@@ -70,6 +70,8 @@ def auto_seed() -> None:
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     init_db()
+    from .services.ingestion import recover_interrupted_collections
+    recover_interrupted_collections()
     auto_seed()
     yield
 

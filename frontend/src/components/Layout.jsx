@@ -1,119 +1,45 @@
+import { Suspense, useEffect, useRef, useState } from "react";
+import { ErrorBoundary, Spinner } from "./ui";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
-import {
-  Activity,
-  BarChart3,
-  Brain,
-  Crosshair,
-  GitBranch,
-  LayoutDashboard,
-  Library,
-  Plus,
-  Radar,
-} from "lucide-react";
+import { ArrowUpRight, ArrowDownToLine, Menu, Plus, X, Orbit } from "lucide-react";
 import { useProject } from "../context/ProjectContext";
 import { useI18n } from "../i18n";
 import ProjectSwitcher from "./ProjectSwitcher";
-import { StatusBadge } from "./ui";
+import CollectionProgress from "./CollectionProgress";
 
 export default function Layout() {
   const { project, collect } = useProject();
   const { t, lang, setLang } = useI18n();
   const location = useLocation();
+  const menu = useRef(null);
+  const main = useRef(null);
+  const [collectError, setCollectError] = useState(null);
+  const [starting, setStarting] = useState(false);
+  const zh = lang === "zh";
+  const home = location.pathname === "/";
+  const busy = ["collecting", "analyzing"].includes(project?.status);
+  const links = [["/", zh ? "发现" : "Discover"], ["/overview", t("nav.dashboard")], ["/landscape", t("nav.landscape")], ["/graph", t("nav.graph")], ["/explorer", t("nav.explorer")], ["/timeline", t("nav.timeline")], ["/analysis", t("nav.analysis")], ["/gaps", t("nav.gaps")]];
 
-  const NAV = [
-    { to: "/", label: t("nav.dashboard"), icon: LayoutDashboard },
-    { to: "/explorer", label: t("nav.explorer"), icon: Library },
-    { to: "/timeline", label: t("nav.timeline"), icon: Activity },
-    { to: "/graph", label: t("nav.graph"), icon: GitBranch },
-    { to: "/landscape", label: t("nav.landscape"), icon: BarChart3 },
-    { to: "/analysis", label: t("nav.analysis"), icon: Brain },
-    { to: "/gaps", label: t("nav.gaps"), icon: Crosshair },
-  ];
+  useEffect(() => { menu.current?.close(); main.current?.scrollTo(0, 0); }, [location.pathname]);
+  useEffect(() => { setCollectError(null); }, [project?.id]);
 
-  const current = NAV.find((n) => n.to === location.pathname) || {};
-  const busy = project && (project.status === "collecting" || project.status === "analyzing");
+  async function startCollection() {
+    setStarting(true); setCollectError(null);
+    try { await collect(project.id); } catch (error) { setCollectError(error.message); } finally { setStarting(false); }
+  }
 
-  return (
-    <div className="app-shell flex h-screen overflow-hidden">
-      <aside className="app-sidebar flex w-56 shrink-0 flex-col border-r border-line bg-panel">
-        <div className="app-brand flex items-center gap-2.5 border-b border-line px-4 py-4">
-          <div className="app-brand-mark flex h-8 w-8 items-center justify-center rounded-md border border-accent/40 bg-accent/10">
-            <Radar size={17} className="text-accent" />
-          </div>
-          <div>
-            <div className="text-[13px] font-semibold tracking-wide">{t("layout.brand")}</div>
-            <div className="text-[10px] uppercase tracking-[0.18em] text-faint">{t("layout.tagline")}</div>
-          </div>
-        </div>
-        <nav className="app-nav flex-1 overflow-y-auto py-3">
-          {NAV.map((n) => (
-            <NavLink
-              key={n.to}
-              to={n.to}
-              end={n.to === "/"}
-              className={({ isActive }) =>
-                `mx-2 mb-0.5 flex items-center gap-2.5 rounded-md border px-3 py-2 text-[13px] ${
-                  isActive
-                    ? "border-line2 bg-panel2 text-accent"
-                    : "border-transparent text-muted hover:bg-panel2 hover:text-ink"
-                }`
-              }
-            >
-              <n.icon size={15} />
-              {n.label}
-            </NavLink>
-          ))}
-        </nav>
-        <div className="border-t border-line p-3">
-          <NavLink
-            to="/setup"
-            className="flex items-center gap-2 rounded-md border border-line px-3 py-2 text-xs text-muted hover:border-accent/40 hover:text-accent"
-          >
-            <Plus size={13} /> {t("layout.newProject")}
-          </NavLink>
-        </div>
-      </aside>
-
-      <div className="flex min-h-0 min-w-0 flex-1 flex-col">
-        <header className="app-header flex h-14 shrink-0 items-center gap-4 border-b border-line bg-panel px-5">
-          <div className="microlabel w-44">{current.label || t("nav.dashboard")}</div>
-          <div className="flex-1" />
-          <div className="flex items-center rounded-md border border-line p-0.5">
-            <button
-              onClick={() => setLang("zh")}
-              title="中文"
-              className={`rounded px-2 py-0.5 text-[11px] transition-colors ${
-                lang === "zh" ? "bg-panel2 text-accent" : "text-faint hover:text-muted"
-              }`}
-            >
-              中
-            </button>
-            <button
-              onClick={() => setLang("en")}
-              title="English"
-              className={`rounded px-2 py-0.5 text-[11px] transition-colors ${
-                lang === "en" ? "bg-panel2 text-accent" : "text-faint hover:text-muted"
-              }`}
-            >
-              EN
-            </button>
-          </div>
-          {project && <StatusBadge status={project.status} />}
-          <ProjectSwitcher />
-          {project && (
-            <button
-              disabled={busy}
-              onClick={() => collect(project.id)}
-              className="app-collect rounded-md border border-accent/40 bg-accent/10 px-3 py-1.5 text-xs font-medium text-accent hover:bg-accent/20 disabled:cursor-not-allowed disabled:opacity-40"
-            >
-              {busy ? t("layout.collecting") : t("layout.collectData")}
-            </button>
-          )}
-        </header>
-        <main className="app-main grid-bg min-h-0 flex-1 overflow-y-auto">
-          <Outlet />
-        </main>
-      </div>
-    </div>
-  );
+  return <div className={`experience-shell ${home ? "is-discovery" : "is-workspace"}`}>
+    <a href="#main-content" className="skip-link">{zh ? "跳到内容" : "Skip to content"}</a>
+    <header className="experience-header">
+      <NavLink to="/" className="experience-brand" aria-label={zh ? "科研情报 · 发现首页" : "Research Intelligence · Discover"}><span className="brand-symbol"><Orbit size={24} strokeWidth={1.3} /></span><span>RESEARCH<span>INTELLIGENCE</span></span><i>科研情报</i></NavLink>
+      <nav className="experience-nav" aria-label={zh ? "主导航" : "Main navigation"}>{[["/", zh ? "发现" : "Discover"], ["/landscape", zh ? "版图" : "Atlas"], ["/explorer", zh ? "文献" : "Papers"]].map(([to, label]) => <NavLink key={to} to={to} end={to === "/"}>{label}</NavLink>)}</nav>
+      <div className="header-utilities"><button className="language-toggle" onClick={() => setLang(zh ? "en" : "zh")} aria-label={zh ? "Switch to English" : "切换中文"}>{zh ? "EN" : "中"}</button><button className="experience-menu-button" aria-label={zh ? "打开工作空间菜单" : "Open workspace menu"} aria-haspopup="dialog" onClick={() => menu.current?.showModal()}><span>{zh ? "工作空间" : "Workspace"}</span><Menu size={16} /></button></div>
+    </header>
+    {!home && <div className="workspace-bar"><span className="workspace-breadcrumb">{zh ? "研究空间" : "WORKSPACE"}<span>/</span><strong>{links.find(([to]) => to === location.pathname)?.[1] || t("layout.newProject")}</strong></span><div className="workspace-actions"><CollectionProgress compact /><ProjectSwitcher />{project && <button onClick={startCollection} disabled={busy || starting} className="collect-button"><ArrowDownToLine size={14} />{busy ? (zh ? "采集中" : "Collecting") : starting ? (zh ? "正在启动" : "Starting") : t("layout.collectData")}</button>}</div></div>}
+    {collectError && <div role="alert" className="collect-error">{collectError}<button onClick={() => setCollectError(null)} aria-label={zh ? "关闭" : "Close"}><X size={14} /></button></div>}
+    <main id="main-content" className="experience-main app-main" ref={main}><div key={location.pathname} className={`route-content ${home ? "route-discovery" : "route-workspace"}`}><ErrorBoundary><Suspense fallback={<Spinner />}><Outlet /></Suspense></ErrorBoundary></div></main>
+    <dialog ref={menu} className="workspace-dialog" aria-label={zh ? "研究工作空间" : "Research workspace"} onClick={(event) => { if (event.target === menu.current) menu.current.close(); }}>
+      <div className="workspace-dialog-inner"><div className="dialog-top"><span className="experience-kicker">YOUR NEXT DISCOVERY</span><button autoFocus onClick={() => menu.current.close()} aria-label={zh ? "关闭菜单" : "Close menu"}><X size={23} /></button></div><nav>{links.map(([to, label], i) => <NavLink to={to} key={to} end={to === "/"} onClick={() => menu.current.close()}><span>{String(i + 1).padStart(2, "0")}</span><strong>{label}</strong><ArrowUpRight size={24} /></NavLink>)}</nav><div className="dialog-bottom"><ProjectSwitcher /><NavLink to="/setup" onClick={() => menu.current.close()}><Plus size={16} />{t("layout.newProject")}</NavLink></div></div>
+    </dialog>
+  </div>;
 }

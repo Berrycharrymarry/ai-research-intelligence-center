@@ -6,6 +6,7 @@ import hashlib
 import logging
 import re
 import time
+from contextlib import nullcontext
 
 import httpx
 
@@ -101,15 +102,16 @@ def parse_work(item: dict) -> dict:
     }
 
 
-def search_works(query: str, max_results: int, per_page: int = 100) -> list[dict]:
-    out: list[dict] = []
+def iter_search_works(query: str, max_results: int, per_page: int = 100,
+                      client: httpx.Client | None = None, on_retry=None):
+    """Yield parsed pages, preserving earlier pages if a later request fails."""
+    fetched = 0
     cursor = "*"
-    client = _client()
-    try:
-        while len(out) < max_results:
+    with nullcontext(client) if client is not None else _client() as session:
+        while fetched < max_results:
             params = {
                 "query": query,
-                "rows": min(per_page, max_results - len(out)),
+                "rows": min(100, max(1, per_page), max_results - fetched),
                 "cursor": cursor,
                 "mailto": settings.openalex_mailto,
                 "select": (
@@ -120,28 +122,41 @@ def search_works(query: str, max_results: int, per_page: int = 100) -> list[dict
             data = None
             for attempt in range(3):
                 try:
-                    r = client.get(f"{BASE}/works", params=params)
+                    r = session.get(f"{BASE}/works", params=params)
                     if r.status_code == 200:
                         data = r.json()
                         break
                     if r.status_code == 429:
-                        time.sleep(min(2**attempt, 8))
+                        from .openalex import _retry_seconds
+                        delay = _retry_seconds(r.headers.get("Retry-After"), min(2**attempt, 8))
+                        if on_retry:
+                            on_retry(delay)
+                        if delay > 20:
+                            raise RuntimeError("Crossref is temporarily rate limited.")
+                        if attempt < 2:
+                            time.sleep(delay)
                         continue
                     r.raise_for_status()
-                except httpx.HTTPError as e:
-                    logger.warning("Crossref request error (attempt %d): %s", attempt + 1, e)
-                    time.sleep(min(2**attempt, 8))
+                except httpx.HTTPError:
+                    logger.warning("Crossref connection error (attempt %d)", attempt + 1)
+                    if attempt < 2:
+                        if on_retry:
+                            on_retry(min(2**attempt, 8))
+                        time.sleep(min(2**attempt, 8))
             if data is None:
                 raise RuntimeError("Crossref request failed after retries")
             message = data.get("message") or {}
             items = message.get("items") or []
             if not items:
                 break
-            out.extend(items)
-            cursor = message.get("next-cursor")
-            if not cursor:
+            yield [parse_work(item) for item in items]
+            fetched += len(items)
+            next_cursor = message.get("next-cursor")
+            if not next_cursor or next_cursor == cursor:
                 break
+            cursor = next_cursor
             time.sleep(0.4)
-        return [parse_work(i) for i in out]
-    finally:
-        client.close()
+
+
+def search_works(query: str, max_results: int, per_page: int = 100) -> list[dict]:
+    return [work for page in iter_search_works(query, max_results, per_page) for work in page]

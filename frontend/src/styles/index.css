@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./experience.css";
 
 @theme {
   --color-bg: #f8f9fb;

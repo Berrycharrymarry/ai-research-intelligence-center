@@ -30,6 +30,9 @@ export function useApi(fetcher, deps = []) {
     const run = async () => {
       setLoading(true);
       setError(null);
+      // A changed project or filter must not briefly show the previous
+      // response while the new request is in flight.
+      setData(null);
       try {
         const result = await fetcherRef.current();
         if (alive) setData(result);

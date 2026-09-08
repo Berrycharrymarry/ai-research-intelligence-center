@@ -2,6 +2,7 @@
 from sqlalchemy.orm import Session
 
 from .models import Author, Paper, PaperAuthor, PaperTopic, Project, Topic
+from .services.progress import snapshot as collection_snapshot
 
 
 def project_dict(p: Project) -> dict:
@@ -14,6 +15,7 @@ def project_dict(p: Project) -> dict:
         "status": p.status,
         "error": p.error,
         "paper_count": p.paper_count,
+        "collection_progress": collection_snapshot(p.id, p.status, p.paper_count),
         "created_at": p.created_at.isoformat() if p.created_at else None,
         "updated_at": p.updated_at.isoformat() if p.updated_at else None,
     }
