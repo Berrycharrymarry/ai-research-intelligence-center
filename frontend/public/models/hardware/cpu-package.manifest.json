@@ -1,0 +1,29 @@
+{
+  "assetVersion": "cpu-quality-sample-1",
+  "software": "Blender 5.2.1 LTS",
+  "model": "cpu-package",
+  "role": "independent CPU package quality asset",
+  "dimensions": [
+    2.62,
+    2.62,
+    0.52
+  ],
+  "metrics": {
+    "meshObjects": 204,
+    "triangles": 9808,
+    "glbBytes": 2422736
+  },
+  "nodes": [
+    "cpu",
+    "cpu-package",
+    "cpu-lid",
+    "cpu-substrate",
+    "cpu-die",
+    "cpu-contacts"
+  ],
+  "simplifications": [
+    "Contact land and solder arrays are educationally spaced representations.",
+    "Die regions and routing are architecture teaching cues, not a literal silicon floorplan.",
+    "Top-lid cutaway seam is a visual teaching aid and does not imply user-serviceable delidding."
+  ]
+}
