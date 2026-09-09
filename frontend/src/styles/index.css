@@ -260,6 +260,9 @@ button:disabled { cursor: not-allowed; }
 .hardware-detail-nav button:disabled { opacity: .45; cursor: not-allowed; }
 .drilldown-page .hardware-tour { margin-bottom: 6px; }
 .drilldown-page .hardware-notice { margin-bottom: 0; }
+.hardware-asset-status { display: inline-flex; align-items: center; margin-left: auto; padding: 4px 7px; border: 1px solid #dce5e4; border-radius: 4px; color: #66827f; background: #fbfdfc; font-size: 10px; white-space: nowrap; }
+.hardware-asset-status.status-loading { color: #8d7b5a; }
+.hardware-asset-status.status-error { color: #a14f50; border-color: #ecd3d3; background: #fffafa; }
 
 @media (max-width: 640px) {
   .hardware-breadcrumb { margin-top: 9px; }
@@ -268,6 +271,7 @@ button:disabled { cursor: not-allowed; }
   .drilldown-page .hardware-detail-nav { flex-wrap: wrap; }
   .drilldown-page .hardware-detail-nav button { flex: 1 1 145px; justify-content: center; }
   .drilldown-page .hardware-child-row { padding: 9px; }
+  .hardware-asset-status { margin-left: 30px; }
 }
 
 @media (max-width: 1200px) {
