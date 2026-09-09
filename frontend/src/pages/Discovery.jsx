@@ -6,6 +6,7 @@ import {
   BookOpen,
   Clock3,
   Compass,
+  Cpu,
   FlaskConical,
   Map,
   Search,
@@ -20,6 +21,14 @@ import PaperDetailModal from "../components/PaperDetailModal";
 import { EmptyState, ErrorBar, StatusBadge, formatCitations } from "../components/ui";
 
 const ENTRIES = [
+  {
+    to: "/hardware",
+    icon: Cpu,
+    title: "3D hardware lab",
+    titleZh: "3D 硬件实验室",
+    body: "Learn a desktop by taking it apart.",
+    bodyZh: "拆开一台电脑，认识每个零件。",
+  },
   {
     to: "/landscape",
     icon: Map,
@@ -114,6 +123,10 @@ export default function Discovery() {
             <Link className="clear-button clear-button-secondary" to={project ? "/landscape" : "/setup"}>
               <Compass size={16} />
               {project ? (zh ? "探索研究方向" : "Explore directions") : (zh ? "开始第一项研究" : "Start your first research")}
+            </Link>
+            <Link className="clear-button clear-button-secondary" to="/hardware">
+              <Cpu size={16} />
+              {zh ? "进入硬件实验室" : "Open hardware lab"}
             </Link>
           </div>
           {projectError && <ErrorBar message={projectError} onRetry={loadProjects} />}

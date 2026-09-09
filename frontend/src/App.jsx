@@ -12,6 +12,7 @@ const PaperExplorer = lazy(() => import("./pages/PaperExplorer"));
 const ResearchGaps = lazy(() => import("./pages/ResearchGaps"));
 const Setup = lazy(() => import("./pages/Setup"));
 const Timeline = lazy(() => import("./pages/Timeline"));
+const HardwareLab = lazy(() => import("./pages/HardwareLab"));
 
 export default function App() {
   return (
@@ -29,6 +30,7 @@ export default function App() {
               <Route path="/analysis" element={<Analysis />} />
               <Route path="/gaps" element={<ResearchGaps />} />
               <Route path="/setup" element={<Setup />} />
+              <Route path="/hardware" element={<HardwareLab />} />
               <Route path="*" element={<Dashboard />} />
             </Route>
           </Routes>
