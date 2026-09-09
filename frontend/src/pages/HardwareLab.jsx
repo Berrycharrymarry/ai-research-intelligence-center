@@ -1,22 +1,94 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { ArrowDown, ArrowLeft, ArrowRight, ArrowUp, Box, EyeOff, Minus, Move3d, Plus, RotateCcw, Scan, SlidersHorizontal } from "lucide-react";
+import { ArrowDown, ArrowLeft, ArrowRight, ArrowUp, Box, EyeOff, Focus, Minus, Move3d, Plus, RotateCcw, Scan, SlidersHorizontal } from "lucide-react";
+import { useSearchParams } from "react-router-dom";
 import { useI18n } from "../i18n";
-import PartList from "../components/hardware/PartList";
-import PartDetails from "../components/hardware/PartDetails";
-import HardwareScene from "../viz/hardware/HardwareScene";
-import { hardwareInstances, hardwarePartById, hardwareParts, validateHardwareContent } from "../data/hardwareParts";
+import HardwareCatalog from "../components/hardware/HardwareCatalog";
+import HardwareBreadcrumb from "../components/hardware/HardwareBreadcrumb";
+import ChildPartPanel from "../components/hardware/ChildPartPanel";
+import DrilldownScene from "../viz/hardware/DrilldownScene";
+import { hardwareCatalogRoots, hardwareTree, getHardwareNode, validateHardwareTree } from "../data/hardwareTree";
 
-const tour = ["case", "motherboard", "cpu", "memory", "gpu", "m2", "psu"];
+const aliases = { "graphics-card": "gpu", ram: "memory", "power-supply": "psu" };
+function normalisePath(raw) {
+  const requested = (raw || "").split("/").filter(Boolean).map((id) => aliases[id] || id);
+  const path = ["system"];
+  requested.forEach((id) => {
+    const current = hardwareTree[path[path.length - 1]];
+    if (hardwareTree[id] && (current?.children || []).includes(id)) path.push(id);
+  });
+  return path;
+}
+
+const sceneAliases = { "ram-a": "memory", "ram-b": "memory", "gpu-power": "gpu", "cpu-power": "cpu", "main-power": "motherboard", "case-fan-front": "cooling", "case-fan-rear": "cooling", m2: "storage", "sata-ssd": "storage", "sata-cables": "storage" };
+
 export default function HardwareLab() {
-  const { lang } = useI18n(); const zh = lang === "zh"; const scene = useRef(null); const [selectedId, setSelectedId] = useState("motherboard"); const [explode, setExplode] = useState(0); const [movementMode, setMovementMode] = useState(false); const [offsets, setOffsets] = useState({}); const [isolatedId, setIsolatedId] = useState(null); const [showSidePanel, setShowSidePanel] = useState(true); const [partsCollapsed, setPartsCollapsed] = useState(false); const [tourIndex, setTourIndex] = useState(-1); const [webglUnavailable, setWebglUnavailable] = useState(false);
-  const selectedInstance = hardwareInstances.find((item) => item.instanceId === selectedId) || hardwareInstances[0]; const selectedPart = hardwarePartById[selectedInstance.partId]; const contentErrors = useMemo(() => validateHardwareContent(), []);
-  const select = (id) => { setSelectedId(id); setTourIndex(-1); };
-  const changeExplode = (value) => { setExplode(Number(value)); setOffsets({}); };
-  const updateOffset = (id, axis, value) => setOffsets((current) => ({ ...current, [id]: { ...(current[id] || {}), [axis]: value } }));
-  const restoreSelected = () => setOffsets((current) => { const next = { ...current }; delete next[selectedId]; return next; });
-  const restoreAll = () => { setExplode(0); setOffsets({}); setIsolatedId(null); setShowSidePanel(true); setMovementMode(false); scene.current?.reset(); };
-  const nudge = (axis, amount) => updateOffset(selectedId, axis, Math.max(-1.6, Math.min(1.6, (offsets[selectedId]?.[axis] || 0) + amount)));
-  useEffect(() => { const onKey = (event) => { if (!movementMode || event.target.closest("input,button,a")) return; const map = { ArrowLeft: ["x", -0.12], ArrowRight: ["x", 0.12], ArrowUp: ["y", 0.12], ArrowDown: ["y", -0.12], "[": ["z", -0.12], "]": ["z", 0.12] }; if (map[event.key]) { event.preventDefault(); nudge(...map[event.key]); } }; window.addEventListener("keydown", onKey); return () => window.removeEventListener("keydown", onKey); }, [movementMode, selectedId, offsets]);
-  const beginTour = () => { const next = (tourIndex + 1) % tour.length; setTourIndex(next); const match = hardwareInstances.find((item) => item.partId === tour[next]); if (match) { setSelectedId(match.instanceId); scene.current?.focus(); } };
-  return <div className="hardware-page"><div className="hardware-heading"><div><span className="eyebrow">LEARN BY TAKING IT APART</span><h1><Box size={25} strokeWidth={1.35} />{zh ? "3D 电脑硬件实验室" : "3D Hardware Lab"}</h1><p>{zh ? "看懂一台通用 ATX 台式机：从整机观察、拆解，到逐件复原。" : "Understand a teaching ATX desktop: observe, disassemble, and restore it part by part."}</p></div><div className="hardware-heading-stats"><div><strong>17</strong><span>{zh ? "可选实例" : "selectable instances"}</span></div><div><strong>13</strong><span>{zh ? "知识类别" : "knowledge types"}</span></div><div><strong>2×</strong><span>{zh ? "视频平台" : "video platforms"}</span></div></div></div><div className="hardware-notice"><span><SlidersHorizontal size={15} />{zh ? "教学示意模型" : "Teaching model"}</span><p>{zh ? "尺寸、线缆和移动边界已简化；拖动不是兼容性判定。桌面拖动空白处旋转，滚轮缩放；手机用双指缩放。" : "Dimensions, cables, and movement limits are simplified. Dragging is not a compatibility test. Drag empty space to orbit, scroll to zoom; pinch on mobile."}</p><button onClick={() => { setTourIndex(0); const first = hardwareInstances.find((item) => item.partId === tour[0]); setSelectedId(first.instanceId); }}>{zh ? "开始导览" : "Start guided tour"}<ArrowRight size={14} /></button></div><div className="hardware-toolbar"><div className="hardware-toolbar-group"><span className="toolbar-label">{zh ? "视图" : "View"}</span><button className={explode === 0 ? "active" : ""} onClick={() => changeExplode(0)}><Box size={14} />{zh ? "组装" : "Assembly"}</button><button className={explode > 0 ? "active" : ""} onClick={() => changeExplode(100)}><Move3d size={14} />{zh ? "拆解" : "Exploded"}</button></div><div className="hardware-toolbar-group"><span className="toolbar-label">{zh ? "交互" : "Interaction"}</span><button className={!movementMode ? "active" : ""} onClick={() => setMovementMode(false)}><Scan size={14} />{zh ? "观察模式" : "Observe"}</button><button className={movementMode ? "active" : ""} onClick={() => setMovementMode(true)}><Move3d size={14} />{zh ? "移动模式" : "Move"}</button></div><label className="hardware-check"><input type="checkbox" checked={showSidePanel} onChange={(event) => setShowSidePanel(event.target.checked)} />{zh ? "显示侧板" : "Show side panel"}</label><span className="hardware-toolbar-help">{movementMode ? (zh ? "轴手柄拖动 · 方向键微调" : "Drag axis handles · arrow keys nudge") : (zh ? "拖动空白处旋转镜头" : "Drag empty space to orbit")}</span></div><div className="hardware-workspace"><PartList lang={lang} selectedId={selectedId} onSelect={select} collapsed={partsCollapsed} onToggle={() => setPartsCollapsed((value) => !value)} /><section className="hardware-stage"><div className="hardware-scene-wrap"><HardwareScene ref={scene} selectedId={selectedId} explode={explode} offsets={offsets} movementMode={movementMode} isolatedId={isolatedId} showSidePanel={showSidePanel} onSelect={select} onOffsetChange={updateOffset} onMoveEnd={() => {}} onUnavailable={() => setWebglUnavailable(true)} />{webglUnavailable && <div className="hardware-fallback"><strong>{zh ? "当前浏览器无法使用 WebGL" : "WebGL is unavailable"}</strong><p>{zh ? "仍可用左侧清单、说明和视频完成学习。" : "Use the inventory, notes, and video links to continue learning."}</p></div>}<div className="hardware-scene-badge"><span className="status-dot" />{explode === 0 ? (zh ? "组装视图" : "ASSEMBLY VIEW") : `${zh ? "拆解" : "EXPLODED"} ${explode}%`}</div><div className="hardware-camera-controls"><button onClick={() => scene.current?.zoomIn()} aria-label={zh ? "放大" : "Zoom in"}><Plus size={16} /></button><button onClick={() => scene.current?.zoomOut()} aria-label={zh ? "缩小" : "Zoom out"}><Minus size={16} /></button><button onClick={() => scene.current?.fit()} aria-label={zh ? "适应画面" : "Fit view"}><Scan size={16} /></button></div><div className="hardware-axis-controls"><button onClick={() => nudge("x", -0.15)}><ArrowLeft size={13} />X−</button><button onClick={() => nudge("x", 0.15)}>X+<ArrowRight size={13} /></button><button onClick={() => nudge("y", 0.15)}><ArrowUp size={13} />Y+</button><button onClick={() => nudge("y", -0.15)}><ArrowDown size={13} />Y−</button><button onClick={() => nudge("z", -0.15)}>Z−</button><button onClick={() => nudge("z", 0.15)}>Z+</button></div><div className="hardware-stage-caption">{movementMode ? (zh ? "选中零件的彩色轴手柄可拖动；偏移范围有限，拆解预设变化会清除偏移。" : "Drag the colored handles on the selected part; offsets are bounded and clear when the preset changes.") : (zh ? "点击零件或左侧清单查看说明" : "Select a part in the model or inventory")}</div></div><div className="hardware-decompose"><div className="hardware-decompose-label"><span>{zh ? "空间展开程度" : "Spatial separation"}</span><strong>{explode}%</strong></div><input type="range" min="0" max="100" step="1" value={explode} onChange={(event) => changeExplode(event.target.value)} aria-label={zh ? "拆解程度" : "Exploded view percentage"} /><div className="hardware-range-labels"><span>{zh ? "组装" : "Assembly"}</span><span>{zh ? "全部拆解" : "Fully exploded"}</span></div></div><div className="hardware-bottom-actions"><button onClick={() => scene.current?.focus()}><Scan size={14} />{zh ? "聚焦所选" : "Focus selected"}</button><button onClick={() => setIsolatedId(isolatedId ? null : selectedId)}><EyeOff size={14} />{isolatedId ? (zh ? "退出单独查看" : "Exit solo view") : (zh ? "单独查看" : "Solo view")}</button><button onClick={restoreSelected}><RotateCcw size={14} />{zh ? "装回所选" : "Restore selected"}</button><button className="reset-action" onClick={restoreAll}><RotateCcw size={14} />{zh ? "全部复原" : "Restore all"}</button></div></section><PartDetails part={selectedPart} instance={selectedInstance} lang={lang} onFocus={() => scene.current?.focus()} onIsolate={() => setIsolatedId(isolatedId ? null : selectedId)} onRestore={restoreSelected} /></div><div className="hardware-tour"><div><span className="eyebrow">03 / GUIDED TOUR</span><strong>{tourIndex < 0 ? (zh ? "按自己的节奏探索" : "Explore at your own pace") : `${zh ? "导览步骤" : "Tour step"} ${tourIndex + 1} / ${tour.length}`}</strong><p>{tourIndex < 0 ? (zh ? "导览会依次聚焦机箱、主板、CPU、内存、显卡、存储和电源；随时可以退出。" : "The tour focuses on the case, board, CPU, memory, GPU, storage, and PSU; you can exit anytime.") : selectedPart.purpose[lang]}</p></div><button onClick={beginTour}>{tourIndex < 0 ? (zh ? "进入导览" : "Enter tour") : (zh ? "下一步" : "Next step")}<ArrowRight size={14} /></button>{tourIndex >= 0 && <button className="tour-exit" onClick={() => setTourIndex(-1)}>{zh ? "退出" : "Exit"}</button>}</div>{contentErrors.length > 0 && <div className="hardware-content-warning">{zh ? `内容校验发现 ${contentErrors.length} 项问题，请补齐视频目录。` : `${contentErrors.length} content validation issue(s) found; review the video catalog.`}</div>}</div>;
+  const { lang } = useI18n();
+  const zh = lang === "zh";
+  const scene = useRef(null);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [path, setPath] = useState(() => normalisePath(searchParams.get("path")));
+  const [layerExpanded, setLayerExpanded] = useState(0);
+  const [movementMode, setMovementMode] = useState(false);
+  const [solo, setSolo] = useState(false);
+  const [offsets, setOffsets] = useState({});
+  const [catalogCollapsed, setCatalogCollapsed] = useState(false);
+  const [webglUnavailable, setWebglUnavailable] = useState(false);
+  const currentNode = getHardwareNode(path[path.length - 1]) || hardwareTree.system;
+  const pathKey = path.join("/");
+  const currentOffsets = offsets[pathKey] || {};
+  const currentRoot = path[1] || "system";
+  const treeErrors = useMemo(() => validateHardwareTree(), []);
+
+  useEffect(() => {
+    const next = new URLSearchParams(searchParams);
+    if (path.length === 1) next.delete("path");
+    else next.set("path", path.slice(1).join("/"));
+    if (next.toString() !== searchParams.toString()) setSearchParams(next, { replace: true });
+  }, [path, searchParams, setSearchParams]);
+  useEffect(() => {
+    const requested = normalisePath(searchParams.get("path"));
+    setPath((current) => current.join("/") === requested.join("/") ? current : requested);
+  }, [searchParams]);
+
+  const selectCatalog = (nodeId) => {
+    setPath(nodeId === "system" ? ["system"] : ["system", nodeId]);
+    setLayerExpanded(0); setMovementMode(false); setSolo(false);
+  };
+  const selectChild = (nodeId) => {
+    if (currentNode.children.includes(nodeId)) { setPath([...path, nodeId]); setLayerExpanded(0); setSolo(false); }
+  };
+  const navigateBreadcrumb = (index) => { setPath(path.slice(0, index + 1)); setLayerExpanded(0); setSolo(false); };
+  const goBack = () => { if (path.length > 1) navigateBreadcrumb(path.length - 2); };
+  const goHome = () => navigateBreadcrumb(0);
+  const updateOffset = (nodeId, axis, value) => setOffsets((current) => ({ ...current, [pathKey]: { ...(current[pathKey] || {}), [nodeId]: { ...(current[pathKey]?.[nodeId] || {}), [axis]: value } } }));
+  const nudge = (axis, amount) => updateOffset(currentNode.nodeId, axis, Math.max(-1.6, Math.min(1.6, (currentOffsets[currentNode.nodeId]?.[axis] || 0) + amount)));
+  const restoreLayer = () => { setOffsets((current) => { const next = { ...current }; delete next[pathKey]; return next; }); setLayerExpanded(0); setMovementMode(false); };
+  const restoreAll = () => { setPath(["system"]); setLayerExpanded(0); setOffsets({}); setSolo(false); setMovementMode(false); scene.current?.reset(); };
+  const selectFromScene = (id) => {
+    const mapped = hardwareTree[id] ? id : sceneAliases[id];
+    if (!mapped) return;
+    if (mapped === "system") return goHome();
+    const node = hardwareTree[mapped];
+    if (node?.parentId && path[path.length - 1] === node.parentId) return selectChild(mapped);
+    if (hardwareCatalogRoots.includes(mapped)) return selectCatalog(mapped);
+    if (node) { const root = node.nodeId === "m2" ? "storage" : (path[1] || node.parentId); if (hardwareTree[root]) setPath(["system", root]); }
+  };
+  useEffect(() => {
+    const onKey = (event) => {
+      if (!movementMode || event.target.closest("input,button,a")) return;
+      const map = { ArrowLeft: ["x", -0.12], ArrowRight: ["x", 0.12], ArrowUp: ["y", 0.12], ArrowDown: ["y", -0.12], "[": ["z", -0.12], "]": ["z", 0.12] };
+      if (map[event.key]) { event.preventDefault(); nudge(...map[event.key]); }
+    };
+    window.addEventListener("keydown", onKey); return () => window.removeEventListener("keydown", onKey);
+  }, [movementMode, currentNode.nodeId, currentOffsets]);
+
+  return <div className="hardware-page drilldown-page">
+    <div className="hardware-heading"><div><span className="eyebrow">LEARN BY TAKING IT APART</span><h1><Box size={25} strokeWidth={1.35} />{zh ? "3D 电脑硬件实验室" : "3D Hardware Lab"}</h1><p>{zh ? "从整机目录进入有限层级的硬件结构树，逐层聚焦、展开和复原。" : "Navigate a finite hardware tree to focus, separate, and restore each layer."}</p></div><div className="hardware-heading-stats"><div><strong>8</strong><span>{zh ? "一级目录" : "catalog roots"}</span></div><div><strong>45</strong><span>{zh ? "知识节点" : "knowledge nodes"}</span></div><div><strong>2×</strong><span>{zh ? "视频平台" : "video platforms"}</span></div></div></div>
+    <div className="hardware-notice"><span><SlidersHorizontal size={15} />{zh ? "教学示意模型" : "Teaching model"}</span><p>{zh ? "组装节点说明真实安装关系；教学分离和架构示意节点只用于观察，不代表可徒手拆焊。每个开放节点都保留已核对的 B 站与 YouTube 讲解入口。" : "Assembly nodes explain real installation relationships. Teaching and architecture nodes are observational only, not a soldering guide. Open nodes retain checked Bilibili and YouTube lessons."}</p></div>
+    <HardwareBreadcrumb path={path} lang={lang} onNavigate={navigateBreadcrumb} />
+    <div className="hardware-toolbar"><div className="hardware-toolbar-group"><span className="toolbar-label">{zh ? "当前层" : "Layer"}</span><button className={layerExpanded === 0 ? "active" : ""} onClick={() => { setLayerExpanded(0); setOffsets((current) => ({ ...current, [pathKey]: {} })); }}><Box size={14} />{zh ? "组装" : "Assembly"}</button><button className={layerExpanded > 0 ? "active" : ""} onClick={() => setLayerExpanded(100)}><Move3d size={14} />{zh ? "展开本层" : "Expand layer"}</button></div><div className="hardware-toolbar-group"><span className="toolbar-label">{zh ? "交互" : "Interaction"}</span><button className={!movementMode ? "active" : ""} onClick={() => setMovementMode(false)}><Scan size={14} />{zh ? "观察" : "Observe"}</button><button className={movementMode ? "active" : ""} onClick={() => setMovementMode(true)}><Move3d size={14} />{zh ? "移动" : "Move"}</button></div><label className="hardware-check"><input type="checkbox" checked={solo} onChange={(event) => setSolo(event.target.checked)} />{zh ? "仅看当前" : "Solo current"}</label><span className="hardware-toolbar-help">{movementMode ? (zh ? "轴手柄拖动 · 方向键微调" : "Drag axis handles · arrow keys nudge") : (zh ? "点击模型或右侧子节点继续钻取" : "Click the model or a child node to drill down")}</span></div>
+    <div className="hardware-workspace"><HardwareCatalog lang={lang} currentRoot={currentRoot} onSelect={selectCatalog} collapsed={catalogCollapsed} onToggle={() => setCatalogCollapsed((value) => !value)} /><section className="hardware-stage"><div className="hardware-scene-wrap"><DrilldownScene ref={scene} path={path} activeNode={currentNode} layerExpanded={layerExpanded} offsets={currentOffsets} movementMode={movementMode} solo={solo} onSelectNode={selectFromScene} onOffsetChange={(id, axis, value) => updateOffset(id, axis, value)} onMoveEnd={() => {}} onUnavailable={() => setWebglUnavailable(true)} />{webglUnavailable && <div className="hardware-fallback"><strong>{zh ? "当前浏览器无法使用 WebGL" : "WebGL is unavailable"}</strong><p>{zh ? "仍可使用左侧目录、层级说明和视频完成学习。" : "Use the catalog, layer notes, and video links to continue learning."}</p></div>}<div className="hardware-scene-badge"><span className="status-dot" />{path.length === 1 ? (zh ? "整机视图" : "FULL DESKTOP") : currentNode.name.en.toUpperCase()}</div><div className="hardware-camera-controls"><button onClick={() => scene.current?.zoomIn()} aria-label={zh ? "放大" : "Zoom in"}><Plus size={16} /></button><button onClick={() => scene.current?.zoomOut()} aria-label={zh ? "缩小" : "Zoom out"}><Minus size={16} /></button><button onClick={() => scene.current?.fit()} aria-label={zh ? "适应画面" : "Fit view"}><Scan size={16} /></button></div><div className="hardware-axis-controls"><button onClick={() => nudge("x", -0.15)}><ArrowLeft size={13} />X−</button><button onClick={() => nudge("x", 0.15)}>X+<ArrowRight size={13} /></button><button onClick={() => nudge("y", 0.15)}><ArrowUp size={13} />Y+</button><button onClick={() => nudge("y", -0.15)}><ArrowDown size={13} />Y−</button><button onClick={() => nudge("z", -0.15)}>Z−</button><button onClick={() => nudge("z", 0.15)}>Z+</button></div><div className="hardware-stage-caption">{movementMode ? (zh ? "拖动彩色轴手柄或用方向键移动当前节点。" : "Drag the colored axis handles or use arrow keys to move the current node.") : (zh ? "右侧只列出当前层的直接子节点。" : "The right panel lists only direct children of the current layer.")}</div></div><div className="hardware-decompose"><div className="hardware-decompose-label"><span>{path.length === 1 ? (zh ? "整机空间展开" : "Desktop separation") : (zh ? "本层空间展开" : "Layer separation")} </span><strong>{layerExpanded}%</strong></div><input type="range" min="0" max="100" step="1" value={layerExpanded} onChange={(event) => { setLayerExpanded(Number(event.target.value)); setOffsets((current) => ({ ...current, [pathKey]: {} })); }} aria-label={zh ? "本层展开程度" : "Layer separation"} /><div className="hardware-range-labels"><span>{zh ? "组装" : "Assembly"}</span><span>{zh ? "完全展开" : "Fully separated"}</span></div></div><div className="hardware-bottom-actions"><button onClick={() => scene.current?.focus()}><Focus size={14} />{zh ? "聚焦当前" : "Focus current"}</button><button onClick={() => setSolo((value) => !value)}><EyeOff size={14} />{solo ? (zh ? "显示上下文" : "Show context") : (zh ? "仅看当前" : "Solo current")}</button><button onClick={restoreLayer}><RotateCcw size={14} />{zh ? "复原本层" : "Restore layer"}</button><button className="reset-action" onClick={restoreAll}><RotateCcw size={14} />{zh ? "返回整机" : "Back to desktop"}</button></div></section><ChildPartPanel node={currentNode} lang={lang} onSelect={selectChild} onBack={goBack} onHome={goHome} onFocus={() => scene.current?.focus()} onRestore={restoreLayer} /></div>
+    <div className="hardware-tour"><div><span className="eyebrow">03 / HIERARCHICAL DRILLDOWN</span><strong>{path.length === 1 ? (zh ? "从左侧目录开始" : "Start from the catalog") : `${zh ? "当前路径" : "Current path"} · ${path.length - 1} ${zh ? "层" : "level(s)"}`}</strong><p>{currentNode.purpose[lang]}</p></div><button onClick={() => path.length > 1 ? goBack() : selectCatalog("gpu")}>{path.length > 1 ? (zh ? "返回上一级" : "Back one level") : (zh ? "示例：打开显卡" : "Example: open GPU")}<ArrowRight size={14} /></button></div>
+    {treeErrors.length > 0 && <div className="hardware-content-warning">{zh ? `结构校验发现 ${treeErrors.length} 项问题。` : `${treeErrors.length} tree validation issue(s) found.`}</div>}
+  </div>;
 }

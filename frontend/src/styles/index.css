@@ -227,6 +227,49 @@ button:disabled { cursor: not-allowed; }
 .hardware-workspace-bar { background: #f8fbfb; }
 .hardware-bar-note { margin-left: auto; color: #6f8583; font-size: 11px; }
 
+/* Hierarchical hardware drilldown */
+.drilldown-page { --hardware-accent: #4f7778; }
+.hardware-breadcrumb { display: flex; align-items: center; gap: 4px; min-height: 32px; margin: 12px 0 9px; color: #839197; font-size: 11px; overflow-x: auto; white-space: nowrap; }
+.hardware-breadcrumb > span { display: inline-flex; align-items: center; gap: 4px; }
+.hardware-breadcrumb button { padding: 4px 6px; border-radius: 4px; color: #78878c; }
+.hardware-breadcrumb button:hover { background: #eef4f3; color: #426867; }
+.hardware-breadcrumb button.active { color: #365d5b; font-weight: 650; }
+.hardware-catalog-note { padding: 0 16px 15px; color: var(--color-faint); font-size: 11px; line-height: 1.7; }
+.drilldown-details { background: #fff; }
+.drilldown-details .hardware-detail-head { background: linear-gradient(180deg, #fff, #fbfdfd); }
+.hardware-status-tag.kind-assembly { color: #527a75; }
+.hardware-status-tag.kind-teaching { color: #a06e48; }
+.hardware-status-tag.kind-architecture { color: #65728f; }
+.hardware-node-purpose { margin-top: 17px; }
+.hardware-source-note { display: flex; align-items: flex-start; gap: 7px; margin-top: 13px; padding: 9px 10px; border: 1px solid #e4e8e8; border-radius: 6px; color: #718080; background: #f8fbfa; font-size: 11px; line-height: 1.55; }
+.hardware-source-note svg { flex: 0 0 auto; margin-top: 1px; color: #6c9990; }
+.hardware-child-list { display: grid; gap: 6px; }
+.hardware-child-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; padding: 10px; border: 1px solid #dce4e6; border-radius: 6px; color: #52646a; background: #fff; text-align: left; }
+.hardware-child-row:hover { border-color: #a9c0bf; background: #f5faf9; }
+.child-row-copy { min-width: 0; }
+.child-row-copy strong, .child-row-copy small { display: block; overflow: hidden; text-overflow: ellipsis; }
+.child-row-copy strong { color: #41545b; font-size: 12px; font-weight: 650; white-space: nowrap; }
+.child-row-copy small { margin-top: 4px; color: #829095; font-size: 10px; line-height: 1.45; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.child-row-meta { display: inline-flex; flex: 0 0 auto; align-items: center; color: #70908a; }
+.endpoint-dot { padding: 3px 5px; border: 1px solid #d8e4e0; border-radius: 4px; color: #70908a; font: 9px var(--font-mono); }
+.hardware-endpoint { display: flex; align-items: flex-start; gap: 7px; margin-top: 16px; padding: 11px; border: 1px dashed #ccd9da; border-radius: 6px; color: #74848a; background: #fbfcfc; font-size: 11px; line-height: 1.6; }
+.hardware-endpoint svg { flex: 0 0 auto; margin-top: 2px; color: #7b9994; }
+.hardware-detail-nav { display: flex; gap: 6px; padding: 0 17px 17px; }
+.hardware-detail-nav button { display: inline-flex; align-items: center; gap: 5px; padding: 7px 8px; border: 1px solid var(--color-line); border-radius: 5px; color: #607077; background: #fff; font-size: 11px; }
+.hardware-detail-nav button:hover:not(:disabled) { border-color: #adc1c3; background: #f7fbfa; }
+.hardware-detail-nav button:disabled { opacity: .45; cursor: not-allowed; }
+.drilldown-page .hardware-tour { margin-bottom: 6px; }
+.drilldown-page .hardware-notice { margin-bottom: 0; }
+
+@media (max-width: 640px) {
+  .hardware-breadcrumb { margin-top: 9px; }
+  .drilldown-page .hardware-workspace { height: auto; }
+  .drilldown-page .hardware-stage { min-height: 0; }
+  .drilldown-page .hardware-detail-nav { flex-wrap: wrap; }
+  .drilldown-page .hardware-detail-nav button { flex: 1 1 145px; justify-content: center; }
+  .drilldown-page .hardware-child-row { padding: 9px; }
+}
+
 @media (max-width: 1200px) {
   .hardware-workspace { grid-template-columns: 220px minmax(390px, 1fr) 285px; }
   .hardware-page { padding-inline: 22px; }
