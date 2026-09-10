@@ -15,3 +15,5 @@ IMPORTANT: the refinement script currently reads the named source .blend and ove
 Shared five-hour usage was 34% at start, 73% at next check and 89% at last check. The planned 40-point ceiling was exceeded between checks; stopped new work and saved this checkpoint. No claim is made that all shared consumption belongs to this task.
 
 Website deployment was intentionally not updated with unverified assets. This branch preserves work for continuation.
+
+Rerun completed successfully: Blender Cycles GPU rendered graphics-card-front.png and saved graphics-card.blend / graphics-card.glb. Inspected the draft front image: fan centers, shroud openings and exposed connectors are now present; further multi-view and browser verification remains required. Export: 24 mesh objects, 163499 triangles, 14351532-byte GLB; candidate requires web-size optimization. Candidate assets are saved in this branch, not deployed.
