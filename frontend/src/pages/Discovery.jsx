@@ -24,10 +24,10 @@ const ENTRIES = [
   {
     to: "/hardware",
     icon: Cpu,
-    title: "3D hardware lab",
-    titleZh: "3D 硬件实验室",
-    body: "Learn a desktop by taking it apart.",
-    bodyZh: "拆开一台电脑，认识每个零件。",
+    title: "3D GPU showcase",
+    titleZh: "3D 显卡展示",
+    body: "Explore a white and pink triple fan GPU.",
+    bodyZh: "旋转观察白粉配色三风扇显卡。",
   },
   {
     to: "/landscape",
@@ -126,7 +126,7 @@ export default function Discovery() {
             </Link>
             <Link className="clear-button clear-button-secondary" to="/hardware">
               <Cpu size={16} />
-              {zh ? "进入硬件实验室" : "Open hardware lab"}
+              {zh ? "查看 3D 显卡" : "Explore 3D GPU"}
             </Link>
           </div>
           {projectError && <ErrorBar message={projectError} onRetry={loadProjects} />}
