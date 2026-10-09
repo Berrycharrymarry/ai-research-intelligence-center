@@ -1,0 +1,14 @@
+{
+  "status": "passed",
+  "replacement": [
+    "PCB_Blockout",
+    "FAN_01_Motor",
+    "FAN_02_Motor",
+    "FAN_03_Motor"
+  ],
+  "objects": 940,
+  "meshes": 143,
+  "materials": 47,
+  "interactiveObjects": 560,
+  "conceptualObjects": 81
+}

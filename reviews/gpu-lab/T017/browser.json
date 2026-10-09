@@ -1,0 +1,18 @@
+{
+  "status": "passed",
+  "browser": "Codex in-app Chromium",
+  "url": "http://127.0.0.1:5173/hardware",
+  "checks": [
+    "verified initial 3D card load and correct fan-face orientation",
+    "verified exploded layout",
+    "verified recursive navigation from PCB to GPU package to GPU die",
+    "verified conceptual geometry labels and automatic obstruction reveal",
+    "verified selected-part independent rotation",
+    "verified reset, breadcrumb, parts tree and information panel",
+    "verified corrected Blender 5.2 Principled material export"
+  ],
+  "consoleErrors": 0,
+  "knownWarnings": [
+    "React Router v7 future-flag notices from the existing application"
+  ]
+}

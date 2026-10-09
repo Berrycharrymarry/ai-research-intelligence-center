@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "path": "C:\\Users\\Berry\\Documents\\ChatGPT\\AI科研中心\\gpu_5060ti_ultra_w\\interactive\\output\\interactive_gpu.blend",
+  "objects": 985,
+  "required": [
+    "INT_GPU_Die",
+    "INT_MEM_01_Die",
+    "INT_FAN_01_StatorCore",
+    "INT_PCB_Core"
+  ],
+  "sourceSha256": "d501cad14e9628143dd9ebe6b0dd15a3bd73af4bd903aac7470af17031e1d41d"
+}

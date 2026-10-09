@@ -1,0 +1,24 @@
+{
+  "status": "passed",
+  "implemented": [
+    "validated GLB and manifest loader",
+    "330-node semantic registry with 601 mesh bindings",
+    "raycast picking and hover/selection outlines",
+    "interruptible part extraction and camera focus",
+    "independent selected-part rotation",
+    "recursive breadcrumbs and parts tree navigation",
+    "temporary obstruction reveal and x-ray",
+    "whole-card exploded view and exact reset",
+    "bilingual information panel and conceptual-evidence labels",
+    "responsive dark hardware-lab interface",
+    "material isolation and WebGL resource disposal"
+  ],
+  "asset": {
+    "version": "gpu-lab-v1-r001",
+    "bytes": 9426400,
+    "sha256": "7d53cbd2090da712d06fa348ee039fea8a17d624e60c16d7b653fa541ca62d46",
+    "gltfNodes": 931,
+    "meshes": 601,
+    "materials": 36
+  }
+}

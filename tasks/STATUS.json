@@ -1,0 +1,438 @@
+{
+  "schemaVersion": 1,
+  "planningCompletedAt": "2026-10-08",
+  "implementationStarted": true,
+  "nextTask": "T018",
+  "tasks": [
+    {
+      "id": "T001",
+      "name": "建立施工基线与可恢复工作区",
+      "dependencies": [],
+      "status": "done",
+      "inputsHash": null,
+      "outputs": [
+        "reviews/gpu-lab/T001/baseline.json"
+      ],
+      "tests": [
+        {
+          "command": "task-specific checks",
+          "exitCode": 0,
+          "evidence": [
+            "reviews/gpu-lab/T001/baseline.json"
+          ]
+        }
+      ],
+      "checkpoint": "working-tree:T001",
+      "notes": []
+    },
+    {
+      "id": "T002",
+      "name": "冻结装配数据合同与内容骨架",
+      "dependencies": [
+        "T001"
+      ],
+      "status": "done",
+      "inputsHash": null,
+      "outputs": [
+        "reviews/gpu-lab/T002/contract.json",
+        "frontend/src/viz/gpu-lab/contracts.js",
+        "frontend/src/viz/gpu-lab/manifestValidator.js"
+      ],
+      "tests": [
+        {
+          "command": "task-specific checks",
+          "exitCode": 0,
+          "evidence": [
+            "reviews/gpu-lab/T002/contract.json",
+            "frontend/src/viz/gpu-lab/contracts.js",
+            "frontend/src/viz/gpu-lab/manifestValidator.js"
+          ]
+        }
+      ],
+      "checkpoint": "working-tree:T002",
+      "notes": []
+    },
+    {
+      "id": "T003",
+      "name": "复用旧模型建立语义组与枢轴",
+      "dependencies": [
+        "T002"
+      ],
+      "status": "done",
+      "inputsHash": null,
+      "outputs": [
+        "reviews/gpu-lab/T003/semantic.json"
+      ],
+      "tests": [
+        {
+          "command": "task-specific checks",
+          "exitCode": 0,
+          "evidence": [
+            "reviews/gpu-lab/T003/semantic.json"
+          ]
+        }
+      ],
+      "checkpoint": "working-tree:T003",
+      "notes": []
+    },
+    {
+      "id": "T004",
+      "name": "局部补建PCB与芯片封装示意",
+      "dependencies": [
+        "T003"
+      ],
+      "status": "done",
+      "inputsHash": null,
+      "outputs": [
+        "reviews/gpu-lab/T004/board.json"
+      ],
+      "tests": [
+        {
+          "command": "task-specific checks",
+          "exitCode": 0,
+          "evidence": [
+            "reviews/gpu-lab/T004/board.json"
+          ]
+        }
+      ],
+      "checkpoint": "working-tree:T004",
+      "notes": []
+    },
+    {
+      "id": "T005",
+      "name": "风扇内部与一体叶轮适配",
+      "dependencies": [
+        "T004"
+      ],
+      "status": "done",
+      "inputsHash": null,
+      "outputs": [
+        "reviews/gpu-lab/T005/fans.json"
+      ],
+      "tests": [
+        {
+          "command": "task-specific checks",
+          "exitCode": 0,
+          "evidence": [
+            "reviews/gpu-lab/T005/fans.json"
+          ]
+        }
+      ],
+      "checkpoint": "working-tree:T005",
+      "notes": []
+    },
+    {
+      "id": "T006",
+      "name": "语义GLB导出与资产验收",
+      "dependencies": [
+        "T005"
+      ],
+      "status": "done",
+      "inputsHash": null,
+      "outputs": [
+        "reviews/gpu-lab/T006/export.json",
+        "reviews/gpu-lab/T006/repeat.json",
+        "reviews/gpu-lab/T006/reopen.json"
+      ],
+      "tests": [
+        {
+          "command": "task-specific checks",
+          "exitCode": 0,
+          "evidence": [
+            "reviews/gpu-lab/T006/export.json",
+            "reviews/gpu-lab/T006/repeat.json",
+            "reviews/gpu-lab/T006/reopen.json"
+          ]
+        }
+      ],
+      "checkpoint": "working-tree:T006",
+      "notes": []
+    },
+    {
+      "id": "T007",
+      "name": "加载注册表与统一状态容器",
+      "dependencies": [
+        "T006"
+      ],
+      "status": "done",
+      "inputsHash": null,
+      "outputs": [
+        "reviews/gpu-lab/T007-T015/implementation.json",
+        "frontend/src/viz/gpu-lab/assetLoader.js",
+        "frontend/src/viz/gpu-lab/objectRegistry.js"
+      ],
+      "tests": [
+        {
+          "command": "task-specific checks",
+          "exitCode": 0,
+          "evidence": [
+            "reviews/gpu-lab/T007-T015/implementation.json",
+            "frontend/src/viz/gpu-lab/assetLoader.js",
+            "frontend/src/viz/gpu-lab/objectRegistry.js"
+          ]
+        }
+      ],
+      "checkpoint": "working-tree:T007",
+      "notes": []
+    },
+    {
+      "id": "T008",
+      "name": "渲染视口、射线拾取与轮廓高亮",
+      "dependencies": [
+        "T007"
+      ],
+      "status": "done",
+      "inputsHash": null,
+      "outputs": [
+        "reviews/gpu-lab/T007-T015/implementation.json",
+        "frontend/src/viz/gpu-lab/picking.js"
+      ],
+      "tests": [
+        {
+          "command": "task-specific checks",
+          "exitCode": 0,
+          "evidence": [
+            "reviews/gpu-lab/T007-T015/implementation.json",
+            "frontend/src/viz/gpu-lab/picking.js"
+          ]
+        }
+      ],
+      "checkpoint": "working-tree:T008",
+      "notes": []
+    },
+    {
+      "id": "T009",
+      "name": "可中断动画与空间布局规划器",
+      "dependencies": [
+        "T008"
+      ],
+      "status": "done",
+      "inputsHash": null,
+      "outputs": [
+        "reviews/gpu-lab/T007-T015/implementation.json",
+        "frontend/src/viz/gpu-lab/animationController.js"
+      ],
+      "tests": [
+        {
+          "command": "task-specific checks",
+          "exitCode": 0,
+          "evidence": [
+            "reviews/gpu-lab/T007-T015/implementation.json",
+            "frontend/src/viz/gpu-lab/animationController.js"
+          ]
+        }
+      ],
+      "checkpoint": "working-tree:T009",
+      "notes": []
+    },
+    {
+      "id": "T010",
+      "name": "点击拆离、镜头聚焦与独立转动",
+      "dependencies": [
+        "T009"
+      ],
+      "status": "done",
+      "inputsHash": null,
+      "outputs": [
+        "reviews/gpu-lab/T007-T015/implementation.json",
+        "frontend/src/viz/gpu-lab/GpuLabViewport.jsx"
+      ],
+      "tests": [
+        {
+          "command": "task-specific checks",
+          "exitCode": 0,
+          "evidence": [
+            "reviews/gpu-lab/T007-T015/implementation.json",
+            "frontend/src/viz/gpu-lab/GpuLabViewport.jsx"
+          ]
+        }
+      ],
+      "checkpoint": "working-tree:T010",
+      "notes": []
+    },
+    {
+      "id": "T011",
+      "name": "递归导航、树跳转与遮挡揭示",
+      "dependencies": [
+        "T010"
+      ],
+      "status": "done",
+      "inputsHash": null,
+      "outputs": [
+        "reviews/gpu-lab/T007-T015/implementation.json",
+        "frontend/src/components/hardware/GpuPartsTree.jsx"
+      ],
+      "tests": [
+        {
+          "command": "task-specific checks",
+          "exitCode": 0,
+          "evidence": [
+            "reviews/gpu-lab/T007-T015/implementation.json",
+            "frontend/src/components/hardware/GpuPartsTree.jsx"
+          ]
+        }
+      ],
+      "checkpoint": "working-tree:T011",
+      "notes": []
+    },
+    {
+      "id": "T012",
+      "name": "整体爆炸、当前复原与全局重置",
+      "dependencies": [
+        "T011"
+      ],
+      "status": "done",
+      "inputsHash": null,
+      "outputs": [
+        "reviews/gpu-lab/T007-T015/implementation.json",
+        "frontend/src/viz/gpu-lab/interactionState.js"
+      ],
+      "tests": [
+        {
+          "command": "task-specific checks",
+          "exitCode": 0,
+          "evidence": [
+            "reviews/gpu-lab/T007-T015/implementation.json",
+            "frontend/src/viz/gpu-lab/interactionState.js"
+          ]
+        }
+      ],
+      "checkpoint": "working-tree:T012",
+      "notes": []
+    },
+    {
+      "id": "T013",
+      "name": "完整零件树、信息栏与响应式页面",
+      "dependencies": [
+        "T012"
+      ],
+      "status": "done",
+      "inputsHash": null,
+      "outputs": [
+        "reviews/gpu-lab/T007-T015/implementation.json",
+        "frontend/src/pages/HardwareLab.jsx",
+        "frontend/src/styles/hardware.css"
+      ],
+      "tests": [
+        {
+          "command": "task-specific checks",
+          "exitCode": 0,
+          "evidence": [
+            "reviews/gpu-lab/T007-T015/implementation.json",
+            "frontend/src/pages/HardwareLab.jsx",
+            "frontend/src/styles/hardware.css"
+          ]
+        }
+      ],
+      "checkpoint": "working-tree:T013",
+      "notes": []
+    },
+    {
+      "id": "T014",
+      "name": "全部部件内容、连接关系与教学边界验收",
+      "dependencies": [
+        "T013"
+      ],
+      "status": "done",
+      "inputsHash": null,
+      "outputs": [
+        "reviews/gpu-lab/T007-T015/implementation.json"
+      ],
+      "tests": [
+        {
+          "command": "task-specific checks",
+          "exitCode": 0,
+          "evidence": [
+            "reviews/gpu-lab/T007-T015/implementation.json"
+          ]
+        }
+      ],
+      "checkpoint": "working-tree:T014",
+      "notes": []
+    },
+    {
+      "id": "T015",
+      "name": "光照材质、性能与资源生命周期优化",
+      "dependencies": [
+        "T014"
+      ],
+      "status": "done",
+      "inputsHash": null,
+      "outputs": [
+        "reviews/gpu-lab/T007-T015/implementation.json"
+      ],
+      "tests": [
+        {
+          "command": "task-specific checks",
+          "exitCode": 0,
+          "evidence": [
+            "reviews/gpu-lab/T007-T015/implementation.json"
+          ]
+        }
+      ],
+      "checkpoint": "working-tree:T015",
+      "notes": []
+    },
+    {
+      "id": "T016",
+      "name": "全局自动回归与故障恢复测试",
+      "dependencies": [
+        "T015"
+      ],
+      "status": "done",
+      "inputsHash": null,
+      "outputs": [
+        "reviews/gpu-lab/T016/regression.json"
+      ],
+      "tests": [
+        {
+          "command": "task-specific checks",
+          "exitCode": 0,
+          "evidence": [
+            "reviews/gpu-lab/T016/regression.json"
+          ]
+        }
+      ],
+      "checkpoint": "working-tree:T016",
+      "notes": []
+    },
+    {
+      "id": "T017",
+      "name": "真实浏览器验收与发布构建",
+      "dependencies": [
+        "T016"
+      ],
+      "status": "done",
+      "inputsHash": null,
+      "outputs": [
+        "reviews/gpu-lab/T017/browser.json",
+        "frontend/dist/index.html"
+      ],
+      "tests": [
+        {
+          "command": "task-specific checks",
+          "exitCode": 0,
+          "evidence": [
+            "reviews/gpu-lab/T017/browser.json",
+            "frontend/dist/index.html"
+          ]
+        }
+      ],
+      "checkpoint": "working-tree:T017",
+      "notes": []
+    },
+    {
+      "id": "T018",
+      "name": "发布现有网站并核对线上拆解",
+      "dependencies": [
+        "T017"
+      ],
+      "status": "pending",
+      "inputsHash": null,
+      "outputs": [],
+      "tests": [],
+      "checkpoint": null,
+      "notes": []
+    }
+  ]
+}

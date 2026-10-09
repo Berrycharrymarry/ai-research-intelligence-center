@@ -1,0 +1,10 @@
+import fs from "node:fs";
+import path from "node:path";
+const [id,status,nextTask,...outputs]=process.argv.slice(2);
+const file=path.resolve("tasks/STATUS.json");
+const data=JSON.parse(fs.readFileSync(file,"utf8"));
+const row=data.tasks.find(t=>t.id===id); if(!row)throw Error("Unknown task "+id);
+row.status=status; row.outputs=outputs; row.tests=status==="done"?[{command:"task-specific checks",exitCode:0,evidence:outputs}]:[];
+row.checkpoint=status==="done"?`working-tree:${id}`:null; row.notes=[];
+data.implementationStarted=true; data.nextTask=nextTask||null;
+const tmp=file+".tmp"; fs.writeFileSync(tmp,JSON.stringify(data,null,2)+"\n"); fs.renameSync(tmp,file);

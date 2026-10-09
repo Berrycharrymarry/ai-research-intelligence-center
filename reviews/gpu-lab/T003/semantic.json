@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "sourceOwned": 479,
+  "semanticNodes": 330,
+  "sourceSha256": "d501cad14e9628143dd9ebe6b0dd15a3bd73af4bd903aac7470af17031e1d41d",
+  "objects": 859,
+  "meshes": 62,
+  "materials": 37,
+  "interactiveObjects": 479,
+  "conceptualObjects": 0
+}

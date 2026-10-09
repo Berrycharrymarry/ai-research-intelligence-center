@@ -1,0 +1,68 @@
+{
+  "planningOnly": true,
+  "status": "passed",
+  "taskCount": 18,
+  "taskIds": [
+    "T001",
+    "T002",
+    "T003",
+    "T004",
+    "T005",
+    "T006",
+    "T007",
+    "T008",
+    "T009",
+    "T010",
+    "T011",
+    "T012",
+    "T013",
+    "T014",
+    "T015",
+    "T016",
+    "T017",
+    "T018"
+  ],
+  "acyclicDependencies": true,
+  "allTaskFilesWritten": true,
+  "sourceVisibleObjects": 479,
+  "assignedExactlyOnce": 479,
+  "semanticNodes": 330,
+  "level1": [
+    "shroud",
+    "fan.01",
+    "fan.02",
+    "fan.03",
+    "cooling",
+    "board",
+    "backplate",
+    "io"
+  ],
+  "newGeometryPartNodes": 70,
+  "plannedDepthExceptions": [
+    {
+      "id": "backplate",
+      "reason": "拆到单块板和一体螺丝即原子，不虚构L3"
+    }
+  ],
+  "sourceHashes": {
+    "blend": "d501cad14e9628143dd9ebe6b0dd15a3bd73af4bd903aac7470af17031e1d41d",
+    "glb": "cc13979a6cd3243de78df48f53747ad731500e8ad7d66fa0b83af37425ecd030"
+  },
+  "implementationStatus": "not_started",
+  "note": "验证规划文件与映射，不等同模型补建/交互实现/视觉验收完成。",
+  "requiredDocuments": [
+    "docs/PROJECT_SPEC.md",
+    "docs/MODEL_AUDIT.md",
+    "docs/ASSEMBLY_HIERARCHY.md",
+    "docs/INTERACTION_DESIGN.md",
+    "docs/TECHNICAL_ARCHITECTURE.md",
+    "docs/ANIMATION_SYSTEM.md",
+    "docs/UI_SPEC.md",
+    "docs/TEST_PLAN.md"
+  ],
+  "entry": "tasks/SOL_START_HERE.md",
+  "globalReview": "docs/PLAN_REVIEW.md",
+  "allRequiredFilesExist": true,
+  "sourceFileHashesRechecked": true,
+  "existingTrackedProductFilesChanged": false
+}

@@ -1,0 +1,15 @@
+{
+  "status": "passed",
+  "date": "2026-10-08",
+  "siteHead": "7cf951b4dd93dc7bb3161ed2e5668d36d78c062e",
+  "originHead": "7cf951b4dd93dc7bb3161ed2e5668d36d78c062e",
+  "branch": "codex/gpu-disassembly-lab",
+  "node": "v24.19.0",
+  "npm": "11.17.0",
+  "blender": "5.2.2 LTS",
+  "sourceBlendSha256": "d501cad14e9628143dd9ebe6b0dd15a3bd73af4bd903aac7470af17031e1d41d",
+  "sourceGlbSha256": "cc13979a6cd3243de78df48f53747ad731500e8ad7d66fa0b83af37425ecd030",
+  "remoteAhead": 0,
+  "remoteBehind": 0,
+  "notes": ["Planning files are untracked user-authorized work and preserved.", "Source Task01-11 assets remain read-only."]
+}

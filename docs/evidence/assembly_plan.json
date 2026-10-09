@@ -1,0 +1,5283 @@
+{
+  "planningOnly": true,
+  "schemaVersion": 1,
+  "sourceSha256": "d501cad14e9628143dd9ebe6b0dd15a3bd73af4bd903aac7470af17031e1d41d",
+  "glbSha256": "cc13979a6cd3243de78df48f53747ad731500e8ad7d66fa0b83af37425ecd030",
+  "coordinateFrame": "BLENDER_X_LENGTH_Y_HEIGHT_Z_FRONT",
+  "nodes": [
+    {
+      "id": "gpu",
+      "parentId": null,
+      "nameZh": "完整显卡",
+      "kind": "assembly",
+      "joint": "service",
+      "evidence": "existing_model",
+      "leafReason": null,
+      "sourceNames": [],
+      "newGeometry": false,
+      "childIds": [
+        "shroud",
+        "fan.01",
+        "fan.02",
+        "fan.03",
+        "cooling",
+        "board",
+        "backplate",
+        "io"
+      ]
+    },
+    {
+      "id": "shroud",
+      "parentId": "gpu",
+      "nameZh": "前面罩与外框",
+      "kind": "assembly",
+      "joint": "service",
+      "evidence": "existing_model",
+      "leafReason": null,
+      "sourceNames": [],
+      "newGeometry": false,
+      "childIds": [
+        "shroud.face",
+        "shroud.frame",
+        "shroud.screw.01",
+        "shroud.screw.02",
+        "shroud.screw.03",
+        "shroud.screw.04"
+      ]
+    },
+    {
+      "id": "shroud.face",
+      "parentId": "shroud",
+      "nameZh": "一体面罩与附着装饰",
+      "kind": "part",
+      "joint": "service",
+      "evidence": "existing_model",
+      "leafReason": "原子零件；不可继续无损拆分",
+      "sourceNames": [
+        "BRAND_Front_ULTRA_W",
+        "BRAND_Front_iGAME",
+        "DECOR_Arc_01_1",
+        "DECOR_Arc_01_2",
+        "DECOR_Arc_02_1",
+        "DECOR_Arc_02_2",
+        "DECOR_Arc_03_1",
+        "DECOR_Arc_03_2",
+        "DECOR_Border",
+        "DECOR_Pattern_A_01",
+        "DECOR_Pattern_A_02",
+        "DECOR_Pattern_A_03",
+        "DECOR_Pattern_A_04",
+        "DECOR_Pattern_A_05",
+        "DECOR_Pattern_A_06",
+        "DECOR_Pattern_A_07",
+        "DECOR_Pattern_A_08",
+        "DECOR_Pattern_A_09",
+        "DECOR_Pattern_A_10",
+        "DECOR_Pattern_A_11",
+        "DECOR_Pattern_B_01",
+        "DECOR_Pattern_B_02",
+        "DECOR_Pattern_B_03",
+        "DECOR_Pattern_B_04",
+        "DECOR_Pattern_B_05",
+        "DECOR_Pattern_B_06",
+        "DECOR_Pattern_B_07",
+        "DECOR_Pattern_B_08",
+        "DECOR_Pattern_B_09",
+        "DECOR_Pattern_B_10",
+        "DECOR_Pattern_B_11",
+        "DECOR_Triangle_Corner_01",
+        "DECOR_Triangle_Corner_02",
+        "DECOR_Triangle_Corner_03",
+        "DECOR_Triangle_Corner_04",
+        "DECOR_Triangle_Main_01",
+        "DECOR_Triangle_Main_02",
+        "SHROUD_Aperture_Rim_01",
+        "SHROUD_Aperture_Rim_02",
+        "SHROUD_Aperture_Rim_03",
+        "SHROUD_Face"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "shroud.frame",
+      "parentId": "shroud",
+      "nameZh": "侧框",
+      "kind": "assembly",
+      "joint": "service",
+      "evidence": "existing_model",
+      "leafReason": null,
+      "sourceNames": [],
+      "newGeometry": false,
+      "childIds": [
+        "shroud.frame.top",
+        "shroud.frame.bottom",
+        "shroud.frame.right"
+      ]
+    },
+    {
+      "id": "shroud.frame.top",
+      "parentId": "shroud.frame",
+      "nameZh": "顶部侧框",
+      "kind": "part",
+      "joint": "service",
+      "evidence": "existing_model",
+      "leafReason": "原子零件；不可继续无损拆分",
+      "sourceNames": [
+        "BRAND_SidePlaque",
+        "BRAND_Side_GEFORCE_RTX",
+        "SHROUD_Wall_Top"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "shroud.frame.bottom",
+      "parentId": "shroud.frame",
+      "nameZh": "底部侧框",
+      "kind": "part",
+      "joint": "service",
+      "evidence": "existing_model",
+      "leafReason": "原子零件；不可继续无损拆分",
+      "sourceNames": [
+        "SHROUD_Wall_Bottom"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "shroud.frame.right",
+      "parentId": "shroud.frame",
+      "nameZh": "右端侧框",
+      "kind": "part",
+      "joint": "service",
+      "evidence": "existing_model",
+      "leafReason": "原子零件；不可继续无损拆分",
+      "sourceNames": [
+        "SHROUD_Wall_Right"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "shroud.screw.01",
+      "parentId": "shroud",
+      "nameZh": "侧框螺丝1",
+      "kind": "part",
+      "joint": "service",
+      "evidence": "existing_model",
+      "leafReason": "一体螺丝，头与杆不可拆开",
+      "sourceNames": [
+        "MECH_SideScrew_01_Head",
+        "MECH_SideScrew_01_Shaft"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "shroud.screw.02",
+      "parentId": "shroud",
+      "nameZh": "侧框螺丝2",
+      "kind": "part",
+      "joint": "service",
+      "evidence": "existing_model",
+      "leafReason": "一体螺丝，头与杆不可拆开",
+      "sourceNames": [
+        "MECH_SideScrew_02_Head",
+        "MECH_SideScrew_02_Shaft"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "shroud.screw.03",
+      "parentId": "shroud",
+      "nameZh": "侧框螺丝3",
+      "kind": "part",
+      "joint": "service",
+      "evidence": "existing_model",
+      "leafReason": "一体螺丝，头与杆不可拆开",
+      "sourceNames": [
+        "MECH_SideScrew_03_Head",
+        "MECH_SideScrew_03_Shaft"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "shroud.screw.04",
+      "parentId": "shroud",
+      "nameZh": "侧框螺丝4",
+      "kind": "part",
+      "joint": "service",
+      "evidence": "existing_model",
+      "leafReason": "一体螺丝，头与杆不可拆开",
+      "sourceNames": [
+        "MECH_SideScrew_04_Head",
+        "MECH_SideScrew_04_Shaft"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "fan.01",
+      "parentId": "gpu",
+      "nameZh": "风扇1",
+      "kind": "assembly",
+      "joint": "service",
+      "evidence": "existing_model",
+      "leafReason": null,
+      "sourceNames": [],
+      "newGeometry": false,
+      "childIds": [
+        "fan.01.rotor",
+        "fan.01.stator",
+        "fan.01.bearing",
+        "fan.01.mount"
+      ]
+    },
+    {
+      "id": "fan.01.rotor",
+      "parentId": "fan.01",
+      "nameZh": "转子组件",
+      "kind": "assembly",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": null,
+      "sourceNames": [],
+      "newGeometry": false,
+      "childIds": [
+        "fan.01.impeller",
+        "fan.01.cap",
+        "fan.01.shaft",
+        "fan.01.magnet"
+      ]
+    },
+    {
+      "id": "fan.01.impeller",
+      "parentId": "fan.01.rotor",
+      "nameZh": "一体叶轮",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "叶片、轮毂和外圈按一体叶轮处理；不可逐片拆开",
+      "sourceNames": [
+        "FAN_01_Blade_01",
+        "FAN_01_Blade_02",
+        "FAN_01_Blade_03",
+        "FAN_01_Blade_04",
+        "FAN_01_Blade_05",
+        "FAN_01_Blade_06",
+        "FAN_01_Blade_07",
+        "FAN_01_Blade_08",
+        "FAN_01_Blade_09",
+        "FAN_01_Hub",
+        "FAN_01_OuterRing"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "fan.01.cap",
+      "parentId": "fan.01.rotor",
+      "nameZh": "轮毂盖与标识",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "原子零件；不可继续无损拆分",
+      "sourceNames": [
+        "BRAND_FanText_01",
+        "DECOR_Badge_01",
+        "FAN_01_Cap"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "fan.01.shaft",
+      "parentId": "fan.01.rotor",
+      "nameZh": "转轴",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "原子零件；不可继续无损拆分",
+      "sourceNames": [
+        "FAN_01_Shaft"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "fan.01.magnet",
+      "parentId": "fan.01.rotor",
+      "nameZh": "示意磁环",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "示意永磁环，停止于单件",
+      "sourceNames": [],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "fan.01.stator",
+      "parentId": "fan.01",
+      "nameZh": "定子示意",
+      "kind": "assembly",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": null,
+      "sourceNames": [],
+      "newGeometry": false,
+      "childIds": [
+        "fan.01.core",
+        "fan.01.winding"
+      ]
+    },
+    {
+      "id": "fan.01.core",
+      "parentId": "fan.01.stator",
+      "nameZh": "定子铁芯",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "已到最小教学零件；不继续虚构内部",
+      "sourceNames": [],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "fan.01.winding",
+      "parentId": "fan.01.stator",
+      "nameZh": "绕组",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "已到最小教学零件；不继续虚构内部",
+      "sourceNames": [],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "fan.01.bearing",
+      "parentId": "fan.01",
+      "nameZh": "轴支承示意",
+      "kind": "assembly",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": null,
+      "sourceNames": [],
+      "newGeometry": false,
+      "childIds": [
+        "fan.01.sleeve",
+        "fan.01.spacer"
+      ]
+    },
+    {
+      "id": "fan.01.sleeve",
+      "parentId": "fan.01.bearing",
+      "nameZh": "滑动支承套",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "已到最小教学零件；不继续虚构内部",
+      "sourceNames": [],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "fan.01.spacer",
+      "parentId": "fan.01.bearing",
+      "nameZh": "间隔环",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "已到最小教学零件；不继续虚构内部",
+      "sourceNames": [],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "fan.01.mount",
+      "parentId": "fan.01",
+      "nameZh": "安装支承示意",
+      "kind": "assembly",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": null,
+      "sourceNames": [],
+      "newGeometry": false,
+      "childIds": [
+        "fan.01.base",
+        "fan.01.supports"
+      ]
+    },
+    {
+      "id": "fan.01.base",
+      "parentId": "fan.01.mount",
+      "nameZh": "电机支承底座",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "已到最小教学零件；不继续虚构内部",
+      "sourceNames": [
+        "FAN_01_Motor"
+      ],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "fan.01.supports",
+      "parentId": "fan.01.mount",
+      "nameZh": "支承筋",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "已到最小教学零件；不继续虚构内部",
+      "sourceNames": [],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "fan.02",
+      "parentId": "gpu",
+      "nameZh": "风扇2",
+      "kind": "assembly",
+      "joint": "service",
+      "evidence": "existing_model",
+      "leafReason": null,
+      "sourceNames": [],
+      "newGeometry": false,
+      "childIds": [
+        "fan.02.rotor",
+        "fan.02.stator",
+        "fan.02.bearing",
+        "fan.02.mount"
+      ]
+    },
+    {
+      "id": "fan.02.rotor",
+      "parentId": "fan.02",
+      "nameZh": "转子组件",
+      "kind": "assembly",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": null,
+      "sourceNames": [],
+      "newGeometry": false,
+      "childIds": [
+        "fan.02.impeller",
+        "fan.02.cap",
+        "fan.02.shaft",
+        "fan.02.magnet"
+      ]
+    },
+    {
+      "id": "fan.02.impeller",
+      "parentId": "fan.02.rotor",
+      "nameZh": "一体叶轮",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "叶片、轮毂和外圈按一体叶轮处理；不可逐片拆开",
+      "sourceNames": [
+        "FAN_02_Blade_01",
+        "FAN_02_Blade_02",
+        "FAN_02_Blade_03",
+        "FAN_02_Blade_04",
+        "FAN_02_Blade_05",
+        "FAN_02_Blade_06",
+        "FAN_02_Blade_07",
+        "FAN_02_Blade_08",
+        "FAN_02_Blade_09",
+        "FAN_02_Hub",
+        "FAN_02_OuterRing"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "fan.02.cap",
+      "parentId": "fan.02.rotor",
+      "nameZh": "轮毂盖与标识",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "原子零件；不可继续无损拆分",
+      "sourceNames": [
+        "BRAND_CenterMark_01",
+        "BRAND_CenterMark_02",
+        "DECOR_Badge_02",
+        "FAN_02_Cap"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "fan.02.shaft",
+      "parentId": "fan.02.rotor",
+      "nameZh": "转轴",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "原子零件；不可继续无损拆分",
+      "sourceNames": [
+        "FAN_02_Shaft"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "fan.02.magnet",
+      "parentId": "fan.02.rotor",
+      "nameZh": "示意磁环",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "示意永磁环，停止于单件",
+      "sourceNames": [],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "fan.02.stator",
+      "parentId": "fan.02",
+      "nameZh": "定子示意",
+      "kind": "assembly",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": null,
+      "sourceNames": [],
+      "newGeometry": false,
+      "childIds": [
+        "fan.02.core",
+        "fan.02.winding"
+      ]
+    },
+    {
+      "id": "fan.02.core",
+      "parentId": "fan.02.stator",
+      "nameZh": "定子铁芯",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "已到最小教学零件；不继续虚构内部",
+      "sourceNames": [],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "fan.02.winding",
+      "parentId": "fan.02.stator",
+      "nameZh": "绕组",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "已到最小教学零件；不继续虚构内部",
+      "sourceNames": [],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "fan.02.bearing",
+      "parentId": "fan.02",
+      "nameZh": "轴支承示意",
+      "kind": "assembly",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": null,
+      "sourceNames": [],
+      "newGeometry": false,
+      "childIds": [
+        "fan.02.sleeve",
+        "fan.02.spacer"
+      ]
+    },
+    {
+      "id": "fan.02.sleeve",
+      "parentId": "fan.02.bearing",
+      "nameZh": "滑动支承套",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "已到最小教学零件；不继续虚构内部",
+      "sourceNames": [],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "fan.02.spacer",
+      "parentId": "fan.02.bearing",
+      "nameZh": "间隔环",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "已到最小教学零件；不继续虚构内部",
+      "sourceNames": [],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "fan.02.mount",
+      "parentId": "fan.02",
+      "nameZh": "安装支承示意",
+      "kind": "assembly",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": null,
+      "sourceNames": [],
+      "newGeometry": false,
+      "childIds": [
+        "fan.02.base",
+        "fan.02.supports"
+      ]
+    },
+    {
+      "id": "fan.02.base",
+      "parentId": "fan.02.mount",
+      "nameZh": "电机支承底座",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "已到最小教学零件；不继续虚构内部",
+      "sourceNames": [
+        "FAN_02_Motor"
+      ],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "fan.02.supports",
+      "parentId": "fan.02.mount",
+      "nameZh": "支承筋",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "已到最小教学零件；不继续虚构内部",
+      "sourceNames": [],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "fan.03",
+      "parentId": "gpu",
+      "nameZh": "风扇3",
+      "kind": "assembly",
+      "joint": "service",
+      "evidence": "existing_model",
+      "leafReason": null,
+      "sourceNames": [],
+      "newGeometry": false,
+      "childIds": [
+        "fan.03.rotor",
+        "fan.03.stator",
+        "fan.03.bearing",
+        "fan.03.mount"
+      ]
+    },
+    {
+      "id": "fan.03.rotor",
+      "parentId": "fan.03",
+      "nameZh": "转子组件",
+      "kind": "assembly",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": null,
+      "sourceNames": [],
+      "newGeometry": false,
+      "childIds": [
+        "fan.03.impeller",
+        "fan.03.cap",
+        "fan.03.shaft",
+        "fan.03.magnet"
+      ]
+    },
+    {
+      "id": "fan.03.impeller",
+      "parentId": "fan.03.rotor",
+      "nameZh": "一体叶轮",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "叶片、轮毂和外圈按一体叶轮处理；不可逐片拆开",
+      "sourceNames": [
+        "FAN_03_Blade_01",
+        "FAN_03_Blade_02",
+        "FAN_03_Blade_03",
+        "FAN_03_Blade_04",
+        "FAN_03_Blade_05",
+        "FAN_03_Blade_06",
+        "FAN_03_Blade_07",
+        "FAN_03_Blade_08",
+        "FAN_03_Blade_09",
+        "FAN_03_Hub",
+        "FAN_03_OuterRing"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "fan.03.cap",
+      "parentId": "fan.03.rotor",
+      "nameZh": "轮毂盖与标识",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "原子零件；不可继续无损拆分",
+      "sourceNames": [
+        "BRAND_FanText_03",
+        "DECOR_Badge_03",
+        "FAN_03_Cap"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "fan.03.shaft",
+      "parentId": "fan.03.rotor",
+      "nameZh": "转轴",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "原子零件；不可继续无损拆分",
+      "sourceNames": [
+        "FAN_03_Shaft"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "fan.03.magnet",
+      "parentId": "fan.03.rotor",
+      "nameZh": "示意磁环",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "示意永磁环，停止于单件",
+      "sourceNames": [],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "fan.03.stator",
+      "parentId": "fan.03",
+      "nameZh": "定子示意",
+      "kind": "assembly",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": null,
+      "sourceNames": [],
+      "newGeometry": false,
+      "childIds": [
+        "fan.03.core",
+        "fan.03.winding"
+      ]
+    },
+    {
+      "id": "fan.03.core",
+      "parentId": "fan.03.stator",
+      "nameZh": "定子铁芯",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "已到最小教学零件；不继续虚构内部",
+      "sourceNames": [],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "fan.03.winding",
+      "parentId": "fan.03.stator",
+      "nameZh": "绕组",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "已到最小教学零件；不继续虚构内部",
+      "sourceNames": [],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "fan.03.bearing",
+      "parentId": "fan.03",
+      "nameZh": "轴支承示意",
+      "kind": "assembly",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": null,
+      "sourceNames": [],
+      "newGeometry": false,
+      "childIds": [
+        "fan.03.sleeve",
+        "fan.03.spacer"
+      ]
+    },
+    {
+      "id": "fan.03.sleeve",
+      "parentId": "fan.03.bearing",
+      "nameZh": "滑动支承套",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "已到最小教学零件；不继续虚构内部",
+      "sourceNames": [],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "fan.03.spacer",
+      "parentId": "fan.03.bearing",
+      "nameZh": "间隔环",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "已到最小教学零件；不继续虚构内部",
+      "sourceNames": [],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "fan.03.mount",
+      "parentId": "fan.03",
+      "nameZh": "安装支承示意",
+      "kind": "assembly",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": null,
+      "sourceNames": [],
+      "newGeometry": false,
+      "childIds": [
+        "fan.03.base",
+        "fan.03.supports"
+      ]
+    },
+    {
+      "id": "fan.03.base",
+      "parentId": "fan.03.mount",
+      "nameZh": "电机支承底座",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "已到最小教学零件；不继续虚构内部",
+      "sourceNames": [
+        "FAN_03_Motor"
+      ],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "fan.03.supports",
+      "parentId": "fan.03.mount",
+      "nameZh": "支承筋",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "已到最小教学零件；不继续虚构内部",
+      "sourceNames": [],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "cooling",
+      "parentId": "gpu",
+      "nameZh": "散热系统",
+      "kind": "assembly",
+      "joint": "service",
+      "evidence": "existing_model",
+      "leafReason": null,
+      "sourceNames": [],
+      "newGeometry": false,
+      "childIds": [
+        "cooling.bank.01",
+        "cooling.bank.02",
+        "cooling.thermal"
+      ]
+    },
+    {
+      "id": "cooling.bank.01",
+      "parentId": "cooling",
+      "nameZh": "鳍片组1",
+      "kind": "assembly",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": null,
+      "sourceNames": [],
+      "newGeometry": false,
+      "childIds": [
+        "cooling.fin.01.001",
+        "cooling.fin.01.002",
+        "cooling.fin.01.003",
+        "cooling.fin.01.004",
+        "cooling.fin.01.005",
+        "cooling.fin.01.006",
+        "cooling.fin.01.007",
+        "cooling.fin.01.008",
+        "cooling.fin.01.009",
+        "cooling.fin.01.010",
+        "cooling.fin.01.011",
+        "cooling.fin.01.012",
+        "cooling.fin.01.013",
+        "cooling.fin.01.014",
+        "cooling.fin.01.015",
+        "cooling.fin.01.016",
+        "cooling.fin.01.017",
+        "cooling.fin.01.018",
+        "cooling.fin.01.019",
+        "cooling.fin.01.020",
+        "cooling.fin.01.021",
+        "cooling.fin.01.022",
+        "cooling.fin.01.023",
+        "cooling.fin.01.024",
+        "cooling.fin.01.025",
+        "cooling.fin.01.026",
+        "cooling.fin.01.027",
+        "cooling.fin.01.028",
+        "cooling.fin.01.029",
+        "cooling.fin.01.030",
+        "cooling.fin.01.031",
+        "cooling.fin.01.032",
+        "cooling.fin.01.033",
+        "cooling.fin.01.034",
+        "cooling.fin.01.035",
+        "cooling.fin.01.036",
+        "cooling.fin.01.037",
+        "cooling.fin.01.038",
+        "cooling.fin.01.039",
+        "cooling.fin.01.040",
+        "cooling.fin.01.041",
+        "cooling.fin.01.042",
+        "cooling.fin.01.043",
+        "cooling.fin.01.044",
+        "cooling.fin.01.045",
+        "cooling.fin.01.046",
+        "cooling.fin.01.047",
+        "cooling.fin.01.048",
+        "cooling.fin.01.049",
+        "cooling.fin.01.050",
+        "cooling.fin.01.051",
+        "cooling.fin.01.052",
+        "cooling.fin.01.053",
+        "cooling.fin.01.054",
+        "cooling.fin.01.055",
+        "cooling.fin.01.056",
+        "cooling.fin.01.057",
+        "cooling.fin.01.058",
+        "cooling.fin.01.059",
+        "cooling.fin.01.060",
+        "cooling.fin.01.061",
+        "cooling.fin.01.062",
+        "cooling.fin.01.063",
+        "cooling.fin.01.064",
+        "cooling.fin.01.065",
+        "cooling.fin.01.066",
+        "cooling.fin.01.067",
+        "cooling.fin.01.068",
+        "cooling.fin.01.069",
+        "cooling.fin.01.070",
+        "cooling.fin.01.071",
+        "cooling.fin.01.072",
+        "cooling.fin.01.073",
+        "cooling.fin.01.074",
+        "cooling.fin.01.075",
+        "cooling.fin.01.076",
+        "cooling.fin.01.077",
+        "cooling.fin.01.078",
+        "cooling.fin.01.079",
+        "cooling.fin.01.080"
+      ]
+    },
+    {
+      "id": "cooling.fin.01.001",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-1",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_001"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.002",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-2",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_002"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.003",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-3",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_003"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.004",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-4",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_004"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.005",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-5",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_005"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.006",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-6",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_006"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.007",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-7",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_007"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.008",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-8",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_008"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.009",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-9",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_009"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.010",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-10",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_010"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.011",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-11",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_011"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.012",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-12",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_012"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.013",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-13",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_013"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.014",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-14",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_014"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.015",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-15",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_015"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.016",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-16",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_016"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.017",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-17",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_017"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.018",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-18",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_018"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.019",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-19",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_019"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.020",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-20",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_020"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.021",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-21",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_021"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.022",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-22",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_022"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.023",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-23",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_023"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.024",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-24",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_024"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.025",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-25",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_025"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.026",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-26",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_026"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.027",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-27",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_027"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.028",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-28",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_028"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.029",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-29",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_029"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.030",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-30",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_030"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.031",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-31",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_031"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.032",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-32",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_032"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.033",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-33",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_033"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.034",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-34",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_034"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.035",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-35",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_035"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.036",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-36",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_036"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.037",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-37",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_037"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.038",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-38",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_038"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.039",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-39",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_039"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.040",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-40",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_040"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.041",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-41",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_041"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.042",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-42",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_042"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.043",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-43",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_043"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.044",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-44",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_044"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.045",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-45",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_045"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.046",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-46",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_046"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.047",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-47",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_047"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.048",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-48",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_048"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.049",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-49",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_049"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.050",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-50",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_050"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.051",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-51",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_051"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.052",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-52",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_052"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.053",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-53",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_053"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.054",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-54",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_054"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.055",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-55",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_055"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.056",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-56",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_056"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.057",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-57",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_057"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.058",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-58",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_058"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.059",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-59",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_059"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.060",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-60",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_060"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.061",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-61",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_061"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.062",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-62",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_062"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.063",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-63",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_063"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.064",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-64",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_064"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.065",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-65",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_065"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.066",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-66",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_066"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.067",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-67",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_067"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.068",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-68",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_068"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.069",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-69",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_069"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.070",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-70",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_070"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.071",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-71",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_071"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.072",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-72",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_072"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.073",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-73",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_073"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.074",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-74",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_074"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.075",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-75",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_075"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.076",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-76",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_076"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.077",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-77",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_077"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.078",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-78",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_078"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.079",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-79",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_079"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.01.080",
+      "parentId": "cooling.bank.01",
+      "nameZh": "鳍片1-80",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_01_080"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.bank.02",
+      "parentId": "cooling",
+      "nameZh": "鳍片组2",
+      "kind": "assembly",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": null,
+      "sourceNames": [],
+      "newGeometry": false,
+      "childIds": [
+        "cooling.fin.02.001",
+        "cooling.fin.02.002",
+        "cooling.fin.02.003",
+        "cooling.fin.02.004",
+        "cooling.fin.02.005",
+        "cooling.fin.02.006",
+        "cooling.fin.02.007",
+        "cooling.fin.02.008",
+        "cooling.fin.02.009",
+        "cooling.fin.02.010",
+        "cooling.fin.02.011",
+        "cooling.fin.02.012",
+        "cooling.fin.02.013",
+        "cooling.fin.02.014",
+        "cooling.fin.02.015",
+        "cooling.fin.02.016",
+        "cooling.fin.02.017",
+        "cooling.fin.02.018",
+        "cooling.fin.02.019",
+        "cooling.fin.02.020",
+        "cooling.fin.02.021",
+        "cooling.fin.02.022",
+        "cooling.fin.02.023",
+        "cooling.fin.02.024",
+        "cooling.fin.02.025",
+        "cooling.fin.02.026",
+        "cooling.fin.02.027",
+        "cooling.fin.02.028",
+        "cooling.fin.02.029",
+        "cooling.fin.02.030",
+        "cooling.fin.02.031",
+        "cooling.fin.02.032",
+        "cooling.fin.02.033",
+        "cooling.fin.02.034",
+        "cooling.fin.02.035",
+        "cooling.fin.02.036",
+        "cooling.fin.02.037",
+        "cooling.fin.02.038",
+        "cooling.fin.02.039",
+        "cooling.fin.02.040",
+        "cooling.fin.02.041",
+        "cooling.fin.02.042",
+        "cooling.fin.02.043",
+        "cooling.fin.02.044",
+        "cooling.fin.02.045",
+        "cooling.fin.02.046",
+        "cooling.fin.02.047",
+        "cooling.fin.02.048",
+        "cooling.fin.02.049",
+        "cooling.fin.02.050",
+        "cooling.fin.02.051",
+        "cooling.fin.02.052",
+        "cooling.fin.02.053",
+        "cooling.fin.02.054",
+        "cooling.fin.02.055",
+        "cooling.fin.02.056",
+        "cooling.fin.02.057",
+        "cooling.fin.02.058",
+        "cooling.fin.02.059",
+        "cooling.fin.02.060",
+        "cooling.fin.02.061",
+        "cooling.fin.02.062",
+        "cooling.fin.02.063",
+        "cooling.fin.02.064",
+        "cooling.fin.02.065",
+        "cooling.fin.02.066",
+        "cooling.fin.02.067",
+        "cooling.fin.02.068",
+        "cooling.fin.02.069",
+        "cooling.fin.02.070",
+        "cooling.fin.02.071",
+        "cooling.fin.02.072",
+        "cooling.fin.02.073",
+        "cooling.fin.02.074",
+        "cooling.fin.02.075",
+        "cooling.fin.02.076",
+        "cooling.fin.02.077",
+        "cooling.fin.02.078",
+        "cooling.fin.02.079",
+        "cooling.fin.02.080"
+      ]
+    },
+    {
+      "id": "cooling.fin.02.001",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-1",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_001"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.002",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-2",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_002"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.003",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-3",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_003"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.004",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-4",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_004"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.005",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-5",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_005"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.006",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-6",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_006"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.007",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-7",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_007"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.008",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-8",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_008"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.009",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-9",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_009"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.010",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-10",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_010"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.011",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-11",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_011"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.012",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-12",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_012"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.013",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-13",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_013"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.014",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-14",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_014"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.015",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-15",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_015"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.016",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-16",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_016"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.017",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-17",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_017"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.018",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-18",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_018"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.019",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-19",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_019"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.020",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-20",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_020"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.021",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-21",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_021"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.022",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-22",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_022"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.023",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-23",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_023"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.024",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-24",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_024"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.025",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-25",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_025"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.026",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-26",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_026"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.027",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-27",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_027"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.028",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-28",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_028"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.029",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-29",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_029"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.030",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-30",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_030"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.031",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-31",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_031"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.032",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-32",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_032"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.033",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-33",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_033"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.034",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-34",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_034"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.035",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-35",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_035"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.036",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-36",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_036"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.037",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-37",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_037"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.038",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-38",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_038"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.039",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-39",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_039"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.040",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-40",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_040"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.041",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-41",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_041"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.042",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-42",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_042"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.043",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-43",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_043"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.044",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-44",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_044"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.045",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-45",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_045"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.046",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-46",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_046"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.047",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-47",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_047"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.048",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-48",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_048"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.049",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-49",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_049"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.050",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-50",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_050"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.051",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-51",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_051"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.052",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-52",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_052"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.053",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-53",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_053"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.054",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-54",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_054"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.055",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-55",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_055"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.056",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-56",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_056"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.057",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-57",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_057"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.058",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-58",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_058"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.059",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-59",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_059"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.060",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-60",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_060"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.061",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-61",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_061"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.062",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-62",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_062"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.063",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-63",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_063"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.064",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-64",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_064"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.065",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-65",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_065"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.066",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-66",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_066"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.067",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-67",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_067"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.068",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-68",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_068"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.069",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-69",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_069"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.070",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-70",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_070"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.071",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-71",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_071"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.072",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-72",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_072"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.073",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-73",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_073"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.074",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-74",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_074"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.075",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-75",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_075"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.076",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-76",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_076"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.077",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-77",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_077"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.078",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-78",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_078"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.079",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-79",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_079"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.fin.02.080",
+      "parentId": "cooling.bank.02",
+      "nameZh": "鳍片2-80",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "单片金属鳍片；分离仅为钎焊内部示意",
+      "sourceNames": [
+        "COOLING_Fin_02_080"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.thermal",
+      "parentId": "cooling",
+      "nameZh": "导热接触组件",
+      "kind": "assembly",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": null,
+      "sourceNames": [],
+      "newGeometry": false,
+      "childIds": [
+        "cooling.plate",
+        "cooling.pipe.01",
+        "cooling.pipe.02",
+        "cooling.pipe.03"
+      ]
+    },
+    {
+      "id": "cooling.plate",
+      "parentId": "cooling.thermal",
+      "nameZh": "接触底板",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "原子零件；不可继续无损拆分",
+      "sourceNames": [
+        "COOLING_ContactPlate"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.pipe.01",
+      "parentId": "cooling.thermal",
+      "nameZh": "热管1",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "密封热管，未确认内部结构，停止机械拆解",
+      "sourceNames": [
+        "COOLING_Heatpipe_01"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.pipe.02",
+      "parentId": "cooling.thermal",
+      "nameZh": "热管2",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "密封热管，未确认内部结构，停止机械拆解",
+      "sourceNames": [
+        "COOLING_Heatpipe_02"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "cooling.pipe.03",
+      "parentId": "cooling.thermal",
+      "nameZh": "热管3",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "密封热管，未确认内部结构，停止机械拆解",
+      "sourceNames": [
+        "COOLING_Heatpipe_03"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "board",
+      "parentId": "gpu",
+      "nameZh": "PCB与板上系统",
+      "kind": "assembly",
+      "joint": "service",
+      "evidence": "existing_model",
+      "leafReason": null,
+      "sourceNames": [],
+      "newGeometry": false,
+      "childIds": [
+        "board.laminate",
+        "board.gpu",
+        "board.memory.01",
+        "board.memory.02",
+        "board.memory.03",
+        "board.memory.04",
+        "board.stage.01",
+        "board.inductor.01",
+        "board.capacitor.01",
+        "board.stage.02",
+        "board.inductor.02",
+        "board.capacitor.02",
+        "board.stage.03",
+        "board.inductor.03",
+        "board.capacitor.03",
+        "board.controller",
+        "board.power"
+      ]
+    },
+    {
+      "id": "board.laminate",
+      "parentId": "board",
+      "nameZh": "PCB材料层示意",
+      "kind": "assembly",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": null,
+      "sourceNames": [],
+      "newGeometry": false,
+      "childIds": [
+        "board.core",
+        "board.copper.front",
+        "board.mask.front",
+        "board.copper.back",
+        "board.mask.back"
+      ]
+    },
+    {
+      "id": "board.core",
+      "parentId": "board.laminate",
+      "nameZh": "板芯与一体舌片",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "连续板材，不切出可拔下的舌片",
+      "sourceNames": [
+        "EC_Tongue",
+        "PCB_Blockout"
+      ],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "board.copper.front",
+      "parentId": "board.laminate",
+      "nameZh": "正面铜层与触点示意",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "层压/镀覆材料，分离仅为示意",
+      "sourceNames": [
+        "EC_Pad_Front_A_01",
+        "EC_Pad_Front_A_02",
+        "EC_Pad_Front_A_03",
+        "EC_Pad_Front_A_04",
+        "EC_Pad_Front_A_05",
+        "EC_Pad_Front_A_06",
+        "EC_Pad_Front_A_07",
+        "EC_Pad_Front_A_08",
+        "EC_Pad_Front_A_09",
+        "EC_Pad_Front_A_10",
+        "EC_Pad_Front_A_11",
+        "EC_Pad_Front_B_01",
+        "EC_Pad_Front_B_02",
+        "EC_Pad_Front_B_03",
+        "EC_Pad_Front_B_04",
+        "EC_Pad_Front_B_05",
+        "EC_Pad_Front_B_06",
+        "EC_Pad_Front_B_07",
+        "EC_Pad_Front_B_08",
+        "EC_Pad_Front_B_09",
+        "EC_Pad_Front_B_10",
+        "EC_Pad_Front_B_11",
+        "EC_Pad_Front_B_12",
+        "EC_Pad_Front_B_13",
+        "EC_Pad_Front_B_14",
+        "EC_Pad_Front_B_15",
+        "EC_Pad_Front_B_16",
+        "EC_Pad_Front_B_17",
+        "EC_Pad_Front_B_18",
+        "EC_Pad_Front_B_19",
+        "EC_Pad_Front_B_20",
+        "EC_Pad_Front_B_21",
+        "EC_Pad_Front_B_22",
+        "EC_Pad_Front_B_23",
+        "EC_Pad_Front_B_24",
+        "EC_Pad_Front_B_25",
+        "EC_Pad_Front_B_26",
+        "EC_Pad_Front_B_27",
+        "EC_Pad_Front_B_28",
+        "EC_Pad_Front_B_29",
+        "EC_Pad_Front_B_30",
+        "EC_Pad_Front_B_31",
+        "EC_Pad_Front_B_32",
+        "EC_Pad_Front_B_33",
+        "EC_Pad_Front_B_34",
+        "EC_Pad_Front_B_35",
+        "EC_Pad_Front_B_36",
+        "EC_Pad_Front_B_37",
+        "EC_Pad_Front_B_38",
+        "EC_Pad_Front_B_39",
+        "EC_Pad_Front_B_40",
+        "EC_Pad_Front_B_41",
+        "EC_Pad_Front_B_42",
+        "EC_Pad_Front_B_43",
+        "EC_Pad_Front_B_44",
+        "EC_Pad_Front_B_45",
+        "EC_Pad_Front_B_46",
+        "EC_Pad_Front_B_47",
+        "EC_Pad_Front_B_48",
+        "EC_Pad_Front_B_49",
+        "EC_Pad_Front_B_50",
+        "EC_Pad_Front_B_51",
+        "EC_Pad_Front_B_52",
+        "EC_Pad_Front_B_53",
+        "EC_Pad_Front_B_54",
+        "EC_Pad_Front_B_55",
+        "EC_Pad_Front_B_56",
+        "EC_Pad_Front_B_57",
+        "EC_Pad_Front_B_58",
+        "EC_Pad_Front_B_59",
+        "EC_Pad_Front_B_60",
+        "EC_Pad_Front_B_61",
+        "EC_Pad_Front_B_62",
+        "EC_Pad_Front_B_63",
+        "EC_Pad_Front_B_64",
+        "EC_Pad_Front_B_65",
+        "EC_Pad_Front_B_66",
+        "EC_Pad_Front_B_67",
+        "EC_Pad_Front_B_68",
+        "EC_Pad_Front_B_69",
+        "EC_Pad_Front_B_70",
+        "EC_Pad_Front_B_71"
+      ],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "board.mask.front",
+      "parentId": "board.laminate",
+      "nameZh": "正面阻焊层示意",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "层压/镀覆材料，分离仅为示意",
+      "sourceNames": [],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "board.copper.back",
+      "parentId": "board.laminate",
+      "nameZh": "背面铜层与触点示意",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "层压/镀覆材料，分离仅为示意",
+      "sourceNames": [
+        "EC_Pad_Back_A_01",
+        "EC_Pad_Back_A_02",
+        "EC_Pad_Back_A_03",
+        "EC_Pad_Back_A_04",
+        "EC_Pad_Back_A_05",
+        "EC_Pad_Back_A_06",
+        "EC_Pad_Back_A_07",
+        "EC_Pad_Back_A_08",
+        "EC_Pad_Back_A_09",
+        "EC_Pad_Back_A_10",
+        "EC_Pad_Back_A_11",
+        "EC_Pad_Back_B_01",
+        "EC_Pad_Back_B_02",
+        "EC_Pad_Back_B_03",
+        "EC_Pad_Back_B_04",
+        "EC_Pad_Back_B_05",
+        "EC_Pad_Back_B_06",
+        "EC_Pad_Back_B_07",
+        "EC_Pad_Back_B_08",
+        "EC_Pad_Back_B_09",
+        "EC_Pad_Back_B_10",
+        "EC_Pad_Back_B_11",
+        "EC_Pad_Back_B_12",
+        "EC_Pad_Back_B_13",
+        "EC_Pad_Back_B_14",
+        "EC_Pad_Back_B_15",
+        "EC_Pad_Back_B_16",
+        "EC_Pad_Back_B_17",
+        "EC_Pad_Back_B_18",
+        "EC_Pad_Back_B_19",
+        "EC_Pad_Back_B_20",
+        "EC_Pad_Back_B_21",
+        "EC_Pad_Back_B_22",
+        "EC_Pad_Back_B_23",
+        "EC_Pad_Back_B_24",
+        "EC_Pad_Back_B_25",
+        "EC_Pad_Back_B_26",
+        "EC_Pad_Back_B_27",
+        "EC_Pad_Back_B_28",
+        "EC_Pad_Back_B_29",
+        "EC_Pad_Back_B_30",
+        "EC_Pad_Back_B_31",
+        "EC_Pad_Back_B_32",
+        "EC_Pad_Back_B_33",
+        "EC_Pad_Back_B_34",
+        "EC_Pad_Back_B_35",
+        "EC_Pad_Back_B_36",
+        "EC_Pad_Back_B_37",
+        "EC_Pad_Back_B_38",
+        "EC_Pad_Back_B_39",
+        "EC_Pad_Back_B_40",
+        "EC_Pad_Back_B_41",
+        "EC_Pad_Back_B_42",
+        "EC_Pad_Back_B_43",
+        "EC_Pad_Back_B_44",
+        "EC_Pad_Back_B_45",
+        "EC_Pad_Back_B_46",
+        "EC_Pad_Back_B_47",
+        "EC_Pad_Back_B_48",
+        "EC_Pad_Back_B_49",
+        "EC_Pad_Back_B_50",
+        "EC_Pad_Back_B_51",
+        "EC_Pad_Back_B_52",
+        "EC_Pad_Back_B_53",
+        "EC_Pad_Back_B_54",
+        "EC_Pad_Back_B_55",
+        "EC_Pad_Back_B_56",
+        "EC_Pad_Back_B_57",
+        "EC_Pad_Back_B_58",
+        "EC_Pad_Back_B_59",
+        "EC_Pad_Back_B_60",
+        "EC_Pad_Back_B_61",
+        "EC_Pad_Back_B_62",
+        "EC_Pad_Back_B_63",
+        "EC_Pad_Back_B_64",
+        "EC_Pad_Back_B_65",
+        "EC_Pad_Back_B_66",
+        "EC_Pad_Back_B_67",
+        "EC_Pad_Back_B_68",
+        "EC_Pad_Back_B_69",
+        "EC_Pad_Back_B_70",
+        "EC_Pad_Back_B_71"
+      ],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "board.mask.back",
+      "parentId": "board.laminate",
+      "nameZh": "背面阻焊层示意",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "层压/镀覆材料，分离仅为示意",
+      "sourceNames": [],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "board.gpu",
+      "parentId": "board",
+      "nameZh": "GPU封装示意",
+      "kind": "assembly",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": null,
+      "sourceNames": [],
+      "newGeometry": false,
+      "childIds": [
+        "board.gpu.die",
+        "board.gpu.substrate",
+        "board.gpu.bga",
+        "board.gpu.tim"
+      ]
+    },
+    {
+      "id": "board.gpu.die",
+      "parentId": "board.gpu",
+      "nameZh": "GPU裸片",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "封装/材料示意原子件；不细分晶体管或虚构引脚",
+      "sourceNames": [],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "board.gpu.substrate",
+      "parentId": "board.gpu",
+      "nameZh": "封装基板",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "封装/材料示意原子件；不细分晶体管或虚构引脚",
+      "sourceNames": [],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "board.gpu.bga",
+      "parentId": "board.gpu",
+      "nameZh": "焊球组",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "封装/材料示意原子件；不细分晶体管或虚构引脚",
+      "sourceNames": [],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "board.gpu.tim",
+      "parentId": "board.gpu",
+      "nameZh": "导热界面",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "封装/材料示意原子件；不细分晶体管或虚构引脚",
+      "sourceNames": [],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "board.memory.01",
+      "parentId": "board",
+      "nameZh": "显存封装示意1",
+      "kind": "assembly",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": null,
+      "sourceNames": [],
+      "newGeometry": false,
+      "childIds": [
+        "board.memory.01.mold",
+        "board.memory.01.substrate",
+        "board.memory.01.die",
+        "board.memory.01.bga"
+      ]
+    },
+    {
+      "id": "board.memory.01.mold",
+      "parentId": "board.memory.01",
+      "nameZh": "模封壳",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "封装示意最小部件",
+      "sourceNames": [],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "board.memory.01.substrate",
+      "parentId": "board.memory.01",
+      "nameZh": "封装基板",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "封装示意最小部件",
+      "sourceNames": [],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "board.memory.01.die",
+      "parentId": "board.memory.01",
+      "nameZh": "显存裸片",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "封装示意最小部件",
+      "sourceNames": [],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "board.memory.01.bga",
+      "parentId": "board.memory.01",
+      "nameZh": "焊球组",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "封装示意最小部件",
+      "sourceNames": [],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "board.memory.02",
+      "parentId": "board",
+      "nameZh": "显存封装示意2",
+      "kind": "assembly",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": null,
+      "sourceNames": [],
+      "newGeometry": false,
+      "childIds": [
+        "board.memory.02.mold",
+        "board.memory.02.substrate",
+        "board.memory.02.die",
+        "board.memory.02.bga"
+      ]
+    },
+    {
+      "id": "board.memory.02.mold",
+      "parentId": "board.memory.02",
+      "nameZh": "模封壳",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "封装示意最小部件",
+      "sourceNames": [],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "board.memory.02.substrate",
+      "parentId": "board.memory.02",
+      "nameZh": "封装基板",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "封装示意最小部件",
+      "sourceNames": [],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "board.memory.02.die",
+      "parentId": "board.memory.02",
+      "nameZh": "显存裸片",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "封装示意最小部件",
+      "sourceNames": [],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "board.memory.02.bga",
+      "parentId": "board.memory.02",
+      "nameZh": "焊球组",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "封装示意最小部件",
+      "sourceNames": [],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "board.memory.03",
+      "parentId": "board",
+      "nameZh": "显存封装示意3",
+      "kind": "assembly",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": null,
+      "sourceNames": [],
+      "newGeometry": false,
+      "childIds": [
+        "board.memory.03.mold",
+        "board.memory.03.substrate",
+        "board.memory.03.die",
+        "board.memory.03.bga"
+      ]
+    },
+    {
+      "id": "board.memory.03.mold",
+      "parentId": "board.memory.03",
+      "nameZh": "模封壳",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "封装示意最小部件",
+      "sourceNames": [],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "board.memory.03.substrate",
+      "parentId": "board.memory.03",
+      "nameZh": "封装基板",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "封装示意最小部件",
+      "sourceNames": [],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "board.memory.03.die",
+      "parentId": "board.memory.03",
+      "nameZh": "显存裸片",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "封装示意最小部件",
+      "sourceNames": [],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "board.memory.03.bga",
+      "parentId": "board.memory.03",
+      "nameZh": "焊球组",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "封装示意最小部件",
+      "sourceNames": [],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "board.memory.04",
+      "parentId": "board",
+      "nameZh": "显存封装示意4",
+      "kind": "assembly",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": null,
+      "sourceNames": [],
+      "newGeometry": false,
+      "childIds": [
+        "board.memory.04.mold",
+        "board.memory.04.substrate",
+        "board.memory.04.die",
+        "board.memory.04.bga"
+      ]
+    },
+    {
+      "id": "board.memory.04.mold",
+      "parentId": "board.memory.04",
+      "nameZh": "模封壳",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "封装示意最小部件",
+      "sourceNames": [],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "board.memory.04.substrate",
+      "parentId": "board.memory.04",
+      "nameZh": "封装基板",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "封装示意最小部件",
+      "sourceNames": [],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "board.memory.04.die",
+      "parentId": "board.memory.04",
+      "nameZh": "显存裸片",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "封装示意最小部件",
+      "sourceNames": [],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "board.memory.04.bga",
+      "parentId": "board.memory.04",
+      "nameZh": "焊球组",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "封装示意最小部件",
+      "sourceNames": [],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "board.stage.01",
+      "parentId": "board",
+      "nameZh": "功率级示意1",
+      "kind": "assembly",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": null,
+      "sourceNames": [],
+      "newGeometry": false,
+      "childIds": [
+        "board.stage.01.mold",
+        "board.stage.01.die",
+        "board.stage.01.leadframe"
+      ]
+    },
+    {
+      "id": "board.stage.01.mold",
+      "parentId": "board.stage.01",
+      "nameZh": "模封壳",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "内部教学示意零件，停止继续分割",
+      "sourceNames": [],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "board.stage.01.die",
+      "parentId": "board.stage.01",
+      "nameZh": "裸片",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "内部教学示意零件，停止继续分割",
+      "sourceNames": [],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "board.stage.01.leadframe",
+      "parentId": "board.stage.01",
+      "nameZh": "引线框架",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "内部教学示意零件，停止继续分割",
+      "sourceNames": [],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "board.inductor.01",
+      "parentId": "board",
+      "nameZh": "电感示意1",
+      "kind": "assembly",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": null,
+      "sourceNames": [],
+      "newGeometry": false,
+      "childIds": [
+        "board.inductor.01.core",
+        "board.inductor.01.coil"
+      ]
+    },
+    {
+      "id": "board.inductor.01.core",
+      "parentId": "board.inductor.01",
+      "nameZh": "芯体",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "内部教学示意零件，停止继续分割",
+      "sourceNames": [],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "board.inductor.01.coil",
+      "parentId": "board.inductor.01",
+      "nameZh": "线圈",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "内部教学示意零件，停止继续分割",
+      "sourceNames": [],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "board.capacitor.01",
+      "parentId": "board",
+      "nameZh": "电容示意1",
+      "kind": "assembly",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": null,
+      "sourceNames": [],
+      "newGeometry": false,
+      "childIds": [
+        "board.capacitor.01.can",
+        "board.capacitor.01.core"
+      ]
+    },
+    {
+      "id": "board.capacitor.01.can",
+      "parentId": "board.capacitor.01",
+      "nameZh": "外壳",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "内部教学示意零件，停止继续分割",
+      "sourceNames": [],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "board.capacitor.01.core",
+      "parentId": "board.capacitor.01",
+      "nameZh": "芯体",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "内部教学示意零件，停止继续分割",
+      "sourceNames": [],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "board.stage.02",
+      "parentId": "board",
+      "nameZh": "功率级示意2",
+      "kind": "assembly",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": null,
+      "sourceNames": [],
+      "newGeometry": false,
+      "childIds": [
+        "board.stage.02.mold",
+        "board.stage.02.die",
+        "board.stage.02.leadframe"
+      ]
+    },
+    {
+      "id": "board.stage.02.mold",
+      "parentId": "board.stage.02",
+      "nameZh": "模封壳",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "内部教学示意零件，停止继续分割",
+      "sourceNames": [],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "board.stage.02.die",
+      "parentId": "board.stage.02",
+      "nameZh": "裸片",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "内部教学示意零件，停止继续分割",
+      "sourceNames": [],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "board.stage.02.leadframe",
+      "parentId": "board.stage.02",
+      "nameZh": "引线框架",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "内部教学示意零件，停止继续分割",
+      "sourceNames": [],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "board.inductor.02",
+      "parentId": "board",
+      "nameZh": "电感示意2",
+      "kind": "assembly",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": null,
+      "sourceNames": [],
+      "newGeometry": false,
+      "childIds": [
+        "board.inductor.02.core",
+        "board.inductor.02.coil"
+      ]
+    },
+    {
+      "id": "board.inductor.02.core",
+      "parentId": "board.inductor.02",
+      "nameZh": "芯体",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "内部教学示意零件，停止继续分割",
+      "sourceNames": [],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "board.inductor.02.coil",
+      "parentId": "board.inductor.02",
+      "nameZh": "线圈",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "内部教学示意零件，停止继续分割",
+      "sourceNames": [],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "board.capacitor.02",
+      "parentId": "board",
+      "nameZh": "电容示意2",
+      "kind": "assembly",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": null,
+      "sourceNames": [],
+      "newGeometry": false,
+      "childIds": [
+        "board.capacitor.02.can",
+        "board.capacitor.02.core"
+      ]
+    },
+    {
+      "id": "board.capacitor.02.can",
+      "parentId": "board.capacitor.02",
+      "nameZh": "外壳",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "内部教学示意零件，停止继续分割",
+      "sourceNames": [],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "board.capacitor.02.core",
+      "parentId": "board.capacitor.02",
+      "nameZh": "芯体",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "内部教学示意零件，停止继续分割",
+      "sourceNames": [],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "board.stage.03",
+      "parentId": "board",
+      "nameZh": "功率级示意3",
+      "kind": "assembly",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": null,
+      "sourceNames": [],
+      "newGeometry": false,
+      "childIds": [
+        "board.stage.03.mold",
+        "board.stage.03.die",
+        "board.stage.03.leadframe"
+      ]
+    },
+    {
+      "id": "board.stage.03.mold",
+      "parentId": "board.stage.03",
+      "nameZh": "模封壳",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "内部教学示意零件，停止继续分割",
+      "sourceNames": [],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "board.stage.03.die",
+      "parentId": "board.stage.03",
+      "nameZh": "裸片",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "内部教学示意零件，停止继续分割",
+      "sourceNames": [],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "board.stage.03.leadframe",
+      "parentId": "board.stage.03",
+      "nameZh": "引线框架",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "内部教学示意零件，停止继续分割",
+      "sourceNames": [],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "board.inductor.03",
+      "parentId": "board",
+      "nameZh": "电感示意3",
+      "kind": "assembly",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": null,
+      "sourceNames": [],
+      "newGeometry": false,
+      "childIds": [
+        "board.inductor.03.core",
+        "board.inductor.03.coil"
+      ]
+    },
+    {
+      "id": "board.inductor.03.core",
+      "parentId": "board.inductor.03",
+      "nameZh": "芯体",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "内部教学示意零件，停止继续分割",
+      "sourceNames": [],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "board.inductor.03.coil",
+      "parentId": "board.inductor.03",
+      "nameZh": "线圈",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "内部教学示意零件，停止继续分割",
+      "sourceNames": [],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "board.capacitor.03",
+      "parentId": "board",
+      "nameZh": "电容示意3",
+      "kind": "assembly",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": null,
+      "sourceNames": [],
+      "newGeometry": false,
+      "childIds": [
+        "board.capacitor.03.can",
+        "board.capacitor.03.core"
+      ]
+    },
+    {
+      "id": "board.capacitor.03.can",
+      "parentId": "board.capacitor.03",
+      "nameZh": "外壳",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "内部教学示意零件，停止继续分割",
+      "sourceNames": [],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "board.capacitor.03.core",
+      "parentId": "board.capacitor.03",
+      "nameZh": "芯体",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "内部教学示意零件，停止继续分割",
+      "sourceNames": [],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "board.controller",
+      "parentId": "board",
+      "nameZh": "控制器封装示意",
+      "kind": "assembly",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": null,
+      "sourceNames": [],
+      "newGeometry": false,
+      "childIds": [
+        "board.controller.mold",
+        "board.controller.die",
+        "board.controller.leadframe"
+      ]
+    },
+    {
+      "id": "board.controller.mold",
+      "parentId": "board.controller",
+      "nameZh": "控制器模封壳",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "封装示意最小零件",
+      "sourceNames": [],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "board.controller.die",
+      "parentId": "board.controller",
+      "nameZh": "控制器裸片",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "封装示意最小零件",
+      "sourceNames": [],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "board.controller.leadframe",
+      "parentId": "board.controller",
+      "nameZh": "控制器引线框架",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "conceptual",
+      "leafReason": "封装示意最小零件",
+      "sourceNames": [],
+      "newGeometry": true,
+      "childIds": []
+    },
+    {
+      "id": "board.power",
+      "parentId": "board",
+      "nameZh": "顶部供电插座",
+      "kind": "assembly",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": null,
+      "sourceNames": [],
+      "newGeometry": false,
+      "childIds": [
+        "board.power.housing",
+        "board.power.mount.01",
+        "board.power.mount.02",
+        "board.power.contact.01",
+        "board.power.contact.02",
+        "board.power.contact.03",
+        "board.power.contact.04",
+        "board.power.contact.05",
+        "board.power.contact.06",
+        "board.power.contact.07",
+        "board.power.contact.08"
+      ]
+    },
+    {
+      "id": "board.power.housing",
+      "parentId": "board.power",
+      "nameZh": "插座塑料外壳与卡扣",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "一体塑料件；卡扣不单拆",
+      "sourceNames": [
+        "PWR_Housing",
+        "PWR_Latch_Base",
+        "PWR_Latch_Stop"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "board.power.mount.01",
+      "parentId": "board.power",
+      "nameZh": "安装支撑1",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "原子零件；不可继续无损拆分",
+      "sourceNames": [
+        "PWR_Mount_01"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "board.power.mount.02",
+      "parentId": "board.power",
+      "nameZh": "安装支撑2",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "原子零件；不可继续无损拆分",
+      "sourceNames": [
+        "PWR_Mount_02"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "board.power.contact.01",
+      "parentId": "board.power",
+      "nameZh": "接触套1",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "原子零件；不可继续无损拆分",
+      "sourceNames": [
+        "PWR_Contact_01"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "board.power.contact.02",
+      "parentId": "board.power",
+      "nameZh": "接触套2",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "原子零件；不可继续无损拆分",
+      "sourceNames": [
+        "PWR_Contact_02"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "board.power.contact.03",
+      "parentId": "board.power",
+      "nameZh": "接触套3",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "原子零件；不可继续无损拆分",
+      "sourceNames": [
+        "PWR_Contact_03"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "board.power.contact.04",
+      "parentId": "board.power",
+      "nameZh": "接触套4",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "原子零件；不可继续无损拆分",
+      "sourceNames": [
+        "PWR_Contact_04"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "board.power.contact.05",
+      "parentId": "board.power",
+      "nameZh": "接触套5",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "原子零件；不可继续无损拆分",
+      "sourceNames": [
+        "PWR_Contact_05"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "board.power.contact.06",
+      "parentId": "board.power",
+      "nameZh": "接触套6",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "原子零件；不可继续无损拆分",
+      "sourceNames": [
+        "PWR_Contact_06"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "board.power.contact.07",
+      "parentId": "board.power",
+      "nameZh": "接触套7",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "原子零件；不可继续无损拆分",
+      "sourceNames": [
+        "PWR_Contact_07"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "board.power.contact.08",
+      "parentId": "board.power",
+      "nameZh": "接触套8",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "原子零件；不可继续无损拆分",
+      "sourceNames": [
+        "PWR_Contact_08"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "backplate",
+      "parentId": "gpu",
+      "nameZh": "背板与紧固件",
+      "kind": "assembly",
+      "joint": "service",
+      "evidence": "existing_model",
+      "leafReason": null,
+      "sourceNames": [],
+      "newGeometry": false,
+      "childIds": [
+        "backplate.panel",
+        "backplate.screw.01",
+        "backplate.screw.02",
+        "backplate.screw.03",
+        "backplate.screw.04",
+        "backplate.screw.05",
+        "backplate.screw.06",
+        "backplate.screw.07",
+        "backplate.screw.08"
+      ]
+    },
+    {
+      "id": "backplate.panel",
+      "parentId": "backplate",
+      "nameZh": "一体背板",
+      "kind": "part",
+      "joint": "service",
+      "evidence": "existing_model",
+      "leafReason": "单块背板的开孔/凹槽不构成独立零件",
+      "sourceNames": [
+        "MECH_Backplate"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "backplate.screw.01",
+      "parentId": "backplate",
+      "nameZh": "背板螺丝1",
+      "kind": "part",
+      "joint": "service",
+      "evidence": "existing_model",
+      "leafReason": "一体螺丝头杆，L2终止，不能切开凑层级",
+      "sourceNames": [
+        "MECH_BackScrew_01_Head",
+        "MECH_BackScrew_01_Shaft"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "backplate.screw.02",
+      "parentId": "backplate",
+      "nameZh": "背板螺丝2",
+      "kind": "part",
+      "joint": "service",
+      "evidence": "existing_model",
+      "leafReason": "一体螺丝头杆，L2终止，不能切开凑层级",
+      "sourceNames": [
+        "MECH_BackScrew_02_Head",
+        "MECH_BackScrew_02_Shaft"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "backplate.screw.03",
+      "parentId": "backplate",
+      "nameZh": "背板螺丝3",
+      "kind": "part",
+      "joint": "service",
+      "evidence": "existing_model",
+      "leafReason": "一体螺丝头杆，L2终止，不能切开凑层级",
+      "sourceNames": [
+        "MECH_BackScrew_03_Head",
+        "MECH_BackScrew_03_Shaft"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "backplate.screw.04",
+      "parentId": "backplate",
+      "nameZh": "背板螺丝4",
+      "kind": "part",
+      "joint": "service",
+      "evidence": "existing_model",
+      "leafReason": "一体螺丝头杆，L2终止，不能切开凑层级",
+      "sourceNames": [
+        "MECH_BackScrew_04_Head",
+        "MECH_BackScrew_04_Shaft"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "backplate.screw.05",
+      "parentId": "backplate",
+      "nameZh": "背板螺丝5",
+      "kind": "part",
+      "joint": "service",
+      "evidence": "existing_model",
+      "leafReason": "一体螺丝头杆，L2终止，不能切开凑层级",
+      "sourceNames": [
+        "MECH_BackScrew_05_Head",
+        "MECH_BackScrew_05_Shaft"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "backplate.screw.06",
+      "parentId": "backplate",
+      "nameZh": "背板螺丝6",
+      "kind": "part",
+      "joint": "service",
+      "evidence": "existing_model",
+      "leafReason": "一体螺丝头杆，L2终止，不能切开凑层级",
+      "sourceNames": [
+        "MECH_BackScrew_06_Head",
+        "MECH_BackScrew_06_Shaft"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "backplate.screw.07",
+      "parentId": "backplate",
+      "nameZh": "背板螺丝7",
+      "kind": "part",
+      "joint": "service",
+      "evidence": "existing_model",
+      "leafReason": "一体螺丝头杆，L2终止，不能切开凑层级",
+      "sourceNames": [
+        "MECH_BackScrew_07_Head",
+        "MECH_BackScrew_07_Shaft"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "backplate.screw.08",
+      "parentId": "backplate",
+      "nameZh": "背板螺丝8",
+      "kind": "part",
+      "joint": "service",
+      "evidence": "existing_model",
+      "leafReason": "一体螺丝头杆，L2终止，不能切开凑层级",
+      "sourceNames": [
+        "MECH_BackScrew_08_Head",
+        "MECH_BackScrew_08_Shaft"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "io",
+      "parentId": "gpu",
+      "nameZh": "视频输出与安装",
+      "kind": "assembly",
+      "joint": "service",
+      "evidence": "existing_model",
+      "leafReason": null,
+      "sourceNames": [],
+      "newGeometry": false,
+      "childIds": [
+        "io.mount",
+        "io.dp.01",
+        "io.dp.02",
+        "io.dp.03",
+        "io.hdmi.01"
+      ]
+    },
+    {
+      "id": "io.mount",
+      "parentId": "io",
+      "nameZh": "安装挡板结构",
+      "kind": "assembly",
+      "joint": "service",
+      "evidence": "existing_model",
+      "leafReason": null,
+      "sourceNames": [],
+      "newGeometry": false,
+      "childIds": [
+        "io.bracket",
+        "io.endframe",
+        "io.support.01",
+        "io.support.02"
+      ]
+    },
+    {
+      "id": "io.bracket",
+      "parentId": "io.mount",
+      "nameZh": "I/O挡板",
+      "kind": "part",
+      "joint": "service",
+      "evidence": "existing_model",
+      "leafReason": "原子零件；不可继续无损拆分",
+      "sourceNames": [
+        "IO_Bracket"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "io.endframe",
+      "parentId": "io.mount",
+      "nameZh": "端框",
+      "kind": "part",
+      "joint": "service",
+      "evidence": "existing_model",
+      "leafReason": "原子零件；不可继续无损拆分",
+      "sourceNames": [
+        "IO_EndFrame"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "io.support.01",
+      "parentId": "io.mount",
+      "nameZh": "连接筋1",
+      "kind": "part",
+      "joint": "service",
+      "evidence": "existing_model",
+      "leafReason": "原子零件；不可继续无损拆分",
+      "sourceNames": [
+        "IO_Support_01"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "io.support.02",
+      "parentId": "io.mount",
+      "nameZh": "连接筋2",
+      "kind": "part",
+      "joint": "service",
+      "evidence": "existing_model",
+      "leafReason": "原子零件；不可继续无损拆分",
+      "sourceNames": [
+        "IO_Support_02"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "io.dp.01",
+      "parentId": "io",
+      "nameZh": "DP.01风格端口",
+      "kind": "assembly",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": null,
+      "sourceNames": [],
+      "newGeometry": false,
+      "childIds": [
+        "io.dp.01.shell",
+        "io.dp.01.insulator"
+      ]
+    },
+    {
+      "id": "io.dp.01.shell",
+      "parentId": "io.dp.01",
+      "nameZh": "接口金属壳",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "背壁是壳体可见补面，不拆为独立结构",
+      "sourceNames": [
+        "IO_DP_01_Backwall",
+        "IO_DP_01_Shell"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "io.dp.01.insulator",
+      "parentId": "io.dp.01",
+      "nameZh": "绝缘舌",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "未制作/确认独立针脚，终止于绝缘件",
+      "sourceNames": [
+        "IO_DP_01_Tongue"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "io.dp.02",
+      "parentId": "io",
+      "nameZh": "DP.02风格端口",
+      "kind": "assembly",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": null,
+      "sourceNames": [],
+      "newGeometry": false,
+      "childIds": [
+        "io.dp.02.shell",
+        "io.dp.02.insulator"
+      ]
+    },
+    {
+      "id": "io.dp.02.shell",
+      "parentId": "io.dp.02",
+      "nameZh": "接口金属壳",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "背壁是壳体可见补面，不拆为独立结构",
+      "sourceNames": [
+        "IO_DP_02_Backwall",
+        "IO_DP_02_Shell"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "io.dp.02.insulator",
+      "parentId": "io.dp.02",
+      "nameZh": "绝缘舌",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "未制作/确认独立针脚，终止于绝缘件",
+      "sourceNames": [
+        "IO_DP_02_Tongue"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "io.dp.03",
+      "parentId": "io",
+      "nameZh": "DP.03风格端口",
+      "kind": "assembly",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": null,
+      "sourceNames": [],
+      "newGeometry": false,
+      "childIds": [
+        "io.dp.03.shell",
+        "io.dp.03.insulator"
+      ]
+    },
+    {
+      "id": "io.dp.03.shell",
+      "parentId": "io.dp.03",
+      "nameZh": "接口金属壳",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "背壁是壳体可见补面，不拆为独立结构",
+      "sourceNames": [
+        "IO_DP_03_Backwall",
+        "IO_DP_03_Shell"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "io.dp.03.insulator",
+      "parentId": "io.dp.03",
+      "nameZh": "绝缘舌",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "未制作/确认独立针脚，终止于绝缘件",
+      "sourceNames": [
+        "IO_DP_03_Tongue"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "io.hdmi.01",
+      "parentId": "io",
+      "nameZh": "HDMI.01风格端口",
+      "kind": "assembly",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": null,
+      "sourceNames": [],
+      "newGeometry": false,
+      "childIds": [
+        "io.hdmi.01.shell",
+        "io.hdmi.01.insulator"
+      ]
+    },
+    {
+      "id": "io.hdmi.01.shell",
+      "parentId": "io.hdmi.01",
+      "nameZh": "接口金属壳",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "背壁是壳体可见补面，不拆为独立结构",
+      "sourceNames": [
+        "IO_HDMI_01_Backwall",
+        "IO_HDMI_01_Shell"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    },
+    {
+      "id": "io.hdmi.01.insulator",
+      "parentId": "io.hdmi.01",
+      "nameZh": "绝缘舌",
+      "kind": "part",
+      "joint": "bonded",
+      "evidence": "existing_model",
+      "leafReason": "未制作/确认独立针脚，终止于绝缘件",
+      "sourceNames": [
+        "IO_HDMI_01_Tongue"
+      ],
+      "newGeometry": false,
+      "childIds": []
+    }
+  ],
+  "regions": [
+    {
+      "id": "region.gpu",
+      "nodeIds": [
+        "board.gpu"
+      ]
+    },
+    {
+      "id": "region.memory",
+      "nodeIds": [
+        "board.memory.01",
+        "board.memory.02",
+        "board.memory.03",
+        "board.memory.04"
+      ]
+    },
+    {
+      "id": "region.vrm",
+      "nodeIds": [
+        "board.stage.01",
+        "board.inductor.01",
+        "board.capacitor.01",
+        "board.stage.02",
+        "board.inductor.02",
+        "board.capacitor.02",
+        "board.stage.03",
+        "board.inductor.03",
+        "board.capacitor.03",
+        "board.controller"
+      ]
+    },
+    {
+      "id": "region.pcie",
+      "nodeIds": [
+        "board.core",
+        "board.copper.front",
+        "board.copper.back"
+      ]
+    }
+  ],
+  "features": [
+    {
+      "id": "feature.pcie.front",
+      "ownerId": "board.copper.front",
+      "sourceNames": [
+        "EC_Pad_Front_A_01",
+        "EC_Pad_Front_A_02",
+        "EC_Pad_Front_A_03",
+        "EC_Pad_Front_A_04",
+        "EC_Pad_Front_A_05",
+        "EC_Pad_Front_A_06",
+        "EC_Pad_Front_A_07",
+        "EC_Pad_Front_A_08",
+        "EC_Pad_Front_A_09",
+        "EC_Pad_Front_A_10",
+        "EC_Pad_Front_A_11",
+        "EC_Pad_Front_B_01",
+        "EC_Pad_Front_B_02",
+        "EC_Pad_Front_B_03",
+        "EC_Pad_Front_B_04",
+        "EC_Pad_Front_B_05",
+        "EC_Pad_Front_B_06",
+        "EC_Pad_Front_B_07",
+        "EC_Pad_Front_B_08",
+        "EC_Pad_Front_B_09",
+        "EC_Pad_Front_B_10",
+        "EC_Pad_Front_B_11",
+        "EC_Pad_Front_B_12",
+        "EC_Pad_Front_B_13",
+        "EC_Pad_Front_B_14",
+        "EC_Pad_Front_B_15",
+        "EC_Pad_Front_B_16",
+        "EC_Pad_Front_B_17",
+        "EC_Pad_Front_B_18",
+        "EC_Pad_Front_B_19",
+        "EC_Pad_Front_B_20",
+        "EC_Pad_Front_B_21",
+        "EC_Pad_Front_B_22",
+        "EC_Pad_Front_B_23",
+        "EC_Pad_Front_B_24",
+        "EC_Pad_Front_B_25",
+        "EC_Pad_Front_B_26",
+        "EC_Pad_Front_B_27",
+        "EC_Pad_Front_B_28",
+        "EC_Pad_Front_B_29",
+        "EC_Pad_Front_B_30",
+        "EC_Pad_Front_B_31",
+        "EC_Pad_Front_B_32",
+        "EC_Pad_Front_B_33",
+        "EC_Pad_Front_B_34",
+        "EC_Pad_Front_B_35",
+        "EC_Pad_Front_B_36",
+        "EC_Pad_Front_B_37",
+        "EC_Pad_Front_B_38",
+        "EC_Pad_Front_B_39",
+        "EC_Pad_Front_B_40",
+        "EC_Pad_Front_B_41",
+        "EC_Pad_Front_B_42",
+        "EC_Pad_Front_B_43",
+        "EC_Pad_Front_B_44",
+        "EC_Pad_Front_B_45",
+        "EC_Pad_Front_B_46",
+        "EC_Pad_Front_B_47",
+        "EC_Pad_Front_B_48",
+        "EC_Pad_Front_B_49",
+        "EC_Pad_Front_B_50",
+        "EC_Pad_Front_B_51",
+        "EC_Pad_Front_B_52",
+        "EC_Pad_Front_B_53",
+        "EC_Pad_Front_B_54",
+        "EC_Pad_Front_B_55",
+        "EC_Pad_Front_B_56",
+        "EC_Pad_Front_B_57",
+        "EC_Pad_Front_B_58",
+        "EC_Pad_Front_B_59",
+        "EC_Pad_Front_B_60",
+        "EC_Pad_Front_B_61",
+        "EC_Pad_Front_B_62",
+        "EC_Pad_Front_B_63",
+        "EC_Pad_Front_B_64",
+        "EC_Pad_Front_B_65",
+        "EC_Pad_Front_B_66",
+        "EC_Pad_Front_B_67",
+        "EC_Pad_Front_B_68",
+        "EC_Pad_Front_B_69",
+        "EC_Pad_Front_B_70",
+        "EC_Pad_Front_B_71"
+      ],
+      "detach": false
+    },
+    {
+      "id": "feature.pcie.back",
+      "ownerId": "board.copper.back",
+      "sourceNames": [
+        "EC_Pad_Back_A_01",
+        "EC_Pad_Back_A_02",
+        "EC_Pad_Back_A_03",
+        "EC_Pad_Back_A_04",
+        "EC_Pad_Back_A_05",
+        "EC_Pad_Back_A_06",
+        "EC_Pad_Back_A_07",
+        "EC_Pad_Back_A_08",
+        "EC_Pad_Back_A_09",
+        "EC_Pad_Back_A_10",
+        "EC_Pad_Back_A_11",
+        "EC_Pad_Back_B_01",
+        "EC_Pad_Back_B_02",
+        "EC_Pad_Back_B_03",
+        "EC_Pad_Back_B_04",
+        "EC_Pad_Back_B_05",
+        "EC_Pad_Back_B_06",
+        "EC_Pad_Back_B_07",
+        "EC_Pad_Back_B_08",
+        "EC_Pad_Back_B_09",
+        "EC_Pad_Back_B_10",
+        "EC_Pad_Back_B_11",
+        "EC_Pad_Back_B_12",
+        "EC_Pad_Back_B_13",
+        "EC_Pad_Back_B_14",
+        "EC_Pad_Back_B_15",
+        "EC_Pad_Back_B_16",
+        "EC_Pad_Back_B_17",
+        "EC_Pad_Back_B_18",
+        "EC_Pad_Back_B_19",
+        "EC_Pad_Back_B_20",
+        "EC_Pad_Back_B_21",
+        "EC_Pad_Back_B_22",
+        "EC_Pad_Back_B_23",
+        "EC_Pad_Back_B_24",
+        "EC_Pad_Back_B_25",
+        "EC_Pad_Back_B_26",
+        "EC_Pad_Back_B_27",
+        "EC_Pad_Back_B_28",
+        "EC_Pad_Back_B_29",
+        "EC_Pad_Back_B_30",
+        "EC_Pad_Back_B_31",
+        "EC_Pad_Back_B_32",
+        "EC_Pad_Back_B_33",
+        "EC_Pad_Back_B_34",
+        "EC_Pad_Back_B_35",
+        "EC_Pad_Back_B_36",
+        "EC_Pad_Back_B_37",
+        "EC_Pad_Back_B_38",
+        "EC_Pad_Back_B_39",
+        "EC_Pad_Back_B_40",
+        "EC_Pad_Back_B_41",
+        "EC_Pad_Back_B_42",
+        "EC_Pad_Back_B_43",
+        "EC_Pad_Back_B_44",
+        "EC_Pad_Back_B_45",
+        "EC_Pad_Back_B_46",
+        "EC_Pad_Back_B_47",
+        "EC_Pad_Back_B_48",
+        "EC_Pad_Back_B_49",
+        "EC_Pad_Back_B_50",
+        "EC_Pad_Back_B_51",
+        "EC_Pad_Back_B_52",
+        "EC_Pad_Back_B_53",
+        "EC_Pad_Back_B_54",
+        "EC_Pad_Back_B_55",
+        "EC_Pad_Back_B_56",
+        "EC_Pad_Back_B_57",
+        "EC_Pad_Back_B_58",
+        "EC_Pad_Back_B_59",
+        "EC_Pad_Back_B_60",
+        "EC_Pad_Back_B_61",
+        "EC_Pad_Back_B_62",
+        "EC_Pad_Back_B_63",
+        "EC_Pad_Back_B_64",
+        "EC_Pad_Back_B_65",
+        "EC_Pad_Back_B_66",
+        "EC_Pad_Back_B_67",
+        "EC_Pad_Back_B_68",
+        "EC_Pad_Back_B_69",
+        "EC_Pad_Back_B_70",
+        "EC_Pad_Back_B_71"
+      ],
+      "detach": false
+    }
+  ],
+  "replacementAllowlist": [
+    "PCB_Blockout",
+    "FAN_01_Motor",
+    "FAN_01_Hub",
+    "FAN_02_Motor",
+    "FAN_02_Hub",
+    "FAN_03_Motor",
+    "FAN_03_Hub"
+  ],
+  "excluded": [
+    "FAN_01_Disc_Blockout",
+    "FAN_02_Disc_Blockout",
+    "FAN_03_Disc_Blockout"
+  ],
+  "depthExceptions": [
+    {
+      "id": "backplate",
+      "reason": "拆到单块板和一体螺丝即原子，不虚构L3"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "status": "passed",
+  "blend": "C:\\Users\\Berry\\Documents\\ChatGPT\\AI科研中心\\gpu_5060ti_ultra_w\\interactive\\output\\interactive_gpu.blend",
+  "glb": "C:\\Users\\Berry\\Documents\\ChatGPT\\AI科研中心\\gpu_5060ti_ultra_w\\interactive\\output\\gpu-disassembly.gpu-lab-v1-r001.glb",
+  "manifest": "C:\\Users\\Berry\\Documents\\ChatGPT\\AI科研中心\\gpu_5060ti_ultra_w\\interactive\\output\\assembly.gpu-lab-v1-r001.json",
+  "glbSha256": "7d53cbd2090da712d06fa348ee039fea8a17d624e60c16d7b653fa541ca62d46",
+  "glbBytes": 9426400,
+  "nodes": 931,
+  "meshes": 601,
+  "materials": 36,
+  "renderables": 601,
+  "bindings": 601,
+  "public": "C:\\Users\\Berry\\Documents\\ChatGPT\\AI科研中心\\site_gpu_delivery\\frontend\\public\\hardware\\gpu-lab",
+  "sourceSha256": "d501cad14e9628143dd9ebe6b0dd15a3bd73af4bd903aac7470af17031e1d41d"
+}

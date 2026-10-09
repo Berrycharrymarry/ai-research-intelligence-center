@@ -1,0 +1,21 @@
+{
+  "status": "passed",
+  "assetValidation": {
+    "command": "npm run validate:gpu",
+    "exitCode": 0
+  },
+  "unitTests": {
+    "command": "npm run test:gpu",
+    "exitCode": 0,
+    "passed": 11,
+    "failed": 0
+  },
+  "productionBuild": {
+    "command": "npm run build",
+    "exitCode": 0
+  },
+  "backendRegression": {
+    "status": "not_run",
+    "reason": "The host Python installation does not include pytest; this change does not alter backend code."
+  }
+}

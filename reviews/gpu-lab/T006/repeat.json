@@ -1,0 +1,19 @@
+{
+  "status": "passed",
+  "rounds": [
+    {
+      "objects": 985,
+      "meshes": 188,
+      "materials": 52,
+      "interactiveObjects": 605,
+      "conceptualObjects": 126
+    },
+    {
+      "objects": 985,
+      "meshes": 188,
+      "materials": 52,
+      "interactiveObjects": 605,
+      "conceptualObjects": 126
+    }
+  ]
+}

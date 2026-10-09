@@ -1,0 +1,7 @@
+{
+  "status": "passed",
+  "schemaVersion": 1,
+  "manifestNodes": 330,
+  "tests": 6,
+  "result": "The assembly contract rejects invalid ownership, cycles, missing production geometry, conceptual parts without teaching labels, and asset version mismatches."
+}

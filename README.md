@@ -13,6 +13,7 @@ to SQLite so page loads never re-hit upstream APIs.
 
 ## Features
 
+- **GPU Disassembly Lab** — a verified 9.4 MB semantic GLB with a 330-node ownership tree, recursive part selection, exploded view, x-ray reveal, independent part rotation, bilingual component information, and clearly labeled conceptual PCB/package/fan internals.
 - **Research Project** — create a named project with a custom search query; collect data with one click.
 - **Automatic collection** — OpenAlex works search (title/abstract/full-text relevance), paginated, polite, retrying.
 - **Paper Explorer** — server-side search, sort (date/citations/title), filter (topic, year range, min citations), pagination, and a detail view with abstract + extractive summary + links + related papers.
@@ -47,7 +48,8 @@ backend/
   tests/          # pytest suite
 frontend/
   src/pages/      # Dashboard, Explorer, Timeline, Graph, Landscape, Analysis, Gaps, Setup
-  src/viz/        # Cytoscape graph + ECharts wrappers
+  src/viz/        # Cytoscape/ECharts wrappers + semantic Three.js GPU lab
+  public/hardware/gpu-lab/ # versioned GLB and assembly manifest
 docs/             # ARCHITECTURE.md + API.md (frozen contract)
 ```
 
@@ -133,6 +135,15 @@ The app runs as long as your computer stays on, independent of any chat session.
 ---
 
 ## Tests
+
+GPU asset and interaction checks:
+
+```bash
+cd frontend
+npm run validate:gpu
+npm run test:gpu
+npm run build
+```
 
 ```bash
 cd backend
