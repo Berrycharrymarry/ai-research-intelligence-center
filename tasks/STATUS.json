@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "planningCompletedAt": "2026-10-08",
   "implementationStarted": true,
-  "nextTask": "T018",
+  "nextTask": null,
   "tasks": [
     {
       "id": "T001",
@@ -427,11 +427,23 @@
       "dependencies": [
         "T017"
       ],
-      "status": "pending",
+      "status": "done",
       "inputsHash": null,
-      "outputs": [],
-      "tests": [],
-      "checkpoint": null,
+      "outputs": [
+        "reviews/gpu-lab/T018/deployment.md",
+        "reviews/gpu-lab/T018/online_checks.json"
+      ],
+      "tests": [
+        {
+          "command": "task-specific checks",
+          "exitCode": 0,
+          "evidence": [
+            "reviews/gpu-lab/T018/deployment.md",
+            "reviews/gpu-lab/T018/online_checks.json"
+          ]
+        }
+      ],
+      "checkpoint": "working-tree:T018",
       "notes": []
     }
   ]

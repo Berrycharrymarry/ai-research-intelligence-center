@@ -8,12 +8,13 @@ import { validateManifest } from "../src/viz/gpu-lab/manifestValidator.js";
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
 const publicPath = (url) => join(root, "public", ...url.split("/").filter(Boolean));
 const sha256 = (buffer) => createHash("sha256").update(buffer).digest("hex");
+const canonicalText = (buffer) => Buffer.from(buffer.toString("utf8").replaceAll("\r\n", "\n"), "utf8");
 const manifestBuffer = await readFile(publicPath(GPU_LAB_ASSET.manifestUrl));
 const glb = await readFile(publicPath(GPU_LAB_ASSET.modelUrl));
 const manifest = JSON.parse(manifestBuffer.toString("utf8"));
 
 if (sha256(glb) !== GPU_LAB_ASSET.modelSha256) throw new Error("GLB catalog hash mismatch");
-if (sha256(manifestBuffer) !== GPU_LAB_ASSET.manifestSha256) throw new Error("Manifest catalog hash mismatch");
+if (sha256(canonicalText(manifestBuffer)) !== GPU_LAB_ASSET.manifestSha256) throw new Error("Manifest catalog hash mismatch");
 if (glb.toString("ascii", 0, 4) !== "glTF") throw new Error("Asset is not a binary glTF");
 const jsonLength = glb.readUInt32LE(12);
 const jsonType = glb.toString("ascii", 16, 20);

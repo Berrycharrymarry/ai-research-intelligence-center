@@ -1,0 +1,36 @@
+{
+  "status": "passed",
+  "verifiedAt": "2026-10-09",
+  "implementationCommit": "637d213",
+  "environment": "Render production",
+  "url": "https://ai-research-intelligence-center.onrender.com/hardware",
+  "http": {
+    "pageStatus": 200,
+    "manifestStatus": 200,
+    "manifestContentType": "application/json",
+    "modelStatus": 200
+  },
+  "assets": {
+    "modelBytes": 9426400,
+    "modelSha256": "7d53cbd2090da712d06fa348ee039fea8a17d624e60c16d7b653fa541ca62d46",
+    "manifestCanonicalSha256": "f4a2309cf4186518976423c44ae9494462ab5757d461fa2c2d6b5c036ecaa473",
+    "semanticNodes": 330,
+    "meshBindings": 601
+  },
+  "browser": {
+    "name": "Codex in-app Chromium",
+    "checks": [
+      "production page loaded the verified GPU asset",
+      "exploded view separated the front shroud, fans, heatsink and backplate",
+      "recursive navigation reached PCB, GPU package and GPU die",
+      "conceptual parts were visibly labelled as teaching illustrations",
+      "breadcrumbs, part tree and information panel followed selection"
+    ],
+    "consoleErrors": 0,
+    "consoleWarnings": 0
+  },
+  "notes": [
+    "The manifest hash is calculated after CRLF-to-LF canonicalization so Windows working trees and the Linux deployment produce the same catalog identity.",
+    "One initial asset download ended early at the transport layer; an immediate curl retry completed and matched the expected byte count and SHA-256."
+  ]
+}

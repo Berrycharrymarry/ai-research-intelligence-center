@@ -12,6 +12,7 @@
     "verified corrected Blender 5.2 Principled material export"
   ],
   "consoleErrors": 0,
+  "onlineManifestCanonicalSha256": "f4a2309cf4186518976423c44ae9494462ab5757d461fa2c2d6b5c036ecaa473",
   "knownWarnings": [
     "React Router v7 future-flag notices from the existing application"
   ]
